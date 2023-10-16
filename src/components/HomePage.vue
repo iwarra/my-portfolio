@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+  import { projects } from '../data.js';
+
+</script>
 
 <template>
   <header id="header">
@@ -34,8 +37,34 @@
   </header>
   <main>
     <section id="projects">
+      <h2 class="projects-title">My projects</h2>
       <div class="projects-wrapper">
-
+        <img src="arrow-left.svg" alt="arrow pointing left" aria-label="button" class="arrow-icon">
+          <ul class="projects-list">
+            <li class="project-card" 
+            v-for="project in projects"
+            >
+              <img class="project-img" :src="project.image" alt="screenshot of the projects user interface">
+              <div class="project-text">
+                <h3 class="project-title"> {{ project.title }}</h3>
+                <ul class="project-tools"> Tools used:
+                  <li v-for="(tool, index) in project.tools">
+                    {{ tool }}{{index < project.tools.length - 1 ? ', ' : ' '}}
+                  </li>
+                </ul>
+                <p class="project-description"> {{ project.description }} </p>
+                <ul class="project-links">
+                  <li>
+                    <a :href="project.links.gitHub">GitHub</a> 
+                  </li>
+                  <li>
+                    <a :href="project.links.liveDemo">Live Demo</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        <img src="arrow-right.svg" alt="arrow pointing right" aria-label="button" class="arrow-icon">
       </div>
     </section>
   </main>
@@ -109,7 +138,7 @@
     overflow: hidden;
     white-space: nowrap;
     border-right: 2px solid transparent;
-    font-size: 2em;
+    font-size: 2rem;
     width: 0;
     max-width: 350px;
     animation: typing 2s steps(30, end) forwards, blinking 2.5s 1;
@@ -127,7 +156,7 @@
   }
 
   .hero-subtitle {
-    font-size: 1.6em;
+    font-size: 1.6rem;
   }
 
   @media (min-width: 850px) {
@@ -146,13 +175,110 @@
     }
 
     .hero-title {
-      font-size: 3em;
+      font-size: 3rem;
       max-width: 500px;
     }
 
     .hero-subtitle {
-      font-size: 2em;
+      font-size: 2rem;
     } 
   }
 }
+
+@media (min-width: 850px) {
+  #header {
+    padding-block: 3rem;
+  }
+}
+
+#projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 3rem;
+
+  .projects-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .projects-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    grid-column-gap: .5rem;
+    align-items: center;
+    max-width: 1200px;
+  }
+
+  .projects-list {
+    display: grid;
+    grid-template-columns: 12fr;
+    grid-template-rows: 12fr 0 0 0;
+    grid-column-gap: 2rem;
+  }
+
+  .project-card {
+    background-color: #e5e5e5;
+    height: auto;
+    border-radius: 1rem;
+    gap: .5rem;
+    overflow: hidden;
+  }
+
+  .project-text {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1.5rem;
+  }
+
+  .project-img {
+    height: 40%;
+    max-width: 100%;
+  }
+
+  .project-links {
+    list-style: none;
+
+    li {
+      display: inline;
+      margin-right: .5rem;
+    }
+  }
+
+  .project-title {
+    margin-bottom: 0;
+  }
+
+  .project-tools {
+    list-style: none;
+    font-weight: 600;
+    color: var(--primary-accent);
+
+    li {
+      display: inline;
+    }
+  }
+
+  .arrow-icon {
+    max-width: 4rem;
+    cursor: pointer; 
+  }
+
+  @media (min-width: 580px) {
+    .projects-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-column-gap: 2rem;
+    }
+  }
+
+  @media (min-width: 950px) {
+    .projects-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-column-gap: 1rem;
+    }
+  }
+}
+
 </style>
