@@ -1,6 +1,29 @@
 <script setup>
-  import { projects } from '../data.js';
+import { ref, computed } from 'vue';
+import { projects } from '../data.js';
 
+const projectsRef = ref(projects);
+let currentProjects = computed(() => projectsRef.value);
+
+const moveLeft = () => {
+  projectsRef.value = [...currentProjects.value.slice(1), currentProjects.value.at(0)];
+};
+
+const moveRight = () => {
+  projectsRef.value = [currentProjects.value.at(-1), ...currentProjects.value.slice(0, -1)];
+};
+
+function setBorderColor(project) {
+  const toolColors = {
+    Vue: '#42b883',
+    React: '#75dcfd',
+  }
+
+  for (let tool in toolColors) {
+    if (project.tools.includes(tool)) return toolColors[tool]
+  }  
+  return 'transparent'
+};
 </script>
 
 <template>
@@ -39,10 +62,18 @@
     <section id="projects">
       <h2 class="projects-title">My projects</h2>
       <div class="projects-wrapper">
-        <img src="arrow-left.svg" alt="arrow pointing left" aria-label="button" class="arrow-icon">
+        <img src="arrow-left.svg" 
+          alt="arrow pointing left" 
+          aria-label="button" 
+          class="arrow-icon"
+          @click="moveLeft"
+        >
           <ul class="projects-list">
-            <li class="project-card" 
-            v-for="project in projects"
+            <li 
+              class="project-card" 
+              v-for="project in projectsRef"
+              :style="`border: 2px solid ${setBorderColor(project)}`"
+              :key="project.title"
             >
               <img class="project-img" :src="project.image" alt="screenshot of the projects user interface">
               <div class="project-text">
@@ -64,7 +95,13 @@
               </div>
             </li>
           </ul>
-        <img src="arrow-right.svg" alt="arrow pointing right" aria-label="button" class="arrow-icon">
+        <img 
+          src="arrow-right.svg" 
+          alt="arrow pointing right" 
+          aria-label="button" 
+          class="arrow-icon"
+          @click="moveRight"
+        >
       </div>
     </section>
   </main>
@@ -203,37 +240,44 @@
 
   .projects-wrapper {
     display: grid;
-    grid-template-columns: 1fr 10fr 1fr;
-    grid-column-gap: .5rem;
+    grid-auto-flow: column;
     align-items: center;
     max-width: 1200px;
+    overflow: hidden;
   }
 
   .projects-list {
+    list-style: none;
     display: grid;
-    grid-template-columns: 12fr;
-    grid-template-rows: 12fr 0 0 0;
-    grid-column-gap: 2rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-auto-rows: 0;
   }
 
   .project-card {
     background-color: #e5e5e5;
-    height: auto;
     border-radius: 1rem;
-    gap: .5rem;
     overflow: hidden;
-  }
-
-  .project-text {
     display: flex;
     flex-direction: column;
     gap: .5rem;
+    max-height: 500px;
+  }
+
+  .project-text {
     padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    flex: 1;
+    line-height: 1.2;
   }
 
   .project-img {
-    height: 40%;
-    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 2/1.5;
+    object-fit: cover;
+    object-position: 0 0;
   }
 
   .project-links {
@@ -241,12 +285,8 @@
 
     li {
       display: inline;
-      margin-right: .5rem;
+      margin-right: .8rem;
     }
-  }
-
-  .project-title {
-    margin-bottom: 0;
   }
 
   .project-tools {
@@ -266,15 +306,13 @@
 
   @media (min-width: 580px) {
     .projects-list {
-      display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-column-gap: 2rem;
+      grid-column-gap: 1rem;
     }
   }
 
   @media (min-width: 950px) {
     .projects-list {
-      display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-column-gap: 1rem;
     }
