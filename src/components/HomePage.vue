@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { projects } from '../data.js';
+import { projects, skills } from '../data.js';
 
 const projectsRef = ref(projects);
 let currentProjects = computed(() => projectsRef.value);
@@ -31,10 +31,10 @@ function setBorderColor(project) {
     <div class="header-wrapper">
       <nav class="header-nav">
         <ul class="header-links">
-          <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
+          <!-- <li><a href="#blog">Blog</a></li> -->
         </ul>
       </nav>
       <section class="header-hero">
@@ -104,8 +104,69 @@ function setBorderColor(project) {
         >
       </div>
     </section>
+    <section id="about">
+      <h2 class="about-title">About me</h2>
+        <div class="about-wrapper">
+          <div class="about-skills">
+            <h3>My Skills</h3>
+            <u class="skills-list">
+               <li v-for="skill in skills"
+                class="skills-item"
+               >
+                <font-awesome-icon
+                  :icon="skill.icon"
+                ></font-awesome-icon>
+                <span> {{ skill.name }} </span>
+              </li>
+            </u>
+          </div>
+          <div class="about-text">
+            <h3>Get to know me</h3>
+            <p>I'm a Frontend Web Developer with background in communications and coordinating. The initial spark that ignited my interest in front-end was playing with my now ten years old blog. Around a year ago I decided to take the jump and switch career path. I enjoy building things and love to combine functionality with design. In my free time I enjoy learning new things, reading books and petting dogs.
+            I'm open to job opportunities where I can contribute, learn and grow. If you know of an opportunity that matches my skills please don't hesitate to contact me.</p>
+          </div>
+        </div>
+    </section>
+    <section id="contact">
+      <h2 class="contact-title">Let's connect</h2>
+      <ul class="contact-list">
+        <li><a href="https://www.linkedin.com/in/ivona-josipovic/" target="_blank">
+          <font-awesome-icon 
+            icon="fa-brands fa-linkedin fa-lg"
+            class="contact-icon"
+          ></font-awesome-icon>
+          <span class="contact-info"> ivona-josipovic</span></a>
+        </li>
+        <li>
+          <a href="mailto:josipovic.ivona@gmail.com" target="_blank">
+            <font-awesome-icon 
+              icon="fa-solid fa-envelope fa-lg"
+              class="contact-icon"
+            ></font-awesome-icon>
+            <span class="contact-info"> josipovic.ivona[at]gmail.com</span></a>
+        </li>
+        <li>
+          <a href="https://github.com/iwarra" target="_blank">
+            <font-awesome-icon 
+              icon="fa-brands fa-github fa-lg"
+              class="contact-icon"
+            ></font-awesome-icon>
+            <span class="contact-info"> iwarra</span></a>
+        </li>
+      </ul>
+    </section>
   </main>
-  <footer></footer>
+  <footer id="footer">
+    <div class="footer-wrapper">
+      <small class="footer-copy">Copyright ©2023 Ivona Josipovic</small>
+      <a class="footer-scrollUp" href="#">
+        <font-awesome-icon 
+          icon="fa-solid fa-circle-chevron-up"
+          class="footer-icon"
+        ></font-awesome-icon>
+      </a> 
+    </div>
+  </footer>
 </template>
 
 <style scoped lang="scss"> 
@@ -232,7 +293,7 @@ function setBorderColor(project) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-block: 3rem;
+  padding-block: 5rem;
 
   .projects-title {
     margin-bottom: 1.5rem;
@@ -261,7 +322,7 @@ function setBorderColor(project) {
     display: flex;
     flex-direction: column;
     gap: .5rem;
-    max-height: 500px;
+    max-height: 32rem;
   }
 
   .project-text {
@@ -316,6 +377,109 @@ function setBorderColor(project) {
       grid-template-columns: repeat(3, 1fr);
       grid-column-gap: 1rem;
     }
+  }
+}
+
+#about {
+  background-image: url(../assets/grainy_texture.png), linear-gradient(var(--primary-peach), var(--primary-peach));
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding-block: 3rem;
+
+  .about-wrapper {
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-inline: 3rem;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: 1rem;
+    text-decoration: none;
+
+    .skills-item {
+      padding: .8rem 1.2rem;
+      font-size: 1.2rem;
+      background: rgba(153,153,153,.2);
+      border-radius: 5px;
+      font-weight: 600;
+      color: #666;
+      
+      span {
+        margin-left: .5rem;
+      }
+    }
+  }
+  
+  @media (min-width: 850px) {
+    .about-text, .about-skills {
+      flex: 1
+    }
+
+    .about-text {
+      order: 1
+    }
+    .about-skills {
+      order: 2
+    }
+
+    .about-wrapper {
+      flex-direction: row;
+    }
+  }
+}
+
+#contact {
+  padding-block: 4rem;
+  .contact-title {
+    text-align: center;
+  }
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 1.2rem;
+    align-items: center;
+  }
+
+  .contact-icon {
+    height: 1.2rem;
+  }
+
+  .contact-info {
+    font-size: 1.2rem;
+  }
+
+  @media (min-width: 850px) {
+  .contact-list {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+}
+
+#footer {
+  background-image: url(../assets/grainy_texture.png), linear-gradient(var(--primary-peach), var(--primary-peach));
+  .footer-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding-block: 2rem;
+  }
+
+  .footer-icon {
+    height: 2rem;
+    color: var(--primary-accent);
   }
 }
 
