@@ -22,7 +22,7 @@ export const projects = [
   {
     title: 'Quiz App',
     description: 'A quiz app built with Typescript and React. Styled with styled components.',
-    image: '',
+    image: 'quiz.png',
     tools: ['React', 'TypeScript', 'Styled Components'],
     links: {
       gitHub: 'https://github.com/iwarra/quiz-app',
@@ -37,6 +37,16 @@ export const projects = [
     links: {
       gitHub: 'https://github.com/iwarra/podcast-project',
       liveDemo: 'https://podcasts-api.netlify.app/'
+    }
+  },
+  {
+    title: 'Exerciser',
+    description: 'Fullstack MERN app that allows CRUD operations. ',
+    image: 'exerciser.png',
+    tools: ['React', 'Node', 'Express', 'MongoDB'],
+    links: {
+      gitHub: 'https://github.com/iwarra/excercise-app',
+      liveDemo: 'https://exerciser.netlify.app/'
     }
   },
 ];
@@ -81,4 +91,7 @@ export const skills = [
   //  { name: "Typescript",
   //   icon: ""
   // },
-]
+];
+
+export const aboutMe = "I'm a Frontend Web Developer with background in communications and coordinating. The initial spark that ignited my interest in front-end was playing with my now ten years old blog. Around a year ago I decided to take the jump and switch career path. I enjoy building things and love to combine functionality with design. In my free time I enjoy learning new things, reading books and petting dogs. I'm open to job opportunities where I can contribute, learn and grow. If you know of an opportunity that matches my skills please don't hesitate to contact me."
+
