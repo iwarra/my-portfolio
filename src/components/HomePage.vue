@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { projects, skills } from '../data.js';
+import { projects, skills, aboutMe } from '../data.js';
 
 const projectsRef = ref(projects);
 let currentProjects = computed(() => projectsRef.value);
@@ -13,17 +13,27 @@ const moveRight = () => {
   projectsRef.value = [currentProjects.value.at(-1), ...currentProjects.value.slice(0, -1)];
 };
 
-function setBorderColor(project) {
-  const toolColors = {
-    Vue: '#42b883',
-    React: '#75dcfd',
-  }
-
-  for (let tool in toolColors) {
-    if (project.tools.includes(tool)) return toolColors[tool]
-  }  
-  return 'transparent'
+const openCV = () => {
+  window.open('ivona_josipovic_cv.pdf');
 };
+
+const scrollToContact = () => {
+  document.querySelector('#contact').scrollIntoView();
+};
+
+// function setBorderColor(project) {
+//   const toolColors = {
+//     Vue: '#42b883',
+//     React: '#75dcfd',
+//   }
+
+//   for (let tool in toolColors) {
+//     if (project.tools.includes(tool)) return toolColors[tool]
+//   }  
+//   return 'transparent'
+// };
+
+// Applied in the component with  :style="`border: 2px solid ${setBorderColor(project)}`" 
 </script>
 
 <template>
@@ -45,9 +55,12 @@ function setBorderColor(project) {
             <button 
               class="hero-primaryBtn" 
               type="submit" 
-              onclick="window.open('ivona_josipovic_cv.pdf')"
-              > Get my CV </button>
-            <button class="hero-secondaryBtn"> Get in touch </button>
+              @click="openCV"
+            > Get my CV </button>
+            <button 
+              class="hero-secondaryBtn" 
+              @click="scrollToContact"
+            > Get in touch </button>
           </div>
         </div>
         <img 
@@ -57,6 +70,7 @@ function setBorderColor(project) {
         >
       </section>
     </div>
+    <div class="transition-skew pink"></div>
   </header>
   <main>
     <section id="projects">
@@ -72,7 +86,6 @@ function setBorderColor(project) {
             <li 
               class="project-card" 
               v-for="project in projectsRef"
-              :style="`border: 2px solid ${setBorderColor(project)}`"
               :key="project.title"
             >
               <img class="project-img" :src="project.image" alt="screenshot of the projects user interface">
@@ -103,6 +116,7 @@ function setBorderColor(project) {
           @click="moveRight"
         >
       </div>
+      <div class="transition-unskew gray"></div>
     </section>
     <section id="about">
       <h2 class="about-title">About me</h2>
@@ -122,10 +136,10 @@ function setBorderColor(project) {
           </div>
           <div class="about-text">
             <h3>Get to know me</h3>
-            <p>I'm a Frontend Web Developer with background in communications and coordinating. The initial spark that ignited my interest in front-end was playing with my now ten years old blog. Around a year ago I decided to take the jump and switch career path. I enjoy building things and love to combine functionality with design. In my free time I enjoy learning new things, reading books and petting dogs.
-            I'm open to job opportunities where I can contribute, learn and grow. If you know of an opportunity that matches my skills please don't hesitate to contact me.</p>
+            <p>{{ aboutMe }}</p>
           </div>
         </div>
+        <div class="transition-skew gray"></div>
     </section>
     <section id="contact">
       <h2 class="contact-title">Let's connect</h2>
@@ -174,34 +188,35 @@ function setBorderColor(project) {
 
 #header {
   background-image: url(../assets/grainy_texture.png), linear-gradient(var(--primary-peach), var(--primary-peach));
-
+  padding-top: 2rem;
+  
   .header-wrapper {
     display: flex;
     flex-direction: column;
     gap: 4rem;
-    min-height: 50vh;
+    min-height: 40vh;
     justify-content: center;
     margin: 0 auto;
 
     .header-links {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    gap: 10px;
-    margin-right: 2rem;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      gap: 10px;
+      margin-right: 2rem;
 
-    a {
-      text-decoration: none;
-      color: var(--primary-accent);
+      a {
+        text-decoration: none;
+        color: var(--primary-accent);
+      }
     }
-  }
   }
 
   .header-hero {
     display: flex; 
     justify-content: center;
-    margin-inline: 2rem;
+    margin-inline: 3rem;
   }
 
   .hero-text {
@@ -218,7 +233,7 @@ function setBorderColor(project) {
       align-self: start;
       background-color: var(--primary-accent);
       color: var(--primary-peach);
-      margin-right: 10px;
+      margin-right: 12px;
     }
 
     .hero-secondaryBtn {
@@ -260,9 +275,11 @@ function setBorderColor(project) {
   @media (min-width: 850px) {
     .header-wrapper {
       max-width: 1000px;
+      padding-top: 3rem;
     }
     .header-hero{
       flex-direction: row;
+      justify-content: space-evenly;
       gap: 2rem;
     }
 
@@ -273,7 +290,7 @@ function setBorderColor(project) {
     }
 
     .hero-title {
-      font-size: 3rem;
+      font-size: 2.8rem;
       max-width: 500px;
     }
 
@@ -283,20 +300,14 @@ function setBorderColor(project) {
   }
 }
 
-@media (min-width: 850px) {
-  #header {
-    padding-block: 3rem;
-  }
-}
-
 #projects {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-block: 5rem;
 
   .projects-title {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    margin-top: 5rem;
   }
 
   .projects-wrapper {
@@ -305,6 +316,7 @@ function setBorderColor(project) {
     align-items: center;
     max-width: 1200px;
     overflow: hidden;
+    margin-bottom: 2rem;
   }
 
   .projects-list {
@@ -387,14 +399,18 @@ function setBorderColor(project) {
   gap: 1rem;
   justify-content: center;
   align-items: center;
-  padding-block: 3rem;
+
+  .about-title {
+    margin-bottom: 2rem;
+    margin-top: 5rem;
+  }
 
   .about-wrapper {
     max-width: 1000px;
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    margin-inline: 3rem;
+    margin: 0 3rem 3rem 3rem;
   }
 
   .skills-list {
@@ -407,7 +423,8 @@ function setBorderColor(project) {
     .skills-item {
       padding: .8rem 1.2rem;
       font-size: 1.2rem;
-      background: rgba(153,153,153,.2);
+      // background: rgba(172, 172, 172, 0.238);
+      background-color: #f3bea252;
       border-radius: 5px;
       font-weight: 600;
       color: #666;
@@ -437,9 +454,10 @@ function setBorderColor(project) {
 }
 
 #contact {
-  padding-block: 4rem;
   .contact-title {
     text-align: center;
+    margin-bottom: 1.2rem;
+    margin-top: 3rem;
   }
   .contact-list {
     display: flex;
@@ -447,14 +465,17 @@ function setBorderColor(project) {
     list-style: none;
     gap: 1.2rem;
     align-items: center;
+    margin-bottom: 3rem;
   }
 
   .contact-icon {
     height: 1.2rem;
+    color: var(--primary-accent);
   }
 
   .contact-info {
     font-size: 1.2rem;
+    color: var(--primary-accent);
   }
 
   @media (min-width: 850px) {
@@ -466,7 +487,7 @@ function setBorderColor(project) {
 }
 
 #footer {
-  background-image: url(../assets/grainy_texture.png), linear-gradient(var(--primary-peach), var(--primary-peach));
+  background-image: url(../assets/grainy_texture.png), linear-gradient(#eee, #eee);
   .footer-wrapper {
     max-width: 1000px;
     margin: 0 auto;
@@ -474,11 +495,11 @@ function setBorderColor(project) {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    padding-block: 2rem;
+    padding-block: 1.2rem;
   }
 
   .footer-icon {
-    height: 2rem;
+    height: 2.1rem;
     color: var(--primary-accent);
   }
 }
