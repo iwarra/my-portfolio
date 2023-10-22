@@ -1,12 +1,8 @@
 :root {
   font-family: Inter, sans-serif;
-  // font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  // color-scheme: light dark;
-  // color: rgba(255, 255, 255, 0.87);
-  // background-color: #242424;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -17,6 +13,7 @@
   --primary-peach: #fbe8de;
   --primary-light: #fff;
   --primary-accent: #7843e9;
+  --secondary-accent: #f3bb9c;
 }
 
 * {
@@ -50,7 +47,7 @@ h2 {
 
 h3 {
   font-size: 1.5rem;
-  margin-bottom: .6rem;
+  margin-bottom: .8rem;
   font-weight: 600;
 }
 
@@ -67,16 +64,42 @@ img {
   border: 2px solid var(--primary-accent);
 }
 
+.gray {
+  background-image: url(/src/assets/grainy_texture.png), linear-gradient(var(--primary-light), var(--primary-light));
+}
 
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.pink {
+  background-image: url(../assets/grainy_texture.png), linear-gradient(var(--primary-peach), var(--primary-peach));
+}
+
+.transition-skew {
+  transform: rotate(-3deg) skew(-3deg);
+  width: 100%;
+  height: 3rem;
+  position: relative;
+  bottom: -23px;
+
+}
+
+.transition-unskew {
+  transform: rotate(3deg) skew(3deg);
+  position: relative;
+  bottom: -23px;
+  width: 100%;
+  height: 3rem;
+}
+
+@media (min-width: 1000px) {
+  .transition-skew {
+    transform: rotate(-2deg) skew(-2deg);
+    height: 4.2rem;
+    bottom: -2.1rem;
   }
-  a:hover {
-    color: #747bff;
+
+  .transition-unskew {
+    transform: rotate(2deg) skew(2deg);
+    height: 4.2rem;
+    bottom: -2.1rem;
   }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
+}
+
