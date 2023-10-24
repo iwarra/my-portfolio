@@ -17,8 +17,8 @@ const openCV = () => {
   window.open('ivona_josipovic_cv.pdf');
 };
 
-const scrollToContact = () => {
-  document.querySelector('#contact').scrollIntoView();
+const scrollTo = (element) => {
+  document.querySelector(`#${element}`).scrollIntoView();
 };
 
 // function setBorderColor(project) {
@@ -39,14 +39,19 @@ const scrollToContact = () => {
 <template>
   <header id="header">
     <div class="header-wrapper">
-      <nav class="header-nav">
-        <ul class="header-links">
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <!-- <li><a href="#blog">Blog</a></li> -->
-        </ul>
-      </nav>
+      <div class="nav-active">
+        <div class="nav-trigger">
+          <span class="nav-icon"></span>
+        </div>
+        <nav class="header-nav">
+          <ul class="header-links">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="www.thesmokedetector.net/coding">Blog</a></li>
+          </ul>
+        </nav>
+      </div>
       <section class="header-hero">
         <div class="hero-text">
           <h1 class="hero-title"> Hi, my name is Ivona! </h1>
@@ -59,7 +64,7 @@ const scrollToContact = () => {
             > Get my CV </button>
             <button 
               class="hero-secondaryBtn" 
-              @click="scrollToContact"
+              @click="scrollTo('contact')"
             > Get in touch </button>
           </div>
         </div>
@@ -78,7 +83,8 @@ const scrollToContact = () => {
       <div class="projects-wrapper">
         <img src="arrow-left.svg" 
           alt="arrow pointing left" 
-          aria-label="button" 
+          role="button"
+          aria-label="show previous project card" 
           class="arrow-icon"
           @click="moveLeft"
         >
@@ -88,7 +94,7 @@ const scrollToContact = () => {
               v-for="project in projectsRef"
               :key="project.title"
             >
-              <img class="project-img" :src="project.image" alt="screenshot of the projects user interface">
+              <img class="project-img" :src="project.image" :alt="`screenshot of the ${project.title} user interface`">
               <div class="project-text">
                 <h3 class="project-title"> {{ project.title }}</h3>
                 <ul class="project-tools"> Tools used:
@@ -111,7 +117,8 @@ const scrollToContact = () => {
         <img 
           src="arrow-right.svg" 
           alt="arrow pointing right" 
-          aria-label="button" 
+          role="button"
+          aria-label="show next project card"  
           class="arrow-icon"
           @click="moveRight"
         >
@@ -123,7 +130,7 @@ const scrollToContact = () => {
         <div class="about-wrapper">
           <div class="about-skills">
             <h3>My Skills</h3>
-            <u class="skills-list">
+            <ul class="skills-list">
                <li v-for="skill in skills"
                 class="skills-item"
                >
@@ -132,7 +139,7 @@ const scrollToContact = () => {
                 ></font-awesome-icon>
                 <span> {{ skill.name }} </span>
               </li>
-            </u>
+            </ul>
           </div>
           <div class="about-text">
             <h3>Get to know me</h3>
@@ -173,12 +180,14 @@ const scrollToContact = () => {
   <footer id="footer">
     <div class="footer-wrapper">
       <small class="footer-copy">Copyright ©2023 Ivona Josipovic</small>
-      <a class="footer-scrollUp" href="#">
-        <font-awesome-icon 
-          icon="fa-solid fa-circle-chevron-up"
-          class="footer-icon"
-        ></font-awesome-icon>
-      </a> 
+      <font-awesome-icon 
+        icon="fa-solid fa-circle-chevron-up"
+        class="footer-icon"
+        role="button"
+        aria-label="navigate back to top of the page"
+        aria-hidden="false"
+        @click="scrollTo('header')"
+      ></font-awesome-icon>
     </div>
   </footer>
 </template>
@@ -197,12 +206,85 @@ const scrollToContact = () => {
     min-height: 40vh;
     justify-content: center;
     margin: 0 auto;
+    position: relative;
+
+    .header-nav {
+      position: absolute;
+      z-index:5;  
+      opacity:0;
+      transition-property: all;
+      transition-duration: 300ms;
+    }
+
+    .nav-active .header-nav {
+      opacity:1;
+    }
+
+    .nav-trigger {
+      display: block;
+      position: absolute;
+      width: 30px;
+      height: 25px;
+      right: 2rem;
+      top: 47px;
+      z-index: 2; 
+    }
+
+    //Not needed ?
+  .nav-active .nav-trigger {
+    opacity:0.5;
+  }
+
+  .nav-icon {
+    display:inline-block;
+    position: relative;
+    width:30px;
+    height:5px;
+    background-color: var(--primary-accent);
+    transition-property: background-color, transform;
+    transition-duration: 300ms;
+
+    &:before,
+    &:after {
+      content:'';
+      display:block;
+      width:30px;
+      height:5px;
+      position: absolute;
+      background: var(--primary-accent);
+      transition-property: margin, transform;
+      transition-duration: 300ms;
+    }
+
+    &:before {
+      margin-top:-10px;
+    }
+
+    &:after {
+      margin-top:10px;
+    }
+  }
+
+  .nav-active .nav-icon {
+    background: rgba(0,0,0,0.0);
+ 
+    &:before {
+      margin-top:0;
+      transform:rotate(45deg);
+    }
+
+    &:after {
+      margin-top:0;
+      transform:rotate(-45deg);
+    }
+  }
+    
 
     .header-links {
       list-style: none;
       display: flex;
-      flex-direction: row;
-      justify-content: end;
+      flex-direction: column;
+      align-items: end;
       gap: 10px;
       margin-right: 2rem;
 
@@ -276,7 +358,13 @@ const scrollToContact = () => {
     .header-wrapper {
       max-width: 1000px;
       padding-top: 3rem;
+      .header-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+      }
     }
+
     .header-hero{
       flex-direction: row;
       justify-content: space-evenly;
@@ -365,10 +453,11 @@ const scrollToContact = () => {
   .project-tools {
     list-style: none;
     font-weight: 600;
-    color: var(--primary-accent);
+    color: var(--secondary-accent);
 
     li {
       display: inline;
+      font-size: 1rem;
     }
   }
 
@@ -418,16 +507,15 @@ const scrollToContact = () => {
     flex-wrap: wrap;
     list-style: none;
     gap: 1rem;
-    text-decoration: none;
 
     .skills-item {
       padding: .8rem 1.2rem;
       font-size: 1.2rem;
-      // background: rgba(172, 172, 172, 0.238);
-      background-color: #f3bea252;
+      //background: rgba(188, 188, 188, 0.238);
+      background-color: #f8c6ab90;
       border-radius: 5px;
       font-weight: 600;
-      color: #666;
+      color: #5b5b5b;
       
       span {
         margin-left: .5rem;
@@ -488,6 +576,7 @@ const scrollToContact = () => {
 
 #footer {
   background-image: url(../assets/grainy_texture.png), linear-gradient(#eee, #eee);
+  // opacity: 0.33;
   .footer-wrapper {
     max-width: 1000px;
     margin: 0 auto;
