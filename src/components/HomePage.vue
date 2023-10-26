@@ -79,7 +79,7 @@ const toggleNavbar = () => {
         </div>
         <img 
           class="hero-img" 
-          src="illustration.svg" 
+          src="/illustration.svg" 
           alt="illustration of girl sitting at a table with her laptop"
         >
       </section>
