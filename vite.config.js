@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     rollupOptions: {
-      external: ['illustration.svg'],
+      external: ['illustration.svg', 'arrow-left.svg', 'arrow-right.svg'],
     },
   },
 })
