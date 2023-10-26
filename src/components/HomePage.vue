@@ -233,7 +233,7 @@ const toggleNavbar = () => {
       gap: 2rem;
       justify-content: end;
       padding-right: 3rem;
-      margin-top: -2rem;
+      //margin-top: -2rem;
       padding-top: 1rem;
       // background-color: gray;
     }
