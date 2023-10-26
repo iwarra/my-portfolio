@@ -21,6 +21,11 @@ const scrollTo = (element) => {
   document.querySelector(`#${element}`).scrollIntoView();
 };
 
+const toggleNavbar = () => {
+  const elToToggle = document.querySelector("#toggle")
+  elToToggle.classList.toggle("header--active")  
+};
+
 // function setBorderColor(project) {
 //   const toolColors = {
 //     Vue: '#42b883',
@@ -39,11 +44,14 @@ const scrollTo = (element) => {
 <template>
   <header id="header">
     <div class="header-wrapper">
-      <div class="nav-active">
-        <div class="nav-trigger">
-          <span class="nav-icon"></span>
+
+      <div id="toggle">
+        <div class="header-trigger"
+          @click="toggleNavbar"
+        >
+          <span class="header-icon"></span>
         </div>
-        <nav class="header-nav">
+        <nav id="nav" class="header-nav">
           <ul class="header-links">
             <li><a href="#projects">Projects</a></li>
             <li><a href="#about">About</a></li>
@@ -52,6 +60,7 @@ const scrollTo = (element) => {
           </ul>
         </nav>
       </div>
+
       <section class="header-hero">
         <div class="hero-text">
           <h1 class="hero-title"> Hi, my name is Ivona! </h1>
@@ -198,6 +207,7 @@ const scrollTo = (element) => {
 #header {
   background-image: url(../assets/grainy_texture.png), linear-gradient(var(--primary-peach), var(--primary-peach));
   padding-top: 2rem;
+  //position: relative;
   
   .header-wrapper {
     display: flex;
@@ -206,66 +216,74 @@ const scrollTo = (element) => {
     min-height: 40vh;
     justify-content: center;
     margin: 0 auto;
-    position: relative;
 
     .header-nav {
-      position: absolute;
-      z-index:5;  
-      opacity:0;
-      transition-property: all;
-      transition-duration: 300ms;
+      // position: absolute;
+      // top: 21rem;
+      // right: 5rem;
+      transform: translateY(-480px); 
+      transition: transform 350ms ease-in-out; 
+      z-index: 1;
+      order: 1;
     }
 
-    .nav-active .header-nav {
-      opacity:1;
+    #toggle {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      justify-content: end;
+      padding-right: 3rem;
+      margin-top: -2rem;
+      padding-top: 1rem;
+      // background-color: gray;
     }
 
-    .nav-trigger {
-      display: block;
-      position: absolute;
+    .header--active .header-nav {
+      transform: translateY(0px)
+    }
+
+    .header-trigger {
+      cursor: pointer;
+      display: inline;
       width: 30px;
       height: 25px;
-      right: 2rem;
-      top: 47px;
-      z-index: 2; 
+      order: 2;
     }
 
-    //Not needed ?
-  .nav-active .nav-trigger {
-    opacity:0.5;
-  }
-
-  .nav-icon {
-    display:inline-block;
-    position: relative;
-    width:30px;
-    height:5px;
-    background-color: var(--primary-accent);
-    transition-property: background-color, transform;
-    transition-duration: 300ms;
-
-    &:before,
-    &:after {
-      content:'';
-      display:block;
+    .header-icon {
+      display:inline-block;
+      // position: absolute;
+      // top: 4rem;
+      // right: 2rem;
       width:30px;
       height:5px;
-      position: absolute;
-      background: var(--primary-accent);
-      transition-property: margin, transform;
+      background-color: var(--primary-accent);
+      transition-property: background-color, transform;
       transition-duration: 300ms;
+      z-index: 5;
+
+      &:before,
+      &:after {
+        content:'';
+        display:block;
+        width:30px;
+        height:5px;
+        position: absolute;
+        background: var(--primary-accent);
+        transition-property: margin, transform;
+        transition-duration: 300ms;
+      }
+
+      &:before {
+        margin-top:-10px;
+      }
+
+      &:after {
+        margin-top:10px;
+      }
     }
 
-    &:before {
-      margin-top:-10px;
-    }
-
-    &:after {
-      margin-top:10px;
-    }
-  }
-
-  .nav-active .nav-icon {
+    .header--active .header-icon {
     background: rgba(0,0,0,0.0);
  
     &:before {
@@ -277,19 +295,18 @@ const scrollTo = (element) => {
       margin-top:0;
       transform:rotate(-45deg);
     }
-  }
-    
-
+    }
     .header-links {
       list-style: none;
       display: flex;
       flex-direction: column;
       align-items: end;
       gap: 10px;
-      margin-right: 2rem;
 
       a {
-        text-decoration: none;
+        //text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 500;
         color: var(--primary-accent);
       }
     }
@@ -358,10 +375,19 @@ const scrollTo = (element) => {
     .header-wrapper {
       max-width: 1000px;
       padding-top: 3rem;
+
+      .header-nav {
+        opacity: 1;
+      }
+
       .header-links {
         display: flex;
         flex-direction: row;
         justify-content: end;
+      } 
+
+      .header-trigger {
+        display: none;
       }
     }
 
@@ -511,14 +537,14 @@ const scrollTo = (element) => {
     .skills-item {
       padding: .8rem 1.2rem;
       font-size: 1.2rem;
-      //background: rgba(188, 188, 188, 0.238);
-      background-color: #f8c6ab90;
+      background-color: rgba(149, 149, 149, 0.216);
+      color: rgb(104, 104, 104);
       border-radius: 5px;
-      font-weight: 600;
-      color: #5b5b5b;
+      //color: #e59366;
       
       span {
         margin-left: .5rem;
+        font-weight: 600;
       }
     }
   }
