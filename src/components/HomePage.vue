@@ -90,7 +90,7 @@ const toggleNavbar = () => {
     <section id="projects">
       <h2 class="projects-title">My projects</h2>
       <div class="projects-wrapper">
-        <img src="arrow-left.svg" 
+        <img src="/arrow-left.svg" 
           alt="arrow pointing left" 
           role="button"
           aria-label="show previous project card" 
@@ -124,7 +124,7 @@ const toggleNavbar = () => {
             </li>
           </ul>
         <img 
-          src="arrow-right.svg" 
+          src="/arrow-right.svg" 
           alt="arrow pointing right" 
           role="button"
           aria-label="show next project card"  
