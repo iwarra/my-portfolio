@@ -1,10 +1,9 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import { projects, skills, aboutMe } from '../data.js';
 
 const projectsRef = ref(projects);
 let currentProjects = computed(() => projectsRef.value);
-let isVisible = ref(null);
 
 const moveLeft = () => {
   projectsRef.value = [...currentProjects.value.slice(1), currentProjects.value.at(0)];
@@ -23,46 +22,36 @@ const scrollTo = (element) => {
 };
 
 const toggleNavbar = () => {
-  const elToToggle = document.querySelector("#toggle")
-  elToToggle.classList.toggle("header--active")  
+  document.querySelector(".header-toggle").classList.toggle("header--active")  
+  document.querySelector('.header-navWrapper').classList.toggle('gray') 
+  document.querySelector('.nav-unskew').classList.toggle('hidden')
+  document.querySelector('.header-nav').classList.toggle('hidden')
 };
-
-const checkVisibility = () => {
-  isVisible.value = window.matchMedia("(max-width: 850px)").matches
-}
-
-onMounted(() => checkVisibility())
 </script>
 
 <template>
-  <header id="header">
-    <div class="header-wrapper">
-
-      <div id="toggle">
+  <header id="header">  
+    <div class="header-navWrapper">
+      <div class="header-toggle">
         <div class="header-trigger"
+          role="button"
+          aria-label="Toggle"
           @click="toggleNavbar"
         >
           <span class="header-icon"></span>
         </div>
-        <nav id="nav" class="header-nav">
+        <nav id="nav" class="header-nav hidden">
           <ul class="header-links">
             <li><a href="#projects">Projects</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="www.thesmokedetector.net/coding">Blog</a></li>
+            <li><a href="https://thesmokedetector.net/category/coding/">Blog</a></li>
           </ul>
         </nav>
       </div>
-
-      <nav id="navDesktop" class="header-nav--desktop">
-        <ul class="header-links">
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="www.thesmokedetector.net/coding">Blog</a></li>
-        </ul>
-      </nav>
-
+      <div class="nav-unskew transition-unskew hidden gray"></div>
+    </div>
+    <div class="header-wrapper">
       <section class="header-hero">
         <div class="hero-text">
           <h1 class="hero-title"> Hi, my name is Ivona! </h1>
@@ -95,7 +84,7 @@ onMounted(() => checkVisibility())
         <img src="/arrow-left.svg" 
           alt="arrow pointing left" 
           role="button"
-          aria-label="show previous project card" 
+          aria-label="previous" 
           class="arrow-icon"
           @click="moveLeft"
         >
@@ -130,7 +119,7 @@ onMounted(() => checkVisibility())
           src="/arrow-right.svg" 
           alt="arrow pointing right" 
           role="button"
-          aria-label="show next project card"  
+          aria-label="next"  
           class="arrow-icon"
           @click="moveRight"
         >
@@ -196,7 +185,7 @@ onMounted(() => checkVisibility())
         icon="fa-solid fa-circle-chevron-up"
         class="footer-icon"
         role="button"
-        aria-label="navigate back to top of the page"
+        aria-label="scroll up"
         aria-hidden="false"
         @click="scrollTo('header')"
       ></font-awesome-icon>
@@ -209,87 +198,69 @@ onMounted(() => checkVisibility())
 
 #header {
   background-image: url(../assets/grainy_texture.png), linear-gradient(var(--primary-peach), var(--primary-peach));
-  //padding-top: 2rem;
   
   .header-wrapper {
     display: flex;
-    flex-direction: column;
-    gap: 4rem;
     min-height: 40vh;
     justify-content: center;
-    margin: 0 auto;
+    align-items: center;
+    margin-top: 4rem;
+  }
 
-    .header-nav--desktop {
-      display: none;
-    }
+  .header-toggle {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: end;
+    padding-right: 3rem;
+    padding-top: 3rem;
+    margin-bottom: -2rem;
+  }
 
-    .header-nav {
-      // position: absolute;
-      // top: 21rem;
-      // right: 5rem;
-      transform: translateY(-480px); 
-      transition: transform 350ms ease-in-out; 
-      z-index: 1;
-      order: 1;
-    }
+  .header-nav {
+    order: 1;
+  }
 
-    #toggle {
-      display: flex;
-      flex-direction: row;
-      gap: 2rem;
-      justify-content: end;
-      padding-right: 3rem;
-      padding-top: 1rem;
-    }
+  .header-trigger {
+    cursor: pointer;
+    display: inline;
+    width: 30px;
+    height: 25px;
+    order: 2;
+  }
 
-    .header--active .header-nav {
-      transform: translateY(0px)
-    }
+  .header-icon {
+    display:inline-block;
+    width:30px;
+    height:5px;
+    background-color: var(--primary-accent);
+    transition-property: background-color, transform;
+    transition-duration: 300ms;
 
-    .header-trigger {
-      cursor: pointer;
-      display: inline;
-      width: 30px;
-      height: 25px;
-      order: 2;
-    }
-
-    .header-icon {
-      // position: absolute;
-      // top: 4rem;
-      // right: 2rem;
-      display:inline-block;
+    &:before,
+    &:after {
+      content:'';
+      display:block;
       width:30px;
       height:5px;
-      background-color: var(--primary-accent);
-      transition-property: background-color, transform;
+      position: absolute;
+      background: var(--primary-accent);
+      transition-property: margin, transform;
       transition-duration: 300ms;
-      z-index: 5;
-
-      &:before,
-      &:after {
-        content:'';
-        display:block;
-        width:30px;
-        height:5px;
-        position: absolute;
-        background: var(--primary-accent);
-        transition-property: margin, transform;
-        transition-duration: 300ms;
-      }
-
-      &:before {
-        margin-top:-10px;
-      }
-
-      &:after {
-        margin-top:10px;
-      }
     }
 
-    .header--active .header-icon {
+    &:before {
+      margin-top:-10px;
+    }
+
+    &:after {
+      margin-top:10px;
+    }
+  }
+
+  .header--active .header-icon {
     background: rgba(0,0,0,0.0);
- 
+
     &:before {
       margin-top:0;
       transform:rotate(45deg);
@@ -299,20 +270,19 @@ onMounted(() => checkVisibility())
       margin-top:0;
       transform:rotate(-45deg);
     }
-    }
-    .header-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      align-items: end;
-      gap: 10px;
+  }
+  .header-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: .5rem;
 
-      a {
-        text-decoration: none;
-        font-size: 1.2rem;
-        font-weight: 500;
-        color: var(--primary-accent);
-      }
+    a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--primary-accent);
     }
   }
 
@@ -378,29 +348,27 @@ onMounted(() => checkVisibility())
   @media (min-width: 850px) {
     .header-wrapper {
       max-width: 1000px;
-      padding-top: 3rem;
+      margin: 0 auto;
+      margin-top: 4rem;
+    }
 
-      .header-nav--desktop {
-        display: inline;
-        .header-links {
-          display: flex;
-          flex-direction: row;
-          justify-content: end;
-          gap: 1rem;
-          list-style: none;
-          margin-right: 3rem;
-           
-          a {
-            text-decoration: none;
-            color: var(--primary-accent);
-          } 
-          
-        }
-      }
-
-      #toggle {
-        display: none;
-      }
+    .header-toggle{
+      padding-right: 6rem;
+    }
+      
+    .header-links {
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      gap: 1rem;
+      list-style: none;
+      position: relative;
+      z-index: 3;
+        
+      a {
+        text-decoration: none;
+        color: var(--primary-accent);
+      }  
     }
 
     .header-hero{
@@ -423,6 +391,22 @@ onMounted(() => checkVisibility())
     .hero-subtitle {
       font-size: 2rem;
     } 
+  }
+
+  @media (min-width: 1250px) {
+    .header-toggle{
+      padding-right: 12rem;
+    }
+
+    .header-wrapper {
+      margin-top: 6rem
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .header-toggle{
+      padding-right: 17rem;
+    }
   }
 }
 
