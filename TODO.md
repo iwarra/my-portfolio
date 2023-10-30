@@ -1,8 +1,6 @@
-* Add logic to nav bar button
-* Adjust both mobile and desktop styling to nav bar
-* New images for project cards
-* Hosting
-* Testing
-* Accessibility: more tests
+* Navigation: Refactoring mobile and desktop
+* Project cards:  New images & link styling
+ 
+* Testing: more accessibility tests and different browsers
 
 * Blog page
