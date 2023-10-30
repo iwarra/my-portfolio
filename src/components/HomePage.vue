@@ -1,9 +1,10 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { projects, skills, aboutMe } from '../data.js';
 
 const projectsRef = ref(projects);
 let currentProjects = computed(() => projectsRef.value);
+let isVisible = ref(null);
 
 const moveLeft = () => {
   projectsRef.value = [...currentProjects.value.slice(1), currentProjects.value.at(0)];
@@ -26,19 +27,11 @@ const toggleNavbar = () => {
   elToToggle.classList.toggle("header--active")  
 };
 
-// function setBorderColor(project) {
-//   const toolColors = {
-//     Vue: '#42b883',
-//     React: '#75dcfd',
-//   }
+const checkVisibility = () => {
+  isVisible.value = window.matchMedia("(max-width: 850px)").matches
+}
 
-//   for (let tool in toolColors) {
-//     if (project.tools.includes(tool)) return toolColors[tool]
-//   }  
-//   return 'transparent'
-// };
-
-// Applied in the component with  :style="`border: 2px solid ${setBorderColor(project)}`" 
+onMounted(() => checkVisibility())
 </script>
 
 <template>
@@ -60,6 +53,15 @@ const toggleNavbar = () => {
           </ul>
         </nav>
       </div>
+
+      <nav id="navDesktop" class="header-nav--desktop">
+        <ul class="header-links">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="www.thesmokedetector.net/coding">Blog</a></li>
+        </ul>
+      </nav>
 
       <section class="header-hero">
         <div class="hero-text">
@@ -116,6 +118,7 @@ const toggleNavbar = () => {
                   <li>
                     <a :href="project.links.gitHub">GitHub</a> 
                   </li>
+                  <span>|</span>
                   <li>
                     <a :href="project.links.liveDemo">Live Demo</a>
                   </li>
@@ -206,8 +209,7 @@ const toggleNavbar = () => {
 
 #header {
   background-image: url(../assets/grainy_texture.png), linear-gradient(var(--primary-peach), var(--primary-peach));
-  padding-top: 2rem;
-  //position: relative;
+  //padding-top: 2rem;
   
   .header-wrapper {
     display: flex;
@@ -216,6 +218,10 @@ const toggleNavbar = () => {
     min-height: 40vh;
     justify-content: center;
     margin: 0 auto;
+
+    .header-nav--desktop {
+      display: none;
+    }
 
     .header-nav {
       // position: absolute;
@@ -233,9 +239,7 @@ const toggleNavbar = () => {
       gap: 2rem;
       justify-content: end;
       padding-right: 3rem;
-      //margin-top: -2rem;
       padding-top: 1rem;
-      // background-color: gray;
     }
 
     .header--active .header-nav {
@@ -251,10 +255,10 @@ const toggleNavbar = () => {
     }
 
     .header-icon {
-      display:inline-block;
       // position: absolute;
       // top: 4rem;
       // right: 2rem;
+      display:inline-block;
       width:30px;
       height:5px;
       background-color: var(--primary-accent);
@@ -304,7 +308,7 @@ const toggleNavbar = () => {
       gap: 10px;
 
       a {
-        //text-decoration: none;
+        text-decoration: none;
         font-size: 1.2rem;
         font-weight: 500;
         color: var(--primary-accent);
@@ -332,7 +336,7 @@ const toggleNavbar = () => {
       align-self: start;
       background-color: var(--primary-accent);
       color: var(--primary-peach);
-      margin-right: 12px;
+      margin-right: 1rem;
     }
 
     .hero-secondaryBtn {
@@ -376,17 +380,25 @@ const toggleNavbar = () => {
       max-width: 1000px;
       padding-top: 3rem;
 
-      .header-nav {
-        opacity: 1;
+      .header-nav--desktop {
+        display: inline;
+        .header-links {
+          display: flex;
+          flex-direction: row;
+          justify-content: end;
+          gap: 1rem;
+          list-style: none;
+          margin-right: 3rem;
+           
+          a {
+            text-decoration: none;
+            color: var(--primary-accent);
+          } 
+          
+        }
       }
 
-      .header-links {
-        display: flex;
-        flex-direction: row;
-        justify-content: end;
-      } 
-
-      .header-trigger {
+      #toggle {
         display: none;
       }
     }
@@ -455,7 +467,7 @@ const toggleNavbar = () => {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    gap: 1.2rem;
     flex: 1;
     line-height: 1.2;
   }
@@ -467,12 +479,21 @@ const toggleNavbar = () => {
     object-position: 0 0;
   }
 
+  .project-title {
+    font-weight: 500;
+  }
+
   .project-links {
     list-style: none;
+    display: flex;
+    gap: .8rem;
+    
+    a, a:visited {
+      color: var(--primary-accent); 
+    }
 
-    li {
-      display: inline;
-      margin-right: .8rem;
+    span {
+      color: gray;
     }
   }
 
@@ -524,7 +545,7 @@ const toggleNavbar = () => {
     max-width: 1000px;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 4rem;
     margin: 0 3rem 3rem 3rem;
   }
 
@@ -577,7 +598,7 @@ const toggleNavbar = () => {
     display: flex;
     flex-direction: column;
     list-style: none;
-    gap: 1.2rem;
+    gap: 1.5rem;
     align-items: center;
     margin-bottom: 3rem;
   }
@@ -602,7 +623,7 @@ const toggleNavbar = () => {
 
 #footer {
   background-image: url(../assets/grainy_texture.png), linear-gradient(#eee, #eee);
-  // opacity: 0.33;
+
   .footer-wrapper {
     max-width: 1000px;
     margin: 0 auto;
@@ -616,6 +637,7 @@ const toggleNavbar = () => {
   .footer-icon {
     height: 2.1rem;
     color: var(--primary-accent);
+    cursor: pointer;
   }
 }
 
