@@ -11,7 +11,7 @@ export const projects = [
   },
   {
     title: 'Vue Dashboard',
-    description: 'User system developed with Vue3 and Vite. State managed with Pinia.',
+    description: 'A user system developed with Vue3 and Vite. State managed with Pinia.',
     image: 'vue.png',
     tools: ['Vue', 'Vite', 'Pinia', 'JavaScript'],
     links: {
@@ -31,7 +31,7 @@ export const projects = [
   },
   {
     title: 'Podcast App',
-    description: 'Test project built with Vanilla JS, HTLM and CSS. The task was to fetch and display 10 podcasts from Sveriges Radio API. ',
+    description: 'A project built with vanilla JS, HTLM and CSS. The task was to fetch and display 10 podcasts from Sveriges Radio API.',
     image: 'pod1.png',
     tools: ['HTML', 'JavaScript', 'CSS'],
     links: {
@@ -41,7 +41,7 @@ export const projects = [
   },
   {
     title: 'Exerciser',
-    description: 'Fullstack MERN app that allows CRUD operations. ',
+    description: 'Fullstack MERN app with all CRUD operations.',
     image: 'exerciser.png',
     tools: ['React', 'Node', 'Express', 'MongoDB'],
     links: {
@@ -93,5 +93,5 @@ export const skills = [
   // },
 ];
 
-export const aboutMe = "I'm a Frontend Web Developer with background in communications and coordinating. The initial spark that ignited my interest in front-end was playing with my now ten years old blog. Around a year ago I decided to take the jump and switch career path. I enjoy building things and love to combine functionality with design. In my free time I enjoy learning new things, reading books and petting dogs. I'm open to job opportunities where I can contribute, learn and grow. If you know of an opportunity that matches my skills please don't hesitate to contact me."
+export const aboutMe = "I'm a frontend web developer with background in communications and management. Playing blog was the initial spark that ignited my interest in programming. I decided to take the jump and switch career paths, hoping to turn my passion into a profession. I enjoy building things and love to combine functionality with design. Some of the tools I like using include Vue and React, and JavaScript is my language of choice.  In my free time I love learning new things, reading books and petting dogs. I'm open to job opportunities where I can contribute, learn and grow."
 
