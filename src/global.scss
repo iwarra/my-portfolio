@@ -55,6 +55,19 @@ img {
   max-width: 100%;
 }
 
+a:hover {
+  filter: brightness(75%);
+  transition: 0.2s;
+} 
+
+button:hover {
+  filter: drop-shadow(4px 4px 7px #7843e9a3);
+  transition: filter .3s ease-in;
+}
+// a:visited {
+  // add a universal style solution
+// }
+
 %btn {
   font-weight: 600;
   padding: .8rem 1.2rem;
