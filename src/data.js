@@ -93,5 +93,5 @@ export const skills = [
   // },
 ];
 
-export const aboutMe = "I'm a frontend web developer with background in communications and management. Playing blog was the initial spark that ignited my interest in programming. I decided to take the jump and switch career paths, hoping to turn my passion into a profession. I enjoy building things and love to combine functionality with design. Some of the tools I like using include Vue and React, and JavaScript is my language of choice.  In my free time I love learning new things, reading books and petting dogs. I'm open to job opportunities where I can contribute, learn and grow."
+export const aboutMe = "I'm a frontend web developer with background in communications and management. Playing with my blog was the initial spark that ignited my interest in programming. I decided to take the jump and switch career paths, hoping to turn my passion into a profession. I enjoy building things and love to combine functionality with design. Some of the tools I like using include Vue and React, and JavaScript is my language of choice. In my free time I love learning new things, reading books and petting dogs. I'm open to job opportunities where I can contribute, learn and grow."
 
