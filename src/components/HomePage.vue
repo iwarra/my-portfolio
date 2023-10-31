@@ -21,7 +21,7 @@ const dragStart = (start) => {
 const dragEnd = (end) => {
   if (coord === end.clientX) return
   coord > end.clientX ? moveLeft() : moveRight()
-}
+};
 
 const openCV = () => {
   window.open('ivona_josipovic_cv.pdf');
@@ -103,8 +103,8 @@ const toggleNavbar = () => {
               class="project-card" 
               v-for="project in projectsRef"
               :key="project.title"
-              @pointerdown="dragStart" 
-              @pointerup="dragEnd"
+              @pointerdown.prevent="dragStart" 
+              @pointerup.prevent="dragEnd"
             >
               <img class="project-img" :src="project.image" :alt="`screenshot of the ${project.title} user interface`">
               <div class="project-text">
@@ -457,6 +457,7 @@ const toggleNavbar = () => {
     flex-direction: column;
     gap: .5rem;
     max-height: 32rem;
+    touch-action: none;
   }
 
   .project-text {
