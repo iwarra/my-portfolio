@@ -16,10 +16,12 @@ const moveRight = () => {
 
 const dragStart = (start) => {
   coord = start.clientX
+  document.querySelector(".projects-list").style.cursor = 'grabbing'
 };
 
 const dragEnd = (end) => {
   if (coord === end.clientX) return
+  document.querySelector(".projects-list").style.cursor = 'grab'
   coord > end.clientX ? moveLeft() : moveRight()
 };
 
@@ -98,13 +100,13 @@ const toggleNavbar = () => {
           class="arrow-icon"
           @click="moveLeft"
         >
-          <ul class="projects-list">
+          <ul class="projects-list"
+            @pointerdown.prevent="dragStart" 
+            @pointerup.prevent="dragEnd">
             <li 
               class="project-card" 
               v-for="project in projectsRef"
               :key="project.title"
-              @pointerdown.prevent="dragStart" 
-              @pointerup.prevent="dragEnd"
             >
               <img class="project-img" :src="project.image" :alt="`screenshot of the ${project.title} user interface`">
               <div class="project-text">
@@ -447,6 +449,7 @@ const toggleNavbar = () => {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-auto-rows: 0;
+    cursor: grab;
   }
 
   .project-card {
@@ -456,17 +459,16 @@ const toggleNavbar = () => {
     display: flex;
     flex-direction: column;
     gap: .5rem;
-    max-height: 32rem;
-    touch-action: none;
+    max-height: 35rem;
   }
 
   .project-text {
-    padding: 1.5rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
-    flex: 1;
     line-height: 1.2;
+    flex: 1;
   }
 
   .project-img {
@@ -478,6 +480,11 @@ const toggleNavbar = () => {
 
   .project-title {
     font-weight: 500;
+    margin-bottom: 0;
+  }
+
+  .project-description {
+    flex: 1;
   }
 
   .project-links {
