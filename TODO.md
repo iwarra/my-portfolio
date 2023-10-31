@@ -1,6 +1,8 @@
 * Project cards:  New images 
-* Projects : swiping
 * Header navbar animation
+* Hero buttons - shadow effect on hover bugging
+
+
  
 * Testing: more accessibility tests and different browsers
 
