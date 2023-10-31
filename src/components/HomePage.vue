@@ -4,6 +4,7 @@ import { projects, skills, aboutMe } from '../data.js';
 
 const projectsRef = ref(projects);
 let currentProjects = computed(() => projectsRef.value);
+let coord;
 
 const moveLeft = () => {
   projectsRef.value = [...currentProjects.value.slice(1), currentProjects.value.at(0)];
@@ -12,6 +13,15 @@ const moveLeft = () => {
 const moveRight = () => {
   projectsRef.value = [currentProjects.value.at(-1), ...currentProjects.value.slice(0, -1)];
 };
+
+const dragStart = (start) => {
+  coord = start.clientX
+};
+
+const dragEnd = (end) => {
+  if (coord === end.clientX) return
+  coord > end.clientX ? moveLeft() : moveRight()
+}
 
 const openCV = () => {
   window.open('ivona_josipovic_cv.pdf');
@@ -93,6 +103,8 @@ const toggleNavbar = () => {
               class="project-card" 
               v-for="project in projectsRef"
               :key="project.title"
+              @pointerdown="dragStart" 
+              @pointerup="dragEnd"
             >
               <img class="project-img" :src="project.image" :alt="`screenshot of the ${project.title} user interface`">
               <div class="project-text">
