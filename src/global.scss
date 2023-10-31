@@ -66,6 +66,10 @@ button:hover {
   transition: filter .3s ease-in;
 }
 
+button:active, button:focus {
+  filter: none; 
+}
+
 %btn {
   font-weight: 600;
   padding: .8rem 1.2rem;
