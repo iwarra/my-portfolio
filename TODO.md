@@ -1,5 +1,3 @@
-* Header navbar animation 
-* Hamburger button bug
 * To add:
  - soft skills
  - section about my communities
