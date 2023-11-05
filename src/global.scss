@@ -32,7 +32,8 @@ body {
   min-height: 100vh;
   color: var(--font-color);
   background-image: url(/src/assets/grainy_texture.png);
- }
+  position: relative;
+}
 
 h1 {
   font-size: 3rem;
@@ -60,16 +61,6 @@ a:hover {
   transition: 0.2s;
 } 
 
-
-button:hover {
-  filter: drop-shadow(4px 4px 7px #7843e9a3);
-  transition: filter .3s ease-in;
-}
-
-button:active, button:focus {
-  filter: none; 
-}
-
 %btn {
   font-weight: 600;
   padding: .8rem 1.2rem;
@@ -87,11 +78,7 @@ button:active, button:focus {
   background-image: url(../assets/grainy_texture.png), linear-gradient(var(--primary-peach), var(--primary-peach));
 }
 
-.hidden {
-  display: none;
-}
-
-.transition-skew {
+.transition-incline {
   transform: rotate(-3deg) skew(-3deg);
   width: 100%;
   height: 3rem;
@@ -99,22 +86,22 @@ button:active, button:focus {
   bottom: -23px;
 }
 
-.transition-unskew {
+.transition-decline {
   transform: rotate(3deg) skew(3deg);
-  position: relative;
-  bottom: -23px;
   width: 100%;
   height: 3rem;
+  position: relative;
+  bottom: -23px;
 }
 
 @media (min-width: 1000px) {
-  .transition-skew {
+  .transition-incline {
     transform: rotate(-2deg) skew(-2deg);
     height: 4.2rem;
     bottom: -2.1rem;
   }
 
-  .transition-unskew {
+  .transition-decline {
     transform: rotate(2deg) skew(2deg);
     height: 4.2rem;
     bottom: -2.1rem;
