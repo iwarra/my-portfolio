@@ -1,7 +1,4 @@
-* To add:
- - soft skills
- - section about my communities
- - Testimonials
+* Navbar refactoring 
 * Project cards:  New images 
 
  
