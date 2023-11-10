@@ -122,9 +122,10 @@ const toggleNavbar = () => {
                     <a :href="project.links.gitHub">GitHub</a> 
                   </li>
                   <span>|</span>
-                  <li>
+                  <li v-if="project.links.liveDemo !== ''">
                     <a :href="project.links.liveDemo">Live Demo</a>
                   </li>
+                  <span v-else>Under construction</span> 
                 </ul>
               </div>
             </li>
