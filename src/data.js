@@ -93,5 +93,56 @@ export const skills = [
   // },
 ];
 
-export const aboutMe = "I'm a frontend web developer with background in communications and management. Playing with my blog was the initial spark that ignited my interest in programming. I decided to take the jump and switch career paths, hoping to turn my passion into a profession. I enjoy building things and love to combine functionality with design. Some of the tools I like using include Vue and React, and JavaScript is my language of choice. In my free time I love learning new things, reading books and petting dogs. I'm open to job opportunities where I can contribute, learn and grow."
+export const softSkills = [
+  { softSkill: 'curious',
+    icon: 'nerd.svg'
+  }, 
+  { softSkill: 'organized',
+    icon: 'writing.svg'
+  }, 
+  { softSkill: 'patient',
+    icon: 'sparkles.svg'
+  }, 
+  { softSkill: 'punctual',
+    icon: 'clock.svg'
+  }, 
+  { softSkill:'creative',
+    icon: 'camera.svg'
+  }, 
+  { softSkill: 'kind',
+    icon: 'kind.svg'
+  },
+  { softSkill: 'motivated',
+    icon: 'rocket.svg'
+  }
+];
+
+export const testimonials = [
+  {
+    from: 'Erik Morlin',
+    workTitle: 'Frontend Developer @Sublime',
+    recommendation: "Ivona faced challenges with a positive attitude and determination to understand. She really got why accessibility and web standards matter, which is crucial in our work.Ivona didn't just learn the theory; she put it into practice, paying close attention to details in her tasks. Her enthusiasm for her work and willingness to learn, combined with her great personality, makes Ivona a valuable team member. \n\n I'm pleased to recommend Ivona as a promising professional who's great to work with. Her learning attitude and frontend skills make her an asset to any organization. She would be a wonderful addition to any team."
+  },
+  {
+    from: 'Stefan Bergfeldt',
+    workTitle: 'System Architect @Sogeti',
+    recommendation: "I've had the opportunity to witness Ivona's remarkable growth and dedication firsthand.Her technical prowess as a front-end developer is truly impressive for someone at that stage in their career. Her ability to swiftly grasp complex concepts and implement them with precision showcases her commitment to excellence. \n\n What truly sets Ivona apart is her remarkable self-awareness. She's not only cognizant of her strengths, but also actively seeks to address any areas where she can improve, demonstrating a genuine passion for continuous learning and growth. Her approachability and open communication style make her incredibly easy to collaborate with, fostering an environment of effective teamwork and synergy. I wholeheartedly recommend Ivona and am excited to see her future accomplishments."
+  }
+]
+
+export const aboutMe = "I'm a frontend web developer with background in communications and management. Playing with my blog was the initial spark that ignited my interest in programming. I decided to take the jump and switch career paths, hoping to turn my passion into a profession. I enjoy building things and love to combine functionality with design. Some of the tools I like using include Vue and React, and JavaScript is my language of choice. In my free time I love learning new things, reading books and petting dogs. I'm open to job opportunities where I can contribute, learn and grow.";
+
+export const communities = [
+  {
+    org: 'Women in Tech',
+    logo: 'wit-logo.png'
+  }, 
+  {
+    org: 'Beela',
+    logo: 'beela-logo.svg'
+  }, 
+  {
+    org: 'DataTjej',
+    logo: 'dt-logo.png'
+  },]
 
