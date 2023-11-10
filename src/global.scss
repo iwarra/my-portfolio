@@ -78,7 +78,7 @@ a:hover {
   background-image: url(../assets/grainy_texture.png), linear-gradient(var(--primary-peach), var(--primary-peach));
 }
 
-.transition-incline {
+.transition-skew {
   transform: rotate(-3deg) skew(-3deg);
   width: 100%;
   height: 3rem;
@@ -86,7 +86,7 @@ a:hover {
   bottom: -23px;
 }
 
-.transition-decline {
+.transition-unskew {
   transform: rotate(3deg) skew(3deg);
   width: 100%;
   height: 3rem;
@@ -95,13 +95,13 @@ a:hover {
 }
 
 @media (min-width: 1000px) {
-  .transition-incline {
+  .transition-skew {
     transform: rotate(-2deg) skew(-2deg);
     height: 4.2rem;
     bottom: -2.1rem;
   }
 
-  .transition-decline {
+  .transition-unskew {
     transform: rotate(2deg) skew(2deg);
     height: 4.2rem;
     bottom: -2.1rem;
