@@ -10,10 +10,16 @@
   -webkit-text-size-adjust: 100%;
 
   --font-color: #1C1B23;
-  --primary-peach: #fbe8de;
+  --font-light: rgb(104, 104, 104);
   --primary-light: #fff;
+  --secondary-light: #fbe8de;
+  --tertiary-light: rgba(210, 196, 245, 0.66);
   --primary-accent: #7843e9;
   --secondary-accent: #7536fc;
+  --primary-background: rgba(149, 149, 149, 0.216);
+  --borderRadius-large: 20px;
+  --borderRadius-medium: 12px;
+  --borderRadius-small: 5px;
 }
 
 * {
@@ -32,7 +38,10 @@ body {
   min-height: 100vh;
   color: var(--font-color);
   background-image: url(/src/assets/grainy_texture.png);
-  position: relative;
+}
+
+main section:nth-child(even) {
+  background-image: url(../assets/grainy_texture.png), linear-gradient(var(--secondary-light), var(--secondary-light));
 }
 
 h1 {
@@ -56,19 +65,19 @@ img {
   max-width: 100%;
 }
 
-.hidden {
-  display: none;
-}
-
 a:hover {
   filter: brightness(75%);
   transition: 0.2s;
 } 
 
+.hidden {
+  display: none;
+}
+
 %btn {
   font-weight: 600;
   padding: .8rem 1.2rem;
-  border-radius: 12px;
+  border-radius: var(--borderRadius-medium);
   font-size: 1rem;
   cursor: pointer;
   border: 2px solid var(--primary-accent);
@@ -79,10 +88,10 @@ a:hover {
 }
 
 .pink {
-  background-image: url(../assets/grainy_texture.png), linear-gradient(var(--primary-peach), var(--primary-peach));
+  background-image: url(../assets/grainy_texture.png), linear-gradient(var(--secondary-light), var(--secondary-light));
 }
 
-.transition-skew {
+.transition-incline {
   transform: rotate(-3deg) skew(-3deg);
   width: 100%;
   height: 3rem;
@@ -90,7 +99,7 @@ a:hover {
   bottom: -23px;
 }
 
-.transition-unskew {
+.transition-decline {
   transform: rotate(3deg) skew(3deg);
   width: 100%;
   height: 3rem;
@@ -99,16 +108,15 @@ a:hover {
 }
 
 @media (min-width: 1000px) {
-  .transition-skew {
+  .transition-incline {
     transform: rotate(-2deg) skew(-2deg);
-    height: 4.2rem;
+    height: 4.5rem;
     bottom: -2.1rem;
   }
 
-  .transition-unskew {
+  .transition-decline {
     transform: rotate(2deg) skew(2deg);
-    height: 4.2rem;
+    height: 4.5rem;
     bottom: -2.1rem;
   }
 }
-

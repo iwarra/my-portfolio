@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { projects, skills, aboutMe } from '../data.js';
+import { projects, skills, aboutMe, softSkills, testimonials, communities } from '../data.js';
 
 const projectsRef = ref(projects);
 let currentProjects = computed(() => projectsRef.value);
@@ -29,14 +29,14 @@ const openCV = () => {
   window.open('ivona_josipovic_cv.pdf');
 };
 
-const scrollTo = (element) => {
-  document.querySelector(`#${element}`).scrollIntoView();
+const addLineBreaks = (text) => {
+  return text.replace(/\n/g, '<br>')
 };
 
 const toggleNavbar = () => {
   document.querySelector(".header-toggle").classList.toggle("header--active")  
   document.querySelector('.header-navWrapper').classList.toggle('gray') 
-  document.querySelector('.nav-unskew').classList.toggle('hidden')
+  document.getElementById('navTransitionEl').classList.toggle('hidden')
   document.querySelector('.header-nav').classList.toggle('hidden')
 };
 </script>
@@ -44,7 +44,7 @@ const toggleNavbar = () => {
 <template>
   <header id="header">  
     <div class="header-navWrapper">
-      <div class="header-toggle">
+       <div class="header-toggle">
         <div class="header-trigger"
           role="button"
           aria-label="Toggle"
@@ -55,13 +55,13 @@ const toggleNavbar = () => {
         <nav id="nav" class="header-nav hidden">
           <ul class="header-links">
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#Testimonials">Testimonials</a></li>
+            <!-- <li><a href="#contact">Contact</a></li> -->
             <li><a href="https://thesmokedetector.net/category/coding/">Blog</a></li>
           </ul>
         </nav>
       </div>
-      <div class="nav-unskew transition-unskew hidden gray"></div>
+      <div class="transition-decline hidden gray" id="navTransitionEl"></div>
     </div>
     <div class="header-wrapper">
       <section class="header-hero">
@@ -70,14 +70,12 @@ const toggleNavbar = () => {
           <h2 class="hero-subtitle"> I am a front-end developer based in Stockholm </h2>
           <div class="hero-buttons">
             <button 
-              class="hero-primaryBtn" 
-              type="submit" 
+            class="hero-primaryBtn" 
               @click="openCV"
             > Get my CV </button>
-            <button 
-              class="hero-secondaryBtn" 
-              @click="scrollTo('contact')"
-            > Get in touch </button>
+            <a href="#contact">
+              <button class="hero-secondaryBtn"> Get in touch </button>
+            </a>
           </div>
         </div>
         <img 
@@ -87,7 +85,7 @@ const toggleNavbar = () => {
         >
       </section>
     </div>
-    <div class="transition-skew pink"></div>
+    <div class="transition-incline pink"></div>
   </header>
   <main>
     <section id="projects">
@@ -125,7 +123,7 @@ const toggleNavbar = () => {
                   <li v-if="project.links.liveDemo !== ''">
                     <a :href="project.links.liveDemo">Live Demo</a>
                   </li>
-                  <span v-else>Under construction</span> 
+                  <span v-else>In progress</span> 
                 </ul>
               </div>
             </li>
@@ -139,17 +137,17 @@ const toggleNavbar = () => {
           @click="moveRight"
         >
       </div>
-      <div class="transition-unskew gray"></div>
+      <div class="transition-decline gray"></div>
     </section>
     <section id="about">
       <h2 class="about-title">About me</h2>
         <div class="about-wrapper">
           <div class="about-skills">
-            <h3>My Skills</h3>
+            <h3>My skills</h3>
             <ul class="skills-list">
-               <li v-for="skill in skills"
+                <li v-for="skill in skills"
                 class="skills-item"
-               >
+                >
                 <font-awesome-icon
                   :icon="skill.icon"
                 ></font-awesome-icon>
@@ -161,18 +159,55 @@ const toggleNavbar = () => {
             <h3>Get to know me</h3>
             <p>{{ aboutMe }}</p>
           </div>
+          <div class="about-skills">
+            <h3>My soft skills</h3>
+            <ul class="skills-list">
+                <li v-for="skill in softSkills"
+                class="skills-item"
+                >
+                <img :src="`${skill.icon}`" alt="" class="skills-icon">
+                <span> {{ skill.softSkill }} </span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="transition-skew gray"></div>
+        <div class="transition-incline gray"></div>
+    </section>
+    <section id="communities">
+      <h2 class="communities-title"> My communities </h2>
+      <div class="communities-wrapper">
+        <ul class="communities-list">
+          <li v-for="com in communities">
+          <img :src="com.logo" :alt="`logo of ${com.org}`" class="communities-logo"></li>
+        </ul>
+      </div>
+      <div class="transition-decline gray"></div>
+    </section>
+    <section id="testimonials">
+      <h2 class="testimonials-title">Testimonials</h2>
+      <div class="testimonials-wrapper">
+        <ul class="testimonials-list">
+          <li v-for="testimonial in testimonials" class="testimonial-card">
+            <img class="testimonial-quoteLeft" src="quote-left.png" alt="">
+            <em><p class="testimonial-text" v-html="addLineBreaks(testimonial.recommendation)"></p></em>
+            <span class="testimonial-signature"> - {{ testimonial.from}}, {{ testimonial.workTitle }}</span>
+            <img class="testimonial-quoteRight" src="quote-right.png" alt="">
+          </li>
+        </ul>
+      </div>
+      <div class="transition-incline pink"></div>
     </section>
     <section id="contact">
       <h2 class="contact-title">Let's connect</h2>
       <ul class="contact-list">
-        <li><a href="https://www.linkedin.com/in/ivona-josipovic/" target="_blank">
+        <li>
+          <a href="https://www.linkedin.com/in/ivona-josipovic/" target="_blank">
           <font-awesome-icon 
             icon="fa-brands fa-linkedin fa-lg"
             class="contact-icon"
           ></font-awesome-icon>
-          <span class="contact-info"> ivona-josipovic</span></a>
+          <!-- <span class="contact-info"> ivona-josipovic</span> -->
+        </a>
         </li>
         <li>
           <a href="mailto:josipovic.ivona@gmail.com" target="_blank">
@@ -180,7 +215,8 @@ const toggleNavbar = () => {
               icon="fa-solid fa-envelope fa-lg"
               class="contact-icon"
             ></font-awesome-icon>
-            <span class="contact-info"> josipovic.ivona[at]gmail.com</span></a>
+            <!-- <span class="contact-info"> josipovic.ivona[at]gmail.com</span> -->
+          </a>
         </li>
         <li>
           <a href="https://github.com/iwarra" target="_blank">
@@ -188,7 +224,8 @@ const toggleNavbar = () => {
               icon="fa-brands fa-github fa-lg"
               class="contact-icon"
             ></font-awesome-icon>
-            <span class="contact-info"> iwarra</span></a>
+            <!-- <span class="contact-info"> iwarra</span> -->
+          </a>
         </li>
       </ul>
     </section>
@@ -196,14 +233,15 @@ const toggleNavbar = () => {
   <footer id="footer">
     <div class="footer-wrapper">
       <small class="footer-copy">Copyright ©2023 Ivona Josipovic</small>
-      <font-awesome-icon 
-        icon="fa-solid fa-circle-chevron-up"
-        class="footer-icon"
-        role="button"
-        aria-label="scroll up"
-        aria-hidden="false"
-        @click="scrollTo('header')"
-      ></font-awesome-icon>
+      <a href="#">
+        <font-awesome-icon 
+          icon="fa-solid fa-circle-chevron-up"
+          class="footer-icon"
+          role="button"
+          aria-label="scroll up"
+          aria-hidden="false"
+        ></font-awesome-icon>
+      </a>
     </div>
   </footer>
 </template>
@@ -212,8 +250,8 @@ const toggleNavbar = () => {
 @import '../global.scss';
 
 #header {
-  background-image: url(../assets/grainy_texture.png), linear-gradient(var(--primary-peach), var(--primary-peach));
-  
+  background-image: url(../assets/grainy_texture.png), linear-gradient(var(--secondary-light), var(--secondary-light));
+
   .header-wrapper {
     display: flex;
     min-height: 40vh;
@@ -286,16 +324,19 @@ const toggleNavbar = () => {
       transform:rotate(-45deg);
     }
   }
-  .header-links {
+
+  .header-links { 
     list-style: none;
     display: flex;
     flex-direction: column;
     align-items: end;
-    gap: .5rem;
+    gap: .6rem;
+    position: relative;
+    z-index: 3;
 
     a {
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 500;
       color: var(--primary-accent);
     }
@@ -320,14 +361,18 @@ const toggleNavbar = () => {
       @extend %btn;
       align-self: start;
       background-color: var(--primary-accent);
-      color: var(--primary-peach);
+      color: var(--secondary-light);
       margin-right: 1rem;
     }
 
     .hero-secondaryBtn {
       @extend %btn;
-      background-color: var(--primary-peach);
+      background-color: var(--secondary-light);
       color: var(--primary-accent);
+    }
+
+    a:hover {
+      filter: none;
     }
   }
 
@@ -364,25 +409,25 @@ const toggleNavbar = () => {
     .header-wrapper {
       max-width: 1000px;
       margin: 0 auto;
-      margin-top: 4rem;
+      margin-top: 5rem;
     }
 
-    .header-toggle{
-      padding-right: 6rem;
+    .header-toggle {
+      align-items: center;
     }
       
     .header-links {
       display: flex;
       flex-direction: row;
       justify-content: end;
+      align-items: center;
       gap: 1rem;
-      list-style: none;
-      position: relative;
-      z-index: 3;
+      list-style: none;      
         
       a {
         text-decoration: none;
         color: var(--primary-accent);
+        font-size: 1.5rem;
       }  
     }
 
@@ -408,19 +453,22 @@ const toggleNavbar = () => {
     } 
   }
 
-  @media (min-width: 1250px) {
+  @media (min-width: 1200px) {
+    .header-wrapper {
+      margin-top: 6rem;
+    }
+
     .header-toggle{
       padding-right: 12rem;
     }
-
-    .header-wrapper {
-      margin-top: 6rem
+    .header-hero {
+      margin-inline: 0;
     }
-  }
 
-  @media (min-width: 1600px) {
-    .header-toggle{
-      padding-right: 17rem;
+    @media (min-width: 1600px) {
+      .header-toggle{
+        padding-right: 17rem;
+      }
     }
   }
 }
@@ -455,7 +503,7 @@ const toggleNavbar = () => {
 
   .project-card {
     background-color: #e5e5e5;
-    border-radius: 1rem;
+    border-radius: var(--borderRadius-large);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -464,7 +512,7 @@ const toggleNavbar = () => {
   }
 
   .project-text {
-    padding: 2rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
@@ -474,7 +522,7 @@ const toggleNavbar = () => {
 
   .project-img {
     width: 100%;
-    aspect-ratio: 2/1.5;
+    aspect-ratio: 2/1.2;
     object-fit: cover;
     object-position: 0 0;
   }
@@ -504,7 +552,7 @@ const toggleNavbar = () => {
 
   .project-tools {
     list-style: none;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--secondary-accent);
 
     li {
@@ -523,9 +571,12 @@ const toggleNavbar = () => {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-column-gap: 1rem;
     }
-  }
+  } 
 
-  @media (min-width: 950px) {
+  @media (min-width: 1000px) {
+    .project-text {
+      padding: 2rem;
+    }
     .projects-list {
       grid-template-columns: repeat(3, 1fr);
       grid-column-gap: 1rem;
@@ -534,7 +585,6 @@ const toggleNavbar = () => {
 }
 
 #about {
-  background-image: url(../assets/grainy_texture.png), linear-gradient(var(--primary-peach), var(--primary-peach));
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -554,19 +604,29 @@ const toggleNavbar = () => {
     margin: 0 3rem 3rem 3rem;
   }
 
+  .about-text p {
+    font-size: 1.15rem;
+  }
+
   .skills-list {
+    list-style: none;
     display: flex;
     flex-wrap: wrap;
-    list-style: none;
     gap: 1rem;
 
     .skills-item {
       padding: .8rem 1.2rem;
       font-size: 1.2rem;
-      background-color: rgba(149, 149, 149, 0.216);
-      color: rgb(104, 104, 104);
-      border-radius: 5px;
-      //color: #e59366;
+      background-color: var(--primary-background);
+      color: var(--font-light);
+      border-radius: var(--borderRadius-small);
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      .skills-icon {
+        height: 25px;
+      }
       
       span {
         margin-left: .5rem;
@@ -586,9 +646,130 @@ const toggleNavbar = () => {
     .about-skills {
       order: 2
     }
+  }
+}
 
-    .about-wrapper {
+#communities {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: end;
+  align-items: center;
+
+  .communities-title {
+    margin-bottom: 2rem;
+    margin-top: 4rem;
+  }
+
+  .communities-wrapper {
+    max-width: 1000px;
+  }
+
+  .communities-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+
+    img {
+     max-height: 80px;
+   }
+  }
+
+  // .communities-logo {
+  //   filter: grayscale(1);
+  // }
+
+  // .communities-logo:hover {
+  //   filter: grayscale(0);
+  // }
+
+  @media (min-width: 850px) {
+    .communities-list {
       flex-direction: row;
+      gap: 4rem;
+    }
+  }
+}
+
+#testimonials {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+
+  .testimonials-title {
+    margin-bottom: 2rem;
+    margin-top: 5rem;
+  }
+
+  .testimonials-wrapper {
+    max-width: 1300px;
+    margin-inline: 1.5rem;
+  }
+  
+  .testimonials-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .testimonial-card {
+    //background-color: var(--tertiary-light);
+    //background-color: rgba(224, 217, 242, 0.4);
+    border-radius: var(--borderRadius-large);
+    border: 1px solid var(--primary-accent);
+    padding: 3.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    position: relative;
+    flex-basis: 50%;
+    //To fix for better UX/UI
+    // max-height: 32rem;
+    // overflow: hidden;
+  }
+
+  .testimonial-quoteLeft {
+    position: absolute;
+    height: 40px;
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .testimonial-quoteRight {
+    position: absolute;
+    height: 40px;
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .testimonial-text {
+    margin-top: .5rem;
+    font-size: 1.1rem;
+  }
+
+  .testimonial-signature {
+    font-weight: 600;
+  }
+
+  @media (min-width: 850px) {
+    .testimonials-wrapper {
+      margin-inline: 3rem;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .testimonials-list {
+      flex-direction: row;
+    }
+
+    .testimonial-card {
+      padding: 5rem;
     }
   }
 }
@@ -597,19 +778,19 @@ const toggleNavbar = () => {
   .contact-title {
     text-align: center;
     margin-bottom: 1.2rem;
-    margin-top: 3rem;
+    margin-top: 5rem;
   }
   .contact-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     list-style: none;
-    gap: 1.5rem;
-    align-items: center;
-    margin-bottom: 3rem;
+    gap: 2.5rem;
+    margin-bottom: 4rem;
   }
 
   .contact-icon {
-    height: 1.2rem;
+    height: 4rem;
     color: var(--primary-accent);
   }
 
@@ -618,12 +799,13 @@ const toggleNavbar = () => {
     color: var(--primary-accent);
   }
 
-  @media (min-width: 850px) {
-  .contact-list {
-    flex-direction: row;
-    justify-content: center;
-  }
-}
+//   @media (min-width: 850px) {
+//   .contact-list {
+//     flex-direction: row;
+//     justify-content: center;
+//     margin-bottom: 4rem;
+//   }
+// }
 }
 
 #footer {
@@ -645,5 +827,5 @@ const toggleNavbar = () => {
     cursor: pointer;
   }
 }
-
 </style>
+
