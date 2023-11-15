@@ -188,10 +188,10 @@ const toggleNavbar = () => {
       <div class="testimonials-wrapper">
         <ul class="testimonials-list">
           <li v-for="testimonial in testimonials" class="testimonial-card">
-            <img class="testimonial-quoteLeft" src="./quote-left.png" alt="">
+            <img class="testimonial-quoteLeft" src="/quote-left.png" alt="opening quotation mark">
             <em><p class="testimonial-text" v-html="addLineBreaks(testimonial.recommendation)"></p></em>
             <span class="testimonial-signature"> - {{ testimonial.from}}, {{ testimonial.workTitle }}</span>
-            <img class="testimonial-quoteRight" src="./quote-right.png" alt="">
+            <img class="testimonial-quoteRight" src="/quote-right.png" alt="closing quotation mark">
           </li>
         </ul>
       </div>
