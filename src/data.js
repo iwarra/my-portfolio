@@ -95,19 +95,19 @@ export const skills = [
 
 export const softSkills = [
   { softSkill: 'curious',
-    icon: 'nerd.svg'
+    icon: 'monocle.svg'
   }, 
   { softSkill: 'organized',
     icon: 'writing.svg'
   }, 
   { softSkill: 'patient',
-    icon: 'sparkles.svg'
+    icon: 'seed.svg'
   }, 
   { softSkill: 'punctual',
-    icon: 'clock.svg'
+    icon: 'punctual.svg'
   }, 
   { softSkill:'creative',
-    icon: 'camera.svg'
+    icon: 'painter.svg'
   }, 
   { softSkill: 'kind',
     icon: 'kind.svg'
@@ -128,9 +128,11 @@ export const testimonials = [
     workTitle: 'System Architect @Sogeti',
     recommendation: "I've had the opportunity to witness Ivona's remarkable growth and dedication firsthand.Her technical prowess as a front-end developer is truly impressive for someone at that stage in their career. Her ability to swiftly grasp complex concepts and implement them with precision showcases her commitment to excellence. \n\n What truly sets Ivona apart is her remarkable self-awareness. She's not only cognizant of her strengths, but also actively seeks to address any areas where she can improve, demonstrating a genuine passion for continuous learning and growth. Her approachability and open communication style make her incredibly easy to collaborate with, fostering an environment of effective teamwork and synergy. I wholeheartedly recommend Ivona and am excited to see her future accomplishments."
   }
-]
+];
 
 export const aboutMe = "I'm a frontend web developer with background in communications and management. Playing with my blog was the initial spark that ignited my interest in programming. I decided to take the jump and switch career paths, hoping to turn my passion into a profession. I enjoy building things and love to combine functionality with design. Some of the tools I like using include Vue and React, and JavaScript is my language of choice. In my free time I love learning new things, reading books and petting dogs. I'm open to job opportunities where I can contribute, learn and grow.";
+
+const aboutMeSwe = "Jag är en frontend webbutvecklare med bakgrund inom kommunikation och management. Att experimentera med min blogg var den första gnistan som väckte mitt intresse för programmering. Jag beslutade mig för att ta steget och byta karriär, i hopp om att förvandla min passion till ett yrke. Jag tycker om att konstruera saker och älskar att kombinera funktionalitet med design. Några av de verktyg jag föredrar att använda inkluderar Vue och React, och JavaScript är mitt val av programmeringsspråk. Jag  tycker om att lägga min tid på att programmera, lära mig och läsa böcker. Jag är öppen för jobbmöjligheter där jag kan bidra, testa nya grejer och växa.";
 
 export const communities = [
   {
@@ -144,5 +146,6 @@ export const communities = [
   {
     org: 'DataTjej',
     logo: 'dt-logo.png'
-  },]
+  }
+];
 
