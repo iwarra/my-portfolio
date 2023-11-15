@@ -188,10 +188,10 @@ const toggleNavbar = () => {
       <div class="testimonials-wrapper">
         <ul class="testimonials-list">
           <li v-for="testimonial in testimonials" class="testimonial-card">
-            <img class="testimonial-quoteLeft" src="quote-left.png" alt="">
+            <img class="testimonial-quoteLeft" src="./quote-left.png" alt="">
             <em><p class="testimonial-text" v-html="addLineBreaks(testimonial.recommendation)"></p></em>
             <span class="testimonial-signature"> - {{ testimonial.from}}, {{ testimonial.workTitle }}</span>
-            <img class="testimonial-quoteRight" src="quote-right.png" alt="">
+            <img class="testimonial-quoteRight" src="./quote-right.png" alt="">
           </li>
         </ul>
       </div>
@@ -562,7 +562,7 @@ const toggleNavbar = () => {
   }
 
   .arrow-icon {
-    max-width: 4rem;
+    max-width: 3rem;
     cursor: pointer; 
   }
 
@@ -570,6 +570,10 @@ const toggleNavbar = () => {
     .projects-list {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-column-gap: 1rem;
+    }
+
+    .arrow-icon {
+      max-width: 4rem;
     }
   } 
 
@@ -731,7 +735,10 @@ const toggleNavbar = () => {
     flex-basis: 50%;
     //To fix for better UX/UI
     // max-height: 32rem;
+    // // overflow: hidden;
     // overflow: hidden;
+    // text-overflow: ellipsis;
+    // white-space: pre-line;
   }
 
   .testimonial-quoteLeft {
