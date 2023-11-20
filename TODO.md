@@ -1,4 +1,8 @@
-* Testimonial cards overflow solution
+* Testimonial cards overflow solution:
+  - horizontal scroll with overlap
+  - style the scrollbar
+  - mobile solution
+
 * Project cards:  New images
 * English and Swedish version 
 
