@@ -3,15 +3,25 @@ import { ref, computed } from 'vue';
 import { projects, skills, aboutMe, softSkills, testimonials, communities } from '../data.js';
 
 const projectsRef = ref(projects);
+const testimonialsRef = ref(testimonials);
+let currentTestimonials = computed(() => testimonialsRef.value);
 let currentProjects = computed(() => projectsRef.value);
 let coord;
 
-const moveLeft = () => {
-  projectsRef.value = [...currentProjects.value.slice(1), currentProjects.value.at(0)];
+const moveLeft = (category) => {
+  if (category === 'projects') {
+    projectsRef.value = [...currentProjects.value.slice(1), currentProjects.value.at(0)];
+  } else {
+    testimonialsRef.value = [...currentTestimonials.value.slice(1), currentTestimonials.value.at(0)];
+  }
 };
 
-const moveRight = () => {
-  projectsRef.value = [currentProjects.value.at(-1), ...currentProjects.value.slice(0, -1)];
+const moveRight = (category) => {
+  if (category === 'projects') {
+    projectsRef.value = [currentProjects.value.at(-1), ...currentProjects.value.slice(0, -1)];
+  } else {
+    testimonialsRef.value = [currentTestimonials.value.at(-1), ...currentTestimonials.value.slice(0, -1)];
+  }
 };
 
 const dragStart = (start) => {
@@ -22,7 +32,7 @@ const dragStart = (start) => {
 const dragEnd = (end) => {
   if (coord === end.clientX) return
   document.querySelector(".projects-list").style.cursor = 'grab'
-  coord > end.clientX ? moveLeft() : moveRight()
+  coord > end.clientX ? moveLeft('projects') : moveRight('projects')
 };
 
 const openCV = () => {
@@ -55,7 +65,7 @@ const toggleNavbar = () => {
         <nav id="nav" class="header-nav hidden">
           <ul class="header-links">
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#Testimonials">Testimonials</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
             <!-- <li><a href="#contact">Contact</a></li> -->
             <li><a href="https://thesmokedetector.net/category/coding/">Blog</a></li>
           </ul>
@@ -96,7 +106,7 @@ const toggleNavbar = () => {
           role="button"
           aria-label="previous" 
           class="arrow-icon"
-          @click="moveLeft"
+          @click="moveLeft('projects')"
         >
           <ul class="projects-list"
             @pointerdown.prevent="dragStart" 
@@ -134,7 +144,7 @@ const toggleNavbar = () => {
           role="button"
           aria-label="next"  
           class="arrow-icon"
-          @click="moveRight"
+          @click="moveRight('projects')"
         >
       </div>
       <div class="transition-decline gray"></div>
@@ -184,16 +194,35 @@ const toggleNavbar = () => {
       <div class="transition-decline gray"></div>
     </section>
     <section id="testimonials">
-      <h2 class="testimonials-title">Testimonials</h2>
+      <h2 class="testimonials-title">Others have said</h2>
       <div class="testimonials-wrapper">
+        <img 
+        src="/arrow-left.svg" 
+        alt="arrow pointing left" 
+        role="button"
+        aria-label="previous"  
+        class="arrow-icon"
+        @click="moveLeft('testimonials')"
+      >
         <ul class="testimonials-list">
-          <li v-for="testimonial in testimonials" class="testimonial-card">
+          <li v-for="(testimonial) in testimonialsRef" 
+          class="testimonial-card" 
+          :key="testimonial.from"
+          >
             <img class="testimonial-quoteLeft" src="/quote-left.png" alt="opening quotation mark">
             <em><p class="testimonial-text" v-html="addLineBreaks(testimonial.recommendation)"></p></em>
             <span class="testimonial-signature"> - {{ testimonial.from}}, {{ testimonial.workTitle }}</span>
             <img class="testimonial-quoteRight" src="/quote-right.png" alt="closing quotation mark">
           </li>
         </ul>
+        <img 
+          src="/arrow-right.svg" 
+          alt="arrow pointing right" 
+          role="button"
+          aria-label="next"  
+          class="arrow-icon"
+          @click="moveRight('testimonials')"
+        >
       </div>
       <div class="transition-incline pink"></div>
     </section>
@@ -507,7 +536,6 @@ const toggleNavbar = () => {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: .5rem;
     max-height: 35rem;
   }
 
@@ -525,6 +553,8 @@ const toggleNavbar = () => {
     aspect-ratio: 2/1.2;
     object-fit: cover;
     object-position: 0 0;
+    border: 2px solid #e5e5e5;
+    border-radius: var(--borderRadius-large) var(--borderRadius-large) 0 0;
   }
 
   .project-title {
@@ -561,19 +591,10 @@ const toggleNavbar = () => {
     }
   }
 
-  .arrow-icon {
-    max-width: 3rem;
-    cursor: pointer; 
-  }
-
   @media (min-width: 580px) {
     .projects-list {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-column-gap: 1rem;
-    }
-
-    .arrow-icon {
-      max-width: 4rem;
     }
   } 
 
@@ -699,9 +720,8 @@ const toggleNavbar = () => {
 
 #testimonials {
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   gap: 1rem;
-  justify-content: center;
   align-items: center;
 
   .testimonials-title {
@@ -709,82 +729,92 @@ const toggleNavbar = () => {
     margin-top: 5rem;
   }
 
-  .testimonials-wrapper {
-    max-width: 1300px;
-    margin-inline: 1.5rem;
+  .testimonial-text {
+    max-height: 300px;
+    overflow: auto; 
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+    scrollbar-color: var(--primary-accent) transparent;
+    scrollbar-width: thin;
+    padding-right: 1rem;
   }
-  
-  .testimonials-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
+
+  .testimonials-wrapper {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    max-width: 1200px;
+    overflow: hidden;
+    margin-bottom: 2rem;
   }
 
   .testimonial-card {
-    //background-color: var(--tertiary-light);
-    //background-color: rgba(224, 217, 242, 0.4);
     border-radius: var(--borderRadius-large);
     border: 1px solid var(--primary-accent);
-    padding: 3.5rem 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 2rem;
     position: relative;
-    flex-basis: 50%;
-    //To fix for better UX/UI
-    // max-height: 32rem;
-    // // overflow: hidden;
-    // overflow: hidden;
-    // text-overflow: ellipsis;
-    // white-space: pre-line;
+    padding: 4rem 2.5rem;
+    background-image: url(/src/assets/grainy_texture.png), linear-gradient(var(--primary-light), var(--primary-light));
   }
+ 
+  .testimonials-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-auto-rows: 0;
+  }
+
+  // scrollbar style for older browsers
+  ::-webkit-scrollbar {
+    background: transparent;
+    height: 8px;
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary-accent);
+    border-radius: 6px;
+  }
+
 
   .testimonial-quoteLeft {
     position: absolute;
     height: 40px;
-    top: 1rem;
+    top: .8rem;
     left: 1rem;
   }
 
   .testimonial-quoteRight {
     position: absolute;
     height: 40px;
-    bottom: 1rem;
+    bottom: .8rem;
     right: 1rem;
-  }
-
-  .testimonial-text {
-    margin-top: .5rem;
-    font-size: 1.1rem;
   }
 
   .testimonial-signature {
     font-weight: 600;
+    position: absolute;
+    bottom: 2rem;
+    text-wrap: wrap;
+    padding-right: 3.5rem;
   }
 
   @media (min-width: 850px) {
-    .testimonials-wrapper {
-      margin-inline: 3rem;
-    }
-  }
-
-  @media (min-width: 1000px) {
     .testimonials-list {
-      flex-direction: row;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-column-gap: 1rem;
     }
-
-    .testimonial-card {
-      padding: 5rem;
-    }
-  }
+  } 
 }
 
 #contact {
   .contact-title {
     text-align: center;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
     margin-top: 5rem;
   }
   .contact-list {
@@ -825,13 +855,14 @@ const toggleNavbar = () => {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    padding-block: 1.2rem;
+    padding-block: 1.8rem;
   }
 
   .footer-icon {
-    height: 2.1rem;
+    height: 2.4rem;
     color: var(--primary-accent);
     cursor: pointer;
+    margin-bottom: -3px;
   }
 }
 </style>
