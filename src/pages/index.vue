@@ -6,24 +6,6 @@ const { data: softSkills } = await useFetch('/api/skills/soft')
 const { data: testimonials } = await useFetch('/api/testimonials')
 const { data: communities } = await useFetch('/api/communities')
 
-// let coord;
-
-// const dragStart = (start) => {
-//   coord = start.clientX
-//   document.querySelector(".projects-list").style.cursor = 'grabbing'
-// };
-
-// const dragEnd = (end) => {
-//   if (coord === end.clientX) return
-//   document.querySelector(".projects-list").style.cursor = 'grab'
-
-//   if (coord > end.clientX) {
-//     projects.value = slide(projects.value, 'left')
-//   }
-
-//   projects.value = slide(projects.value, 'right')
-// };
-
 const openCV = () => {
   window.open('ivona_josipovic_cv.pdf');
 };
