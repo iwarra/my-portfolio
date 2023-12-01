@@ -1,5 +1,19 @@
+import { icon } from "@fortawesome/fontawesome-svg-core";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: "Ivona's portfolio",
+      link: [{
+        rel: "icon",
+        href: "/icon.svg",
+        type: "image/svg+xml"
+      }],
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+    }
+  },
   pages: true,
   devtools: { enabled: true },
   srcDir: 'src/',
