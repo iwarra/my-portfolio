@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     }
   },
   pages: true,
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   srcDir: 'src/',
   vite: {
     build: {
