@@ -75,38 +75,34 @@ const toggleNavbar = () => {
       <h2 class="projects-title">My projects</h2>
       <Carousel 
         class="projects-wrapper"
-        @arrowClicked="(destination) => projects = slide(projects, destination)"
+        selector="projects-list"
+        @arrowClicked="(direction) => projects = slide(projects, direction)"
+        @dragged="(direction) => projects = slide(projects, direction)"
       >
-        <ul class="projects-list"
-          @pointerdown.prevent="dragStart" 
-          @pointerup.prevent="(end) => projects = dragEnd(projects, end)">
-          <li 
-            class="project-card" 
-            v-for="project in projects"
-            :key="project.title"
-          >
-            <img class="project-img" :src="project.image" :alt="`screenshot of the ${project.title} user interface`">
-            <div class="project-text">
-              <h3 class="project-title"> {{ project.title }}</h3>
-              <ul class="project-tools"> Tools used:
-                <li v-for="(tool, index) in project.tools">
-                  {{ tool }}{{index < project.tools.length - 1 ? ', ' : ' '}}
-                </li>
-              </ul>
-              <p class="project-description"> {{ project.description }} </p>
-              <ul class="project-links">
-                <li>
-                  <a :href="project.links.gitHub">GitHub</a> 
-                </li>
-                <span>|</span>
-                <li v-if="project.links.liveDemo !== ''">
-                  <a :href="project.links.liveDemo">Live Demo</a>
-                </li>
-                <span v-else>In progress</span> 
-              </ul>
-            </div>
-          </li>
-        </ul>
+        <li 
+          class="project-card" 
+          v-for="project in projects"
+          :key="project.title"
+        >
+          <img class="project-img" :src="project.image" :alt="`screenshot of the ${project.title} user interface`">
+          <div class="project-text">
+            <h3 class="project-title"> {{ project.title }}</h3>
+            <span class="project-tools"> Tools used: 
+              {{ listFormatter.format(project.tools) }}
+            </span>
+            <p class="project-description"> {{ project.description }} </p>
+            <ul class="project-links">
+              <li>
+                <a :href="project.links.gitHub">GitHub</a> 
+              </li>
+              <span>|</span>
+              <li v-if="project.links.liveDemo !== ''">
+                <a :href="project.links.liveDemo">Live Demo</a>
+              </li>
+              <span v-else>In progress</span> 
+            </ul>
+          </div>
+        </li>
       </Carousel>
       <div class="transition-decline gray"></div>
     </section>
@@ -158,19 +154,19 @@ const toggleNavbar = () => {
       <h2 class="testimonials-title">Others have said</h2>
       <Carousel 
         class="testimonials-wrapper" 
+        selector="testimonials-list"
         @arrowClicked="(destination) => testimonials = slide(testimonials, destination)"
+        @dragged="(destination) => testimonials = slide(testimonials, destination)"
       >
-        <ul class="testimonials-list">
-          <li v-for="(testimonial) in testimonials" 
-            class="testimonial-card" 
-            :key="testimonial.from"
-          >
-            <img class="testimonial-quoteLeft" src="/quote-left.png" alt="opening quotation mark">
-            <em><p class="testimonial-text" v-html="addLineBreaks(testimonial.recommendation)"></p></em>
-            <span class="testimonial-signature"> - {{ testimonial.from}}, {{ testimonial.workTitle }}</span>
-            <img class="testimonial-quoteRight" src="/quote-right.png" alt="closing quotation mark">
-          </li>
-        </ul>
+        <li v-for="(testimonial) in testimonials" 
+          class="testimonial-card" 
+          :key="testimonial.from"
+        >
+          <img class="testimonial-quoteLeft" src="/quote-left.png" alt="opening quotation mark">
+          <em><p class="testimonial-text" v-html="addLineBreaks(testimonial.recommendation)"></p></em>
+          <span class="testimonial-signature"> - {{ testimonial.from}}, {{ testimonial.workTitle }}</span>
+          <img class="testimonial-quoteRight" src="/quote-right.png" alt="closing quotation mark">
+        </li>
       </Carousel>
       <div class="transition-incline pink"></div>
     </section>
@@ -251,8 +247,6 @@ const toggleNavbar = () => {
   .header-trigger {
     cursor: pointer;
     display: inline;
-    width: 30px;
-    height: 25px;
     order: 2;
   }
 
@@ -287,6 +281,7 @@ const toggleNavbar = () => {
 
   .header--active .header-icon {
     background: rgba(0,0,0,0.0);
+    height: 2px;
 
     &:before {
       margin-top:0;
@@ -387,13 +382,12 @@ const toggleNavbar = () => {
     }
 
     .header-toggle {
-      align-items: center;
+      //align-items: center;
     }
       
     .header-links {
-      display: flex;
       flex-direction: row;
-      justify-content: end;
+      justify-content: flex-end;
       align-items: center;
       gap: 1rem;
       list-style: none;      
@@ -466,15 +460,6 @@ const toggleNavbar = () => {
     margin-bottom: 2rem;
   }
 
-  .projects-list {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    grid-auto-rows: 0;
-    cursor: grab;
-  }
-
   .project-card {
     background-color: #e5e5e5;
     border-radius: var(--borderRadius-large);
@@ -536,20 +521,9 @@ const toggleNavbar = () => {
     }
   }
 
-  @media (min-width: 580px) {
-    .projects-list {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-column-gap: 1rem;
-    }
-  } 
-
   @media (min-width: 1000px) {
     .project-text {
       padding: 2rem;
-    }
-    .projects-list {
-      grid-template-columns: repeat(3, 1fr);
-      grid-column-gap: 1rem;
     }
   }
 }
@@ -694,14 +668,7 @@ const toggleNavbar = () => {
     padding: 4rem 2.5rem;
     background-image: url(/grainy_texture.png), linear-gradient(var(--primary-light), var(--primary-light));
   }
- 
-  .testimonials-list {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    grid-auto-rows: 0;
-  }
+
 
   // scrollbar style for older browsers
   ::-webkit-scrollbar {
@@ -739,13 +706,6 @@ const toggleNavbar = () => {
     text-wrap: wrap;
     padding-right: 3.5rem;
   }
-
-  @media (min-width: 850px) {
-    .testimonials-list {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-column-gap: 1rem;
-    }
-  } 
 }
 
 #contact {
