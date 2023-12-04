@@ -4,4 +4,4 @@
 
  
 * Testing: more accessibility tests and different browsers
-* Blog page (WordPress API)
+* Blog page (WordPress API) + Netlify CMS
