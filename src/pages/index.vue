@@ -1,5 +1,5 @@
 <script setup>
-import { aboutMe } from '../server/api/data.js';
+import { aboutMe } from '../data/content.js';
 let { data: projects } = await useFetch('/api/projects')
 const { data: skills } = await useFetch('/api/skills/technical')
 const { data: softSkills } = await useFetch('/api/skills/soft')
