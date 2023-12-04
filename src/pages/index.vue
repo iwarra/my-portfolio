@@ -3,16 +3,15 @@ import { aboutMe } from '../server/api/data.js';
 let { data: projects } = await useFetch('/api/projects')
 const { data: skills } = await useFetch('/api/skills/technical')
 const { data: softSkills } = await useFetch('/api/skills/soft')
-const { data: testimonials } = await useFetch('/api/testimonials')
 const { data: communities } = await useFetch('/api/communities')
-
-const openCV = () => {
-  window.open('ivona_josipovic_cv.pdf');
-};
-
-const addLineBreaks = (text) => {
-  return text.replace(/\n/g, '<br>')
-};
+const { data: testimonials } = await useFetch('/api/testimonials', {
+  transform: (testimonials) => testimonials.map(testimonial => {
+    return {
+      ...testimonial, 
+      recomendation: testimonial.recommendation.replace(/\n/g, '<br>')
+    }
+  })
+})
 
 const toggleNavbar = () => {
   document.querySelector(".header-toggle").classList.toggle("header--active")  
@@ -20,7 +19,6 @@ const toggleNavbar = () => {
   document.getElementById('navTransitionEl').classList.toggle('hidden')
   document.querySelector('.header-nav').classList.toggle('hidden')
 };
-
 </script>
 
 <template>
@@ -38,7 +36,6 @@ const toggleNavbar = () => {
           <ul class="header-links">
             <li><a href="#projects">Projects</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
-            <!-- <li><a href="#contact">Contact</a></li> -->
             <!-- <li><a href="https://thesmokedetector.net/category/coding/">Blog</a></li> -->
           </ul>
         </nav>
@@ -52,13 +49,8 @@ const toggleNavbar = () => {
           <h1 class="hero-title"> Hi, my name is Ivona! </h1>
           <h2 class="hero-subtitle"> I am a front-end developer based in Stockholm </h2>
           <div class="hero-buttons">
-            <button 
-            class="hero-primaryBtn" 
-              @click="openCV"
-            > Get my CV </button>
-            <a href="#contact">
-              <button class="hero-secondaryBtn"> Get in touch </button>
-            </a>
+            <a href="/ivona_josipovic_cv.pdf" target="_blank"               class="hero-primaryBtn">Get my CV</a>
+            <a href="#contact" class="hero-secondaryBtn">Get in touch</a>
           </div>
         </div>
         <img 
@@ -113,6 +105,7 @@ const toggleNavbar = () => {
             <h3>My skills</h3>
             <ul class="skills-list">
                 <li v-for="skill in skills"
+                :key="skill.name"
                 class="skills-item"
                 >
                 <font-awesome-icon
@@ -130,6 +123,7 @@ const toggleNavbar = () => {
             <h3>My soft skills</h3>
             <ul class="skills-list">
                 <li v-for="skill in softSkills"
+                :key="skill.softSkill"
                 class="skills-item"
                 >
                 <img :src="`${skill.icon}`" alt="" class="skills-icon">
@@ -144,7 +138,7 @@ const toggleNavbar = () => {
       <h2 class="communities-title"> My communities </h2>
       <div class="communities-wrapper">
         <ul class="communities-list">
-          <li v-for="com in communities">
+          <li v-for="com in communities" :key="com.org">
           <img :src="com.logo" :alt="`logo of ${com.org}`" class="communities-logo"></li>
         </ul>
       </div>
@@ -163,7 +157,7 @@ const toggleNavbar = () => {
           :key="testimonial.from"
         >
           <img class="testimonial-quoteLeft" src="/quote-left.png" alt="opening quotation mark">
-          <em><p class="testimonial-text" v-html="addLineBreaks(testimonial.recommendation)"></p></em>
+          <em><p class="testimonial-text"> {{ testimonial.recommendation }}</p></em>
           <span class="testimonial-signature"> - {{ testimonial.from}}, {{ testimonial.workTitle }}</span>
           <img class="testimonial-quoteRight" src="/quote-right.png" alt="closing quotation mark">
         </li>
@@ -338,6 +332,10 @@ const toggleNavbar = () => {
       @extend %btn;
       background-color: var(--secondary-light);
       color: var(--primary-accent);
+    }
+    
+    a {
+      text-decoration: none;
     }
 
     a:hover {
