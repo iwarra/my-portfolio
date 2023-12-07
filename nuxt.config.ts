@@ -1,5 +1,3 @@
-import { icon } from "@fortawesome/fontawesome-svg-core";
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
@@ -21,6 +19,10 @@ export default defineNuxtConfig({
   pages: true,
   devtools: { enabled: false },
   srcDir: 'src/',
+    components: {
+    global: true,
+    dirs: ['~/components']
+  },
   vite: {
     build: {
       rollupOptions: {
@@ -28,6 +30,5 @@ export default defineNuxtConfig({
       },
     }
   },
-  css: ['~/global.scss', '@fortawesome/fontawesome-svg-core/styles.css'],
-  plugins: ['~/plugins/fontawesome.mjs']
+  css: ['~/global.scss'],
 })

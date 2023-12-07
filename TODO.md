@@ -2,7 +2,7 @@
  - routing logic
  - page design
  - add old posts 
-* Fontawesome new solution implementation
+
 * Layouts (header / footer)
 
 * English and Swedish version with Nuxt

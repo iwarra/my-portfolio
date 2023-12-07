@@ -1,42 +1,55 @@
 export default defineEventHandler(() => {
   return [
     { name: "JavaScript",
-      icon: "fa-brands fa-js"
+      icon: "IconsJs"
     },
     { name: "HTLM5",
-      icon: "fa-brands fa-html5"
+      icon: "IconsHtml"
     },
     { name: "React",
-      icon: "fa-brands fa-react"
+      // icon: "fa-brands fa-react",
+      icon: "IconsReact"
     },
     { name: "Vue",
-      icon: "fa-brands fa-vuejs"
+      // icon: "fa-brands fa-vuejs",
+      icon: "IconsVue"
     },
     { name: "Node.js",
-      icon: "fa-brands fa-node"
+      // icon: "fa-brands fa-node",
+      icon: "IconsNode"
     },
     { name: "CSS",
-      icon: "fa-brands fa-css3-alt"
+      // icon: "fa-brands fa-css3-alt",
+      icon: "IconsCss"
     }, 
     { name: "SCSS",
-      icon: "fa-brands fa-sass"
+      // icon: "fa-brands fa-sass",
+      icon: "IconsScss"
     },
     { name: "Github",
-      icon: "fa-brands fa-github"
+      // icon: "fa-brands fa-github",
+      icon: "IconsGithub"
     },
     { name: "VS Code",
-      icon: "fa-solid fa-code"
+      // icon: "fa-solid fa-code",
+      icon: "IconsVscode"
     },
     { name: "npm",
-      icon: "fa-brands fa-npm"
+      // icon: "fa-brands fa-npm",
+      icon: "IconsNpm"
     },
     { name: "Bootstrap",
-      icon: "fa-brands fa-bootstrap"
+      // icon: "fa-brands fa-bootstrap",
+      icon: "IconsBootstrap"
     },
     { name: "Wordpress",
-      icon: "fa-brands fa-wordpress"
+      // icon: "fa-brands fa-wordpress",
+      icon: "IconsWordpress"
     },
     //  { name: "Typescript",
+    //   icon: ""
+    // },
+     //  { name: "Nuxt",
     //   icon: ""
     // },
   ]

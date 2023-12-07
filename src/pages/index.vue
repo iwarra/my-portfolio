@@ -1,6 +1,7 @@
 <script setup>
 import { aboutMe } from '../data/content.js';
-let { data: projects } = await useFetch('/api/projects')
+
+const { data: projects } = await useFetch('/api/projects')
 const { data: skills } = await useFetch('/api/skills/technical')
 const { data: softSkills } = await useFetch('/api/skills/soft')
 const { data: communities } = await useFetch('/api/communities')
@@ -45,7 +46,6 @@ const toggleNavbar = () => {
     <div class="header-wrapper">
       <section class="header-hero">
         <div class="hero-text">
-          <pre>{{ newName }}</pre>
           <h1 class="hero-title"> Hi, my name is Ivona! </h1>
           <h2 class="hero-subtitle"> I am a front-end developer based in Stockholm </h2>
           <div class="hero-buttons">
@@ -104,15 +104,11 @@ const toggleNavbar = () => {
           <div class="about-skills">
             <h3>My skills</h3>
             <ul class="skills-list">
-                <li v-for="skill in skills"
-                :key="skill.name"
-                class="skills-item"
-                >
-                <font-awesome-icon
-                  :icon="skill.icon"
-                ></font-awesome-icon>
-                <span> {{ skill.name }} </span>
-              </li>
+              <Box v-for="skill in skills" 
+              :key="skill.name"
+              :name="skill.name"
+              :icon="skill.icon"
+              iconType="component"/>
             </ul>
           </div>
           <div class="about-text">
@@ -122,13 +118,11 @@ const toggleNavbar = () => {
           <div class="about-skills">
             <h3>My soft skills</h3>
             <ul class="skills-list">
-                <li v-for="skill in softSkills"
-                :key="skill.softSkill"
-                class="skills-item"
-                >
-                <img :src="`${skill.icon}`" alt="" class="skills-icon">
-                <span> {{ skill.softSkill }} </span>
-              </li>
+              <Box v-for="skill in softSkills" 
+              :key="skill.name"
+              :name="skill.name"
+              :icon="skill.icon"
+              iconType="img"/>
             </ul>
           </div>
         </div>
@@ -169,26 +163,17 @@ const toggleNavbar = () => {
       <ul class="contact-list">
         <li>
           <a href="https://www.linkedin.com/in/ivona-josipovic/" target="_blank">
-          <font-awesome-icon 
-            icon="fa-brands fa-linkedin fa-lg"
-            class="contact-icon"
-          ></font-awesome-icon>
+          <component is="IconsLinkedin" class="contact-icon" />
         </a>
         </li>
         <li>
           <a href="mailto:josipovic.ivona@gmail.com" target="_blank">
-            <font-awesome-icon 
-              icon="fa-solid fa-envelope fa-lg"
-              class="contact-icon"
-            ></font-awesome-icon>
+            <component is="IconsMail" class="contact-icon" />
           </a>
         </li>
         <li>
           <a href="https://github.com/iwarra" target="_blank">
-            <font-awesome-icon 
-              icon="fa-brands fa-github fa-lg"
-              class="contact-icon"
-            ></font-awesome-icon>
+            <component is="IconsGithub" class="contact-icon" />
           </a>
         </li>
       </ul>
@@ -198,13 +183,7 @@ const toggleNavbar = () => {
     <div class="footer-wrapper">
       <small class="footer-copy">Copyright ©2023 Ivona Josipovic</small>
       <a href="#">
-        <font-awesome-icon 
-          icon="fa-solid fa-circle-chevron-up"
-          class="footer-icon"
-          role="button"
-          aria-label="scroll up"
-          aria-hidden="false"
-        ></font-awesome-icon>
+        <component class="footer-icon" is="IconsCircle" />
       </a>
     </div>
   </footer>
@@ -555,26 +534,6 @@ const toggleNavbar = () => {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-
-    .skills-item {
-      padding: .8rem 1.2rem;
-      font-size: 1.2rem;
-      background-color: var(--primary-background);
-      color: var(--font-light);
-      border-radius: var(--borderRadius-small);
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-
-      .skills-icon {
-        height: 25px;
-      }
-      
-      span {
-        margin-left: .5rem;
-        font-weight: 600;
-      }
-    }
   }
   
   @media (min-width: 850px) {
@@ -722,7 +681,7 @@ const toggleNavbar = () => {
   }
 
   .contact-icon {
-    height: 4rem;
+    font-size: 4rem;
     color: var(--primary-accent);
   }
 
@@ -754,7 +713,7 @@ const toggleNavbar = () => {
   }
 
   .footer-icon {
-    height: 2.4rem;
+    font-size: 2.4rem;
     color: var(--primary-accent);
     cursor: pointer;
     margin-bottom: -3px;

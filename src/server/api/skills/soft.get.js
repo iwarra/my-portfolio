@@ -1,24 +1,24 @@
 export default defineEventHandler(() => {
   return [
-    { softSkill: 'curious',
+    { name: 'curious',
       icon: 'monocle.svg'
     }, 
-    { softSkill: 'organized',
+    { name: 'organized',
       icon: 'writing.svg'
     }, 
-    { softSkill: 'patient',
+    { name: 'patient',
       icon: 'seed.svg'
     }, 
-    { softSkill: 'punctual',
+    { name: 'punctual',
       icon: 'punctual.svg'
     }, 
-    { softSkill:'creative',
+    { name:'creative',
       icon: 'painter.svg'
     }, 
-    { softSkill: 'kind',
+    { name: 'kind',
       icon: 'kind.svg'
     },
-    { softSkill: 'motivated',
+    { name: 'motivated',
       icon: 'rocket.svg'
     }
   ]
