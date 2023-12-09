@@ -3,8 +3,6 @@
  - page design
  - add old posts 
 
-* Layouts (header / footer)
-
 * English and Swedish version with Nuxt
 
 Style details
