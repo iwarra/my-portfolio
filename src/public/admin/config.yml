@@ -11,8 +11,12 @@ collections:
     create: true
     extension: "json"
     slug: "{{slug}}-{{year}}-{{month}}-{{day}}" 
+    filter:
+      filed: category
+      value: "{{category}}"
     fields: 
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "date"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image"}
+      - {label: "Category", name: "category", widget: "string"}
+      # - {label: "Featured Image", name: "thumbnail", widget: "image"}
       - {label: "Body", name: "body", widget: "markdown"}
