@@ -2,6 +2,9 @@
  - routing logic
  - page design
  - add old posts 
+ - excerpt
+ - search
+ - filter
 
 * English and Swedish version with Nuxt
 
