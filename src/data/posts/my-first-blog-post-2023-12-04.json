@@ -1,6 +1,0 @@
-{
-  "layout": "blog",
-  "title": "My first blog post",
-  "date": "2023-12-04T17:56:27+01:00",
-  "body": "This post is saved as .JSON\n\n```\nthis is a sample code-block// this is a comment\n```"
-}

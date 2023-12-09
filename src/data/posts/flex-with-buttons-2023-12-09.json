@@ -1,6 +1,6 @@
 {
   "title": "Flex with buttons",
   "date": "2022-12-29",
-  "category": "CSS",
+  "category": ["CSS"],
   "body": "Using flex with a group of elements that include a button makes the button stretch to fill the height/width of the container. Regulate this by using` align-self: start `(or end, center – whichever you prefer) for the button element. This way it will not stretch and can be styled to the perfect size."
 }
