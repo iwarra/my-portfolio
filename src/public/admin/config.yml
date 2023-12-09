@@ -11,9 +11,6 @@ collections:
     create: true
     extension: "json"
     slug: "{{slug}}-{{year}}-{{month}}-{{day}}" 
-    filter:
-      field: category
-      value: "{{category}}"
     fields: 
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "date"}
