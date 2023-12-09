@@ -12,7 +12,7 @@ collections:
     extension: "json"
     slug: "{{slug}}-{{year}}-{{month}}-{{day}}" 
     filter:
-      filed: category
+      field: category
       value: "{{category}}"
     fields: 
       - {label: "Title", name: "title", widget: "string"}
