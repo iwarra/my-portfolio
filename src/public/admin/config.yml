@@ -7,10 +7,9 @@ media_folder: "src/public/blog_media"
 collections:
   - name: "blog" 
     label: "Blog" 
-    folder: "src/content/posts" 
     create: true
-    format: 'frontmatter'
-    #extension: "json"
+    folder: "src/content" 
+    format: 'frontmatter' #read by Nuxt Content-module
     slug: "{{slug}}-{{year}}-{{month}}-{{day}}" 
     fields: 
       - {label: "Title", name: "title", widget: "string"}
