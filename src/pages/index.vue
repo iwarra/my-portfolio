@@ -1,4 +1,10 @@
 <script setup>
+useHead({
+  script: [
+    { src: "https://identity.netlify.com/v1/netlify-identity-widget.js" },
+  ],
+});
+
 import { aboutMe } from '../data/content.js';
 
 const { data: projects } = await useFetch('/api/projects')
@@ -14,36 +20,12 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
   })
 })
 
-const toggleNavbar = () => {
-  document.querySelector(".header-toggle").classList.toggle("header--active")  
-  document.querySelector('.header-navWrapper').classList.toggle('gray') 
-  document.getElementById('navTransitionEl').classList.toggle('hidden')
-  document.querySelector('.header-nav').classList.toggle('hidden')
-};
 </script>
 
 <template>
-  <header id="header">  
-    <div class="header-navWrapper">
-       <div class="header-toggle">
-        <div class="header-trigger"
-          role="button"
-          aria-label="Toggle"
-          @click="toggleNavbar"
-        >
-          <span class="header-icon"></span>
-        </div>
-        <nav id="nav" class="header-nav hidden">
-          <ul class="header-links">
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <!-- <li><a href="https://thesmokedetector.net/category/coding/">Blog</a></li> -->
-          </ul>
-        </nav>
-      </div>
-      <div class="transition-decline hidden gray" id="navTransitionEl"></div>
-    </div>
-    <div class="header-wrapper">
+  <Layout navBackgroundColor="gray" headerBackground="pink">
+    <template #hero>
+      <div class="header-wrapper">
       <section class="header-hero">
         <div class="hero-text">
           <h1 class="hero-title"> Hi, my name is Ivona! </h1>
@@ -61,362 +43,139 @@ const toggleNavbar = () => {
       </section>
     </div>
     <div class="transition-incline pink"></div>
-  </header>
-  <main>
-    <section id="projects">
-      <h2 class="projects-title">My projects</h2>
-      <Carousel 
-        class="projects-wrapper"
-        selector="projects-list"
-        @arrowClicked="(direction) => projects = slide(projects, direction)"
-        @dragged="(direction) => projects = slide(projects, direction)"
-      >
-        <li 
-          class="project-card" 
-          v-for="project in projects"
-          :key="project.title"
-        >
-          <img class="project-img" :src="project.image" :alt="`screenshot of the ${project.title} user interface`">
-          <div class="project-text">
-            <h3 class="project-title"> {{ project.title }}</h3>
-            <span class="project-tools"> Tools used: 
-              {{ listFormatter.format(project.tools) }}
-            </span>
-            <p class="project-description"> {{ project.description }} </p>
-            <ul class="project-links">
-              <li>
-                <a :href="project.links.gitHub">GitHub</a> 
-              </li>
-              <span>|</span>
-              <li v-if="project.links.liveDemo !== ''">
-                <a :href="project.links.liveDemo">Live Demo</a>
-              </li>
-              <span v-else>In progress</span> 
-            </ul>
-          </div>
-        </li>
-      </Carousel>
-      <div class="transition-decline gray"></div>
-    </section>
-    <section id="about">
-      <h2 class="about-title">About me</h2>
-        <div class="about-wrapper">
-          <div class="about-skills">
-            <h3>My skills</h3>
-            <ul class="skills-list">
-              <Box v-for="skill in skills" 
-              :key="skill.name"
-              :name="skill.name"
-              :icon="skill.icon"
-              iconType="component"/>
-            </ul>
-          </div>
-          <div class="about-text">
-            <h3>Get to know me</h3>
-            <p>{{ aboutMe }}</p>
-          </div>
-          <div class="about-skills">
-            <h3>My soft skills</h3>
-            <ul class="skills-list">
-              <Box v-for="skill in softSkills" 
-              :key="skill.name"
-              :name="skill.name"
-              :icon="skill.icon"
-              iconType="img"/>
-            </ul>
-          </div>
-        </div>
-        <div class="transition-incline gray"></div>
-    </section>
-    <section id="communities">
-      <h2 class="communities-title"> My communities </h2>
-      <div class="communities-wrapper">
-        <ul class="communities-list">
-          <li v-for="com in communities" :key="com.org">
-          <img :src="com.logo" :alt="`logo of ${com.org}`" class="communities-logo"></li>
-        </ul>
-      </div>
-      <div class="transition-decline gray"></div>
-    </section>
-    <section id="testimonials">
-      <h2 class="testimonials-title">Others have said</h2>
-      <Carousel 
-        class="testimonials-wrapper" 
-        selector="testimonials-list"
-        @arrowClicked="(destination) => testimonials = slide(testimonials, destination)"
-        @dragged="(destination) => testimonials = slide(testimonials, destination)"
-      >
-        <li v-for="(testimonial) in testimonials" 
-          class="testimonial-card" 
-          :key="testimonial.from"
-        >
-          <img class="testimonial-quoteLeft" src="/quote-left.png" alt="opening quotation mark">
-          <em><p class="testimonial-text"> {{ testimonial.recommendation }}</p></em>
-          <span class="testimonial-signature"> - {{ testimonial.from}}, {{ testimonial.workTitle }}</span>
-          <img class="testimonial-quoteRight" src="/quote-right.png" alt="closing quotation mark">
-        </li>
-      </Carousel>
-      <div class="transition-incline pink"></div>
-    </section>
-    <section id="contact">
-      <h2 class="contact-title">Let's connect</h2>
-      <ul class="contact-list">
-        <li>
-          <a href="https://www.linkedin.com/in/ivona-josipovic/" target="_blank">
-          <component is="IconsLinkedin" class="contact-icon" />
-        </a>
-        </li>
-        <li>
-          <a href="mailto:josipovic.ivona@gmail.com" target="_blank">
-            <component is="IconsMail" class="contact-icon" />
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/iwarra" target="_blank">
-            <component is="IconsGithub" class="contact-icon" />
-          </a>
-        </li>
+    </template>
+
+    <template #navLinks>
+      <ul class="header-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><NuxtLink to="/blog">Blog</NuxtLink></li>
       </ul>
-    </section>
-  </main>
-  <footer id="footer">
-    <div class="footer-wrapper">
-      <small class="footer-copy">Copyright ©2023 Ivona Josipovic</small>
-      <a href="#">
-        <component class="footer-icon" is="IconsCircle" />
-      </a>
-    </div>
-  </footer>
+    </template>
+    
+    <main>
+      <section id="projects">
+        <h2 class="projects-title">My projects</h2>
+        <Carousel 
+          class="projects-wrapper"
+          selector="projects-list"
+          @arrowClicked="(direction) => projects = slide(projects, direction)"
+          @dragged="(direction) => projects = slide(projects, direction)"
+        >
+          <li 
+            class="project-card" 
+            v-for="project in projects"
+            :key="project.title"
+          >
+            <img class="project-img" :src="project.image" :alt="`screenshot of the ${project.title} user interface`">
+            <div class="project-text">
+              <h3 class="project-title"> {{ project.title }}</h3>
+              <span class="project-tools"> Tools used: 
+                {{ listFormatter.format(project.tools) }}
+              </span>
+              <p class="project-description"> {{ project.description }} </p>
+              <ul class="project-links">
+                <li>
+                  <a :href="project.links.gitHub">GitHub</a> 
+                </li>
+                <span>|</span>
+                <li v-if="project.links.liveDemo !== ''">
+                  <a :href="project.links.liveDemo">Live Demo</a>
+                </li>
+                <span v-else>In progress</span> 
+              </ul>
+            </div>
+          </li>
+        </Carousel>
+        <div class="transition-decline gray"></div>
+      </section>
+      <section id="about">
+        <h2 class="about-title">About me</h2>
+          <div class="about-wrapper">
+            <div class="about-skills">
+              <h3>My skills</h3>
+              <ul class="skills-list">
+                <Box v-for="skill in skills" 
+                :key="skill.name"
+                :name="skill.name"
+                :icon="skill.icon"
+                iconType="component"/>
+              </ul>
+            </div>
+            <div class="about-text">
+              <h3>Get to know me</h3>
+              <p>{{ aboutMe }}</p>
+            </div>
+            <div class="about-skills">
+              <h3>My soft skills</h3>
+              <ul class="skills-list">
+                <Box v-for="skill in softSkills" 
+                :key="skill.name"
+                :name="skill.name"
+                :icon="skill.icon"
+                iconType="img"/>
+              </ul>
+            </div>
+          </div>
+          <div class="transition-incline gray"></div>
+      </section>
+      <section id="communities">
+        <h2 class="communities-title"> My communities </h2>
+        <div class="communities-wrapper">
+          <ul class="communities-list">
+            <li v-for="com in communities" :key="com.org">
+            <img :src="com.logo" :alt="`logo of ${com.org}`" class="communities-logo"></li>
+          </ul>
+        </div>
+        <div class="transition-decline gray"></div>
+      </section>
+      <section id="testimonials">
+        <h2 class="testimonials-title">Others have said</h2>
+        <Carousel 
+          class="testimonials-wrapper" 
+          selector="testimonials-list"
+          @arrowClicked="(destination) => testimonials = slide(testimonials, destination)"
+          @dragged="(destination) => testimonials = slide(testimonials, destination)"
+        >
+          <li v-for="(testimonial) in testimonials" 
+            class="testimonial-card" 
+            :key="testimonial.from"
+          >
+            <img class="testimonial-quoteLeft" src="/quote-left.png" alt="opening quotation mark">
+            <em><p class="testimonial-text"> {{ testimonial.recommendation }}</p></em>
+            <span class="testimonial-signature"> - {{ testimonial.from}}, {{ testimonial.workTitle }}</span>
+            <img class="testimonial-quoteRight" src="/quote-right.png" alt="closing quotation mark">
+          </li>
+        </Carousel>
+        <div class="transition-incline pink"></div>
+      </section>
+      <section id="contact">
+        <h2 class="contact-title">Let's connect</h2>
+        <ul class="contact-list">
+          <li>
+            <a href="https://www.linkedin.com/in/ivona-josipovic/" target="_blank">
+            <component is="IconsLinkedin" class="contact-icon" />
+          </a>
+          </li>
+          <li>
+            <a href="mailto:josipovic.ivona@gmail.com" target="_blank">
+              <component is="IconsMail" class="contact-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/iwarra" target="_blank">
+              <component is="IconsGithub" class="contact-icon" />
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </Layout>
+
 </template>
 
 <style scoped lang="scss"> 
 @import '../global.scss';
-
-#header {
-  background-image: url(/grainy_texture.png), linear-gradient(var(--secondary-light), var(--secondary-light));
-
-  .header-wrapper {
-    display: flex;
-    min-height: 40vh;
-    justify-content: center;
-    align-items: center;
-    margin-top: 4rem;
-  }
-
-  .header-toggle {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    justify-content: end;
-    padding-right: 3rem;
-    padding-top: 3rem;
-    margin-bottom: -2rem;
-  }
-
-  .header-nav {
-    order: 1;
-  }
-
-  .header-trigger {
-    cursor: pointer;
-    display: inline;
-    order: 2;
-  }
-
-  .header-icon {
-    display:inline-block;
-    width:30px;
-    height:5px;
-    background-color: var(--primary-accent);
-    transition-property: background-color, transform;
-    transition-duration: 300ms;
-
-    &:before,
-    &:after {
-      content:'';
-      display:block;
-      width:30px;
-      height:5px;
-      position: absolute;
-      background: var(--primary-accent);
-      transition-property: margin, transform;
-      transition-duration: 300ms;
-    }
-
-    &:before {
-      margin-top:-10px;
-    }
-
-    &:after {
-      margin-top:10px;
-    }
-  }
-
-  .header--active .header-icon {
-    background: rgba(0,0,0,0.0);
-    height: 2px;
-
-    &:before {
-      margin-top:0;
-      transform:rotate(45deg);
-    }
-
-    &:after {
-      margin-top:0;
-      transform:rotate(-45deg);
-    }
-  }
-
-  .header-links { 
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    gap: .6rem;
-    position: relative;
-    z-index: 3;
-
-    a {
-      text-decoration: none;
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: var(--primary-accent);
-    }
-  }
-
-  .header-hero {
-    display: flex; 
-    justify-content: center;
-    margin-inline: 3rem;
-  }
-
-  .hero-text {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .hero-buttons {
-    display: inline-block;
-
-    .hero-primaryBtn {
-      @extend %btn;
-      align-self: start;
-      background-color: var(--primary-accent);
-      color: var(--secondary-light);
-      margin-right: 1rem;
-    }
-
-    .hero-secondaryBtn {
-      @extend %btn;
-      background-color: var(--secondary-light);
-      color: var(--primary-accent);
-    }
-    
-    a {
-      text-decoration: none;
-    }
-
-    a:hover {
-      filter: none;
-    }
-  }
-
-  .hero-img {
-    display: none;
-  }
-
-  .hero-title {
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 2px solid transparent;
-    font-size: 2rem;
-    width: 0;
-    max-width: 350px;
-    animation: typing 2s steps(30, end) forwards, blinking 2.5s 1;
-  }
-    
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 100% } 
-  }
-
-  @keyframes blinking {
-    0% {border-color: transparent}
-    50% {border-color: black}
-    100% {border-color: transparent}
-  }
-
-  .hero-subtitle {
-    font-size: 1.6rem;
-  }
-
-  @media (min-width: 850px) {
-    .header-wrapper {
-      max-width: 1000px;
-      margin: 0 auto;
-      margin-top: 5rem;
-    }
-
-    .header-toggle {
-      //align-items: center;
-    }
-      
-    .header-links {
-      flex-direction: row;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 1rem;
-      list-style: none;      
-        
-      a {
-        text-decoration: none;
-        color: var(--primary-accent);
-        font-size: 1.5rem;
-      }  
-    }
-
-    .header-hero{
-      flex-direction: row;
-      justify-content: space-evenly;
-      gap: 2rem;
-    }
-
-    .hero-img {
-      display: flex;
-      width: 300px;
-      height: 300px;
-    }
-
-    .hero-title {
-      font-size: 2.8rem;
-      max-width: 500px;
-    }
-
-    .hero-subtitle {
-      font-size: 2rem;
-    } 
-  }
-
-  @media (min-width: 1200px) {
-    .header-wrapper {
-      margin-top: 6rem;
-    }
-
-    .header-toggle{
-      padding-right: 12rem;
-    }
-    .header-hero {
-      margin-inline: 0;
-    }
-
-    @media (min-width: 1600px) {
-      .header-toggle{
-        padding-right: 17rem;
-      }
-    }
-  }
-}
 
 #projects {
   display: flex;
@@ -690,34 +449,6 @@ const toggleNavbar = () => {
     color: var(--primary-accent);
   }
 
-//   @media (min-width: 850px) {
-//   .contact-list {
-//     flex-direction: row;
-//     justify-content: center;
-//     margin-bottom: 4rem;
-//   }
-// }
-}
-
-#footer {
-  background-image: url(/grainy_texture.png), linear-gradient(#eee, #eee);
-
-  .footer-wrapper {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding-block: 1.8rem;
-  }
-
-  .footer-icon {
-    font-size: 2.4rem;
-    color: var(--primary-accent);
-    cursor: pointer;
-    margin-bottom: -3px;
-  }
 }
 </style>
 
