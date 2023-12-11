@@ -8,9 +8,6 @@ export default defineNuxtConfig({
         href: "/icon.svg",
         type: "image/svg+xml"
       }],
-      script: [{
-        src: 'https://identity.netlify.com/v1/netlify-identity-widget.js'
-      }],
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
     },
@@ -22,6 +19,12 @@ export default defineNuxtConfig({
     components: {
     global: true,
     dirs: ['~/components']
+  },
+  modules: [
+    '@nuxt/content'
+  ],
+  content: {
+    documentDriven: false,
   },
   vite: {
     build: {
