@@ -49,7 +49,7 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
       <ul class="header-links">
         <li><a href="#projects">Projects</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
-        <li><NuxtLink to="/blog">Blog</NuxtLink></li>
+        <!-- <li><NuxtLink to="/blog">Blog</NuxtLink></li> -->
       </ul>
     </template>
     
@@ -96,10 +96,11 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
               <h3>My skills</h3>
               <ul class="skills-list">
                 <Box v-for="skill in skills" 
-                :key="skill.name"
-                :name="skill.name"
-                :icon="skill.icon"
-                iconType="component"/>
+                  :key="skill.name"
+                  :name="skill.name"
+                  :icon="skill.icon"
+                  iconType="component"
+                />
               </ul>
             </div>
             <div class="about-text">
@@ -110,10 +111,11 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
               <h3>My soft skills</h3>
               <ul class="skills-list">
                 <Box v-for="skill in softSkills" 
-                :key="skill.name"
-                :name="skill.name"
-                :icon="skill.icon"
-                iconType="img"/>
+                  :key="skill.name"
+                  :name="skill.name"
+                  :icon="skill.icon"
+                  iconType="img"
+                />
               </ul>
             </div>
           </div>
