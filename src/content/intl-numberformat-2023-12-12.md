@@ -8,8 +8,8 @@ excerpt: Using Intl.NumberFormat to easily transform and format numbers.
 ---
 Intl.NumberFormat allows us to easily transform any number into a currency displayed according to a specific country/currency style.
 
-let total = 12345.6752;\
-let formatCurrency = new Intl.NumberFormat(undefined, {style: 'currency', currency: 'EUR' });\nconst totalEUR = formatCurrency.format(total)
+`let total = 12345.6752;`\
+`let formatCurrency = new Intl.NumberFormat(undefined, {style: 'currency', currency: 'EUR' });\nconst totalEUR = formatCurrency.format(total)`
 
 //gives us ‘€12,345.68′
 
