@@ -17,5 +17,5 @@ collections:
       - {label: "Category", name: "category", widget: "list"}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Language", name: "language", default: "en", widget: "hidden"}
-      - {label: "Excerpt", name: "excerpt", widget: "text"}
+      - {label: "Summary", name: "summary", widget: "text"}
       # - {label: "Featured Image", name: "thumbnail", widget: "image"}
