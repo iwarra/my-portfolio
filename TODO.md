@@ -1,7 +1,10 @@
 * Blog page : 
  - page design
-
-* English and Swedish version with Nuxt
+ - filter and search
+* Add sharing to socials option to post page
+* Blog preview on home page ?
+* English and Swedish version for home page
+* Create and add logo
 
 Style details
 * Project cards:  New images
