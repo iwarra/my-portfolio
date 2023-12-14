@@ -1,7 +1,7 @@
 <template>
-  <header id="header" :class="`${$attrs.headerBackground}`">  
+  <header id="header" :class="`${$attrs.headerBackground}`">
     <div class="header-navWrapper">
-       <div class="header-toggle">
+      <div class="header-toggle">
         <div class="header-trigger"
           role="button"
           aria-label="Toggle"
@@ -10,7 +10,8 @@
           <span class="header-icon"></span>
         </div>
         <nav id="nav" class="header-nav hidden">
-          <slot name="navLinks"></slot>
+          <slot name="navLinks">
+          </slot>
         </nav>
       </div>
       <div :class="`transition-decline hidden ${$attrs.navBackgroundColor}`" id="navTransitionEl"></div>

@@ -1,15 +1,15 @@
 * Blog page : 
  - page design
- - filter and search
 
 * Post page:
  - Add sharing to socials 
- - Add navigation to previous and next
 
 * Home page
  - Blog preview 
  - English and Swedish version 
  - Create and add logo
+
+ ** Error handling
 
 Style details
 * Project cards:  New images

@@ -6,51 +6,109 @@
       </ul>
     </template>
 
-    <div class="posts-wrapper">
+    <main class="posts-wrapper">
       <h1 class="posts-title">My Blog</h1>
-      <search>
-         <form>
-          <input name="search" type="search" placeholder="Search posts">
-          <button type="submit">Search</button>
+      <div class="search-wrap">
+        <search>
+          <form>
+            <input name="search" type="search" placeholder="Search posts" v-model="inputValue">
+            <button @click.prevent="() => usePosts({search: inputValue})">Search</button>
+          </form>
+        </search>
+        <form>
+          <label for="category">Filter by category:</label>
+          <select name="category" id="category" v-model="categoryValue">
+            <option value="" selected>Please choose a category</option>
+            <option v-for="category in categories" 
+              :key="category"
+              :value="category"
+            > {{ category }} </option>
+          </select> 
+          <button @click.prevent="() => usePosts({filter: categoryValue})">Filter</button>
+          <button @click.prevent="() => usePosts()">Reset All</button>
         </form>
-      </search>
-      <form>
-        <label for="category">Filter by category:</label>
-        <select name="category" id="category">
-          <option value="CSS">CSS</option>
-          <option value="Vue">Vue</option>
-          <option value="Accessibility">Accessibility</option>
-          <option value="JavaScript">JavaScript</option>
-        </select> 
-        <button>Filter</button>
-      </form>
-
+      </div>
       <ul class="posts-list">
         <li v-for="post in posts" :key="post._path" class="post-card">
           <h2>{{ post.title }}</h2>
-          <p> {{ post.excerpt }}</p>
-          <p>{{ post.date }}</p>
-          <NuxtLink :to="'/blog' + post._path">Read more</NuxtLink>
+          <p> {{ post.summary }}</p>
+          <div class="post-extraInfo">
+            <small>{{ post.date.substring(0,10) }}</small>
+            <NuxtLink :to="'/blog' + post._path">Read more</NuxtLink>
+          </div>
         </li>
       </ul>
-    </div>
+      <button style="align-self: center; padding: .6rem;" @click="() => usePosts({load: true})">Load more</button>
+    </main>
   </Layout>
 </template>
 
 <script setup>
-const { data: posts } = await useAsyncData('posts', () => queryContent("/")
-  .sort({date: -1})
-  .without("body") // removed body to lower payload-size
-  .find())
+const limiter = ref(3)
+const categoryValue = ref('')
+const posts = ref(await usePosts())
 
-//Collect all categories
-// Add to a Set
-// Loop through in the template
+async function usePosts(obj = {}) {
+  // destructuring
+
+  if (obj.load) {
+    posts.value = await queryContent("/")
+    .limit(limiter.value += 3)
+    .sort({date: -1, $numeric: true})
+    .without("body")
+    .find()
+    return
+  }
+
+  if (obj.filter) {
+    posts.value = await queryContent('/').where({ 'category': { $contains: obj.filter } }).find()
+    return
+  }
+
+  if (obj.search) {
+    const { data: source } = await useLazyAsyncData('allPosts', () => queryContent('/').find()) 
+    posts.value = useSearch(obj.search, source.value)
+    return
+  }
+
+  return useAsyncData('initialPosts', () => queryContent("/")
+  .limit(limiter.value)
+  .sort({date: -1, $numeric: true})
+  .without("body")
+  .find())
+  .data
+}
+
+// 2A. pokazi samo categories
+const { data: categories } = await useAsyncData('categories', async () => {
+  const list = new Set()
+  const result = await queryContent('/').only('category').find()
+  result.forEach(obj => {
+    obj.category.forEach(el => list.add(el))
+  })
+
+  return list
+}) 
 
 </script>
 
 
 <style lang="scss">
+.search-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+   
+  * {
+    margin-right: .6rem
+  }
+
+  input, select, button {
+    padding: .4rem;
+    border: 1px solid gray;
+    border-radius: .5rem;
+  }
+}
 
 .posts-title {
   margin-top: 5rem;
@@ -59,9 +117,11 @@ const { data: posts } = await useAsyncData('posts', () => queryContent("/")
 .posts-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
+  margin-bottom: 6rem;
 }
 
 .posts-list {
@@ -76,8 +136,15 @@ const { data: posts } = await useAsyncData('posts', () => queryContent("/")
   border: solid var(--primary-accent) 2px;
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 1rem;
   padding: 2rem;
 }
+
+.post-extraInfo {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
 
 </style>
