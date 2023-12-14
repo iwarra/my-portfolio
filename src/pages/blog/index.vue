@@ -69,7 +69,6 @@ async function usePosts(obj = {}) {
   if (obj.search) {
     const { data: source } = await useLazyAsyncData('allPosts', () => queryContent('/').find()) 
     posts.value = useSearch(obj.search, source.value)
-    console.log(posts)
     return
   }
 
