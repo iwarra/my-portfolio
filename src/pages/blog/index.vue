@@ -38,7 +38,6 @@
           </div>
         </li>
       </ul>
-      <pre>{{usePosts()}}</pre>
       <button style="align-self: center; padding: .6rem;" @click="() => usePosts({load: true})">Load more</button>
     </main>
   </Layout>
@@ -74,13 +73,12 @@ async function usePosts(obj = {}) {
     return
   }
 
-  const { data } = await useAsyncData('posts', () => queryContent("/")
+  return useAsyncData('posts', () => queryContent("/")
   .limit(limiter.value)
   .sort({date: -1, $numeric: true})
   .without("body")
   .find())
-  console.log(data)
-  return data
+  .data
 }
 
 // categories
