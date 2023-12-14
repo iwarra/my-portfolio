@@ -18,14 +18,14 @@
         <form>
           <label for="category">Filter by category:</label>
           <select name="category" id="category" v-model="categoryValue">
-            <option value="" selected>Please choose a category</option>
+            <option disabled value="">Please choose a category</option>
             <option v-for="category in categories" 
               :key="category"
               :value="category"
             > {{ category }} </option>
           </select> 
           <button @click.prevent="() => usePosts({filter: categoryValue})">Filter</button>
-          <button @click.prevent="() => usePosts()">Reset All</button>
+          <button @click.prevent="() => usePosts({ reset: true})">Reset All</button>
         </form>
       </div>
       <ul class="posts-list">
@@ -38,42 +38,51 @@
           </div>
         </li>
       </ul>
-      <button style="align-self: center; padding: .6rem;" @click="() => usePosts({load: true})">Load more</button>
+      <button style="align-self: center; padding: .6rem;" @click="() => usePosts({loadMore: true})">load more</button>
     </main>
   </Layout>
 </template>
 
 <script setup>
-const limiter = ref(3)
 const categoryValue = ref('')
 const inputValue = ref('');
+const postsPerView = ref(3)
 const posts = ref(await usePosts())
 
 async function usePosts(obj = {}) {
   // destructuring
 
-  if (obj.load) {
+  if (obj.loadMore) {
     posts.value = await queryContent("/")
-    .limit(limiter.value += 3)
+    .limit(postsPerView.value += 3)
     .sort({date: -1, $numeric: true})
     .without("body")
     .find()
     return
   }
 
-  if (obj.filter) {
-    posts.value = await queryContent('/').where({ 'category': { $contains: obj.filter } }).find()
-    return
-  }
-
   if (obj.search) {
-    const { data: source } = await useLazyAsyncData('allPosts', () => queryContent('/').find()) 
+    const { data: source } = await useAsyncData('allPosts', () => queryContent('/').find()) 
     posts.value = useSearch(obj.search, source.value)
     return
   }
 
+  if (obj.filter) {
+    // try idempotency?
+    posts.value = await queryContent('/').where({ 'category': { $contains: obj.filter } }).find()
+
+    // reset search-input to blank, as not to confuse
+    if (inputValue.value) inputValue.value = '';
+    return
+  }
+
+  if (obj.reset) {
+    inputValue.value = ''
+    categoryValue.value = ''
+  }
+
   return useAsyncData('posts', () => queryContent("/")
-  .limit(limiter.value)
+  .limit(postsPerView.value)
   .sort({date: -1, $numeric: true})
   .without("body")
   .find())
