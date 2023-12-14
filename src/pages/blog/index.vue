@@ -9,12 +9,12 @@
     <main class="posts-wrapper">
       <h1 class="posts-title">My Blog</h1>
       <div class="search-wrap">
-        <search>
+        <div role="search">
           <form>
             <input name="search" type="search" placeholder="Search posts" v-model="inputValue">
             <button @click.prevent="() => usePosts({search: inputValue})">Search</button>
           </form>
-        </search>
+        </div>
         <form>
           <label for="category">Filter by category:</label>
           <select name="category" id="category" v-model="categoryValue">
@@ -38,6 +38,7 @@
           </div>
         </li>
       </ul>
+      <pre>{{usePosts()}}</pre>
       <button style="align-self: center; padding: .6rem;" @click="() => usePosts({load: true})">Load more</button>
     </main>
   </Layout>
@@ -46,6 +47,7 @@
 <script setup>
 const limiter = ref(3)
 const categoryValue = ref('')
+const inputValue = ref('');
 const posts = ref(await usePosts())
 
 async function usePosts(obj = {}) {
@@ -68,21 +70,24 @@ async function usePosts(obj = {}) {
   if (obj.search) {
     const { data: source } = await useLazyAsyncData('allPosts', () => queryContent('/').find()) 
     posts.value = useSearch(obj.search, source.value)
+    console.log(posts)
     return
   }
 
-  return useAsyncData('initialPosts', () => queryContent("/")
+  const { data } = await useAsyncData('posts', () => queryContent("/")
   .limit(limiter.value)
   .sort({date: -1, $numeric: true})
   .without("body")
   .find())
-  .data
+  console.log(data)
+  return data
 }
 
-// 2A. pokazi samo categories
+// categories
 const { data: categories } = await useAsyncData('categories', async () => {
   const list = new Set()
   const result = await queryContent('/').only('category').find()
+
   result.forEach(obj => {
     obj.category.forEach(el => list.add(el))
   })

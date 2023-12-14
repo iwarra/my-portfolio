@@ -6,7 +6,7 @@ export const useSearch = (searchTerm, source) => {
   let miniSearch = new MiniSearch({
     idField: '_id',
     fields: ['title', 'body'],
-    storeFields: ['title', 'date', 'summary'],
+    storeFields: ['title', 'date', 'summary', '_path'],
   });
 
   miniSearch.addAll(source);
