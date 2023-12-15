@@ -1,7 +1,0 @@
-{
-  "title": "Image alt",
-  "date": "2023-12-08",
-  "category": ["CSS"],
-  "body": "**For decorative images:**\n\nAn empty alt attribute on an img tag makes the screen reader skip the element.\n\n```\n<img src=\"image.jpg\" alt=\"\"> // skipped by the screen reader\n```\n\nNot having the alt attribute at all makes the screen reader read the file name to the user.",
-  "summary": "How to correctly use alt attribute with decorative images."
-}
