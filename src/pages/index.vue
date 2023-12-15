@@ -46,11 +46,11 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
     </template>
 
     <template #navLinks>
-      <ul class="header-links">
+      <menu class="header-links">
         <li><a href="#projects">Projects</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
-        <li><NuxtLink to="/blog">Blog</NuxtLink></li>
-      </ul>
+        <!-- <li><NuxtLink to="/blog">Blog</NuxtLink></li> -->
+      </menu>
     </template>
     
     <main>
