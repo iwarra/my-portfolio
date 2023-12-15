@@ -1,6 +1,8 @@
 ---
 title: Flex with navbar links
 date: 2022-12-28T15:53:25.790Z
+category:
+  - CSS
 language: en
 summary: Positioning links in the navbar with the help of display flex.
 ---
