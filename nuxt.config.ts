@@ -21,8 +21,12 @@ export default defineNuxtConfig({
     dirs: ['~/components']
   },
   modules: [
-    '@nuxt/content'
+    '@nuxt/content',
+    'vue3-carousel-nuxt'
   ],
+  carousel: {
+    prefix: 'MyPrefix'
+  },
   content: {
     documentDriven: false,
   },
