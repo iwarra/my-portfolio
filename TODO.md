@@ -1,19 +1,20 @@
 * Blog page : 
- - page design
+ - Page design (with separators ?)
+ - Config to load post as article
+ - Hero in the same style as home
 
 * Post page:
  - Add sharing to socials 
+ - Add print ?
 
 * Home page
- - Blog preview 
  - English and Swedish version 
- - Create and add logo
+ - New carousels - check responsiveness
 
- ** Error handling
+ ** Error handling **
 
 Style details
-* Project cards:  New images
-* Mobile drag UI
-* Footer redesign 
+* Project cards: New images
+* Footer color ? 
 
 * Testing: more accessibility tests and different browsers
