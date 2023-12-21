@@ -51,9 +51,9 @@ const [prev, next] = await queryContent()
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  max-width: 90vw;
+  max-width: 1000px;
   margin: 0 auto;
-  margin-block: 6rem;
+  padding: 3rem 3rem 0rem 3rem;
 }
 
 .nav {
