@@ -3,7 +3,8 @@
  - Hero in the same style as home : 
    - search on typing 
    - filter on selected
-   - Reset button not shown till the posts are filtered
+   - reset button not shown till the posts are filtered
+ - Prevent infinite scroll when searching (PRIO)
 - Config to load post as article
 
 * Post page:
