@@ -19,7 +19,37 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
     }
   })
 })
+const { data: latestPosts } = await useAsyncData('latest', (() => queryContent('/')
+.limit(5)
+.without('body')
+.find())) 
 
+const projectsCarousel = ref(null);
+const testimonialsCarousel = ref(null);
+const settings = {
+  itemsToShow: 1,
+  snapAlign: 'center',
+  wrapAround: true,
+};
+const breakpointsProjects = {
+  // 670px and up
+  670: {
+    itemsToShow: 2,
+    snapAlign: 'start',
+  },
+  // 1020 and up
+  1020: {
+    itemsToShow: 3,
+    snapAlign: 'start',
+  }
+};
+const breakpointsTestimonials = {
+  // 850px and up
+  850: {
+    itemsToShow: 2,
+    snapAlign: 'start',
+  },
+};
 </script>
 
 <template>
@@ -42,7 +72,6 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
         >
       </section>
     </div>
-    <div class="transition-incline pink"></div>
     </template>
 
     <template #navLinks>
@@ -54,19 +83,26 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
     </template>
     
     <main>
+      <Separator styling="incline" />
       <section id="projects">
         <h2 class="projects-title">My projects</h2>
-        <Carousel 
-          class="projects-wrapper"
-          selector="projects-list"
-          @arrowClicked="(direction) => projects = slide(projects, direction)"
-          @dragged="(direction) => projects = slide(projects, direction)"
-        >
-          <li 
+        <div class="carousel-container">
+          <img src="/arrow-left.svg" 
+            @click="() => projectsCarousel.prev()"
+            class="arrow-icon"
+            alt="arrow pointing left">
+          <ExternalCarousel
+            ref="projectsCarousel"
+            v-bind="settings" 
+            :breakpoints="breakpointsProjects"
+            class="projects-wrapper"
+          >
+          <ExternalSlide 
             class="project-card" 
             v-for="project in projects"
             :key="project.title"
           >
+          <div class="project-wrap">
             <img class="project-img" :src="project.image" :alt="`screenshot of the ${project.title} user interface`">
             <div class="project-text">
               <h3 class="project-title"> {{ project.title }}</h3>
@@ -85,10 +121,16 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
                 <span v-else>In progress</span> 
               </ul>
             </div>
-          </li>
-        </Carousel>
-        <div class="transition-decline gray"></div>
+          </div>
+          </ExternalSlide>
+          </ExternalCarousel>
+          <img src="/arrow-right.svg" 
+            alt="arrow pointing right" 
+            class="arrow-icon"
+            @click="() => projectsCarousel.next()">
+        </div>
       </section>
+      <Separator styling="decline" />
       <section id="about">
         <h2 class="about-title">About me</h2>
           <div class="about-wrapper">
@@ -119,8 +161,8 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
               </ul>
             </div>
           </div>
-          <div class="transition-incline gray"></div>
       </section>
+      <Separator styling="incline" />
       <section id="communities">
         <h2 class="communities-title"> My communities </h2>
         <div class="communities-wrapper">
@@ -129,29 +171,55 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
             <img :src="com.logo" :alt="`logo of ${com.org}`" class="communities-logo"></li>
           </ul>
         </div>
-        <div class="transition-decline gray"></div>
       </section>
-      <section id="testimonials">
+      <Separator styling="decline" />
+      <section id="testimonials" >
         <h2 class="testimonials-title">Others have said</h2>
-        <Carousel 
+        <div class="carousel-container">
+        <img src="/arrow-left.svg" 
+          @click="() => testimonialsCarousel.prev()"
+          class="arrow-icon"
+          alt="arrow pointing left">
+        <ExternalCarousel 
           class="testimonials-wrapper" 
-          selector="testimonials-list"
-          @arrowClicked="(destination) => testimonials = slide(testimonials, destination)"
-          @dragged="(destination) => testimonials = slide(testimonials, destination)"
+          ref="testimonialsCarousel"
+          v-bind="settings" 
+          :breakpoints="breakpointsTestimonials"
         >
-          <li v-for="(testimonial) in testimonials" 
+          <ExternalSlide v-for="(testimonial) in testimonials" 
             class="testimonial-card" 
             :key="testimonial.from"
           >
+          <div class="testimonial-wrap">
             <img class="testimonial-quoteLeft" src="/quote-left.png" alt="opening quotation mark">
             <em><p class="testimonial-text"> {{ testimonial.recommendation }}</p></em>
             <span class="testimonial-signature"> - {{ testimonial.from}}, {{ testimonial.workTitle }}</span>
             <img class="testimonial-quoteRight" src="/quote-right.png" alt="closing quotation mark">
-          </li>
-        </Carousel>
-        <div class="transition-incline pink"></div>
+          </div>
+          </ExternalSlide>
+        </ExternalCarousel>
+        <img src="/arrow-right.svg" 
+          alt="arrow pointing right" 
+          class="arrow-icon"
+          @click="() => testimonialsCarousel.next()">
+        </div> 
       </section>
-      <section id="contact">
+      <Separator styling="incline" />
+      <section id="blog">
+        <h2>My Blog</h2>
+        <div class="blog-wrapper">
+          <ul class="blog-list">
+            <li v-for="post in latestPosts" class="blog-item"> 
+              <NuxtLink :to="'blog' + post._path" class="blog-link"> 
+                {{ post.title }} 
+                <time class="post-date"> {{ new Date(post.date).getDate() }}/{{ new Date(post.date).getMonth() }}/{{ new Date(post.date).getFullYear() }}</time>
+              </NuxtLink>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <Separator styling="decline" />
+      <section id="contact" >
         <h2 class="contact-title">Let's connect</h2>
         <ul class="contact-list">
           <li>
@@ -183,25 +251,29 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .projects-title {
-    margin-bottom: 2rem;
-    margin-top: 5rem;
-  }
+  position: relative;
 
   .projects-wrapper {
-    display: grid;
-    grid-auto-flow: column;
-    align-items: center;
-    max-width: 1200px;
-    overflow: hidden;
-    margin-bottom: 2rem;
+    // display: grid;
+    // grid-auto-flow: column;
+    //align-items: center;
+    // overflow: hidden;
+    max-width: 82vw;
+    margin-bottom: 1rem;
+    z-index: 2;
+    text-align: start;
   }
 
-  .project-card {
-    background-color: #e5e5e5;
+  .project-wrap {
+    margin-inline: .8rem ;
+    background-color: var(--primary-light);
     border-radius: var(--borderRadius-large);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .project-card {
     display: flex;
     flex-direction: column;
     max-height: 35rem;
@@ -214,6 +286,7 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
     gap: 1.2rem;
     line-height: 1.2;
     flex: 1;
+    background-color: rgba(229, 229, 229, 0.6901960784);
   }
 
   .project-img {
@@ -244,7 +317,7 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
     }
 
     span {
-      color: gray;
+      color: var(--font-light);
     }
   }
 
@@ -264,6 +337,12 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
       padding: 2rem;
     }
   }
+
+  @media (min-width: 1200px) {
+    .projects-wrapper {
+      max-width: 1120px;
+    }
+  }
 }
 
 #about {
@@ -273,17 +352,13 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
   justify-content: center;
   align-items: center;
 
-  .about-title {
-    margin-bottom: 2rem;
-    margin-top: 5rem;
-  }
-
   .about-wrapper {
     max-width: 1000px;
     display: flex;
     flex-direction: column;
     gap: 4rem;
     margin: 0 3rem 3rem 3rem;
+    z-index: 2;
   }
 
   .about-text p {
@@ -298,10 +373,6 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
   }
   
   @media (min-width: 850px) {
-    .about-text, .about-skills {
-      flex: 1
-    }
-
     .about-text {
       order: 1
     }
@@ -318,32 +389,24 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
   justify-content: end;
   align-items: center;
 
-  .communities-title {
-    margin-bottom: 2rem;
-    margin-top: 4rem;
-  }
-
   .communities-wrapper {
     max-width: 1000px;
+    z-index: 2;
+    margin-inline: 3rem;
   }
 
   .communities-list {
     list-style: none;
     display: flex;
+    justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 3rem;
 
     img {
      max-height: 80px;
    }
-  }
-
-  @media (min-width: 1000px) {
-    .communities-list {
-      flex-direction: row;
-      gap: 3.8rem;
-    }
   }
 }
 
@@ -352,41 +415,44 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
   flex-direction: column;
   gap: 1rem;
   align-items: center;
+  position: relative;
 
-  .testimonials-title {
-    margin-bottom: 2rem;
-    margin-top: 5rem;
+  .testimonial-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonial-wrap {
+    margin: 0 5px;
+    border-radius: var(--borderRadius-large);
+    border: 1px solid var(--primary-accent);
+    flex: 1;
+    position: relative;
+    padding: 4rem 2.5rem;
+    background-image: url(/grainy_texture.png), linear-gradient(var(--primary-light), var(--primary-light));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .testimonial-text {
     max-height: 300px;
     overflow: auto; 
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
     font-size: 1.1rem;
+    text-align: start;
     scrollbar-color: var(--primary-accent) transparent;
     scrollbar-width: thin;
     padding-right: 1rem;
   }
 
   .testimonials-wrapper {
-    display: grid;
-    grid-auto-flow: column;
-    align-items: center;
-    max-width: 1200px;
+    display: flex;
+    max-width: 85vw;
     overflow: hidden;
     margin-bottom: 2rem;
+    z-index: 2;
   }
-
-  .testimonial-card {
-    border-radius: var(--borderRadius-large);
-    border: 1px solid var(--primary-accent);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    padding: 4rem 2.5rem;
-    background-image: url(/grainy_texture.png), linear-gradient(var(--primary-light), var(--primary-light));
-  }
-
 
   // scrollbar style for older browsers
   ::-webkit-scrollbar {
@@ -401,7 +467,6 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
     background: var(--primary-accent);
     border-radius: 6px;
   }
-
 
   .testimonial-quoteLeft {
     position: absolute;
@@ -419,10 +484,53 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
 
   .testimonial-signature {
     font-weight: 600;
-    position: absolute;
-    bottom: 2rem;
-    text-wrap: wrap;
-    padding-right: 3.5rem;
+    text-align: start;
+  }
+
+  @media (min-width: 1200px) {
+    .testimonials-wrapper {
+      max-width: 1110px;
+    }
+  }
+}
+
+#blog {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+
+  .blog-wrapper {
+    max-width: 1000px;
+  }
+
+  .blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    list-style: none;
+    margin-inline: 3rem;
+  }
+  
+  .blog-link {
+    text-decoration: none;
+    padding-bottom: 5px;
+    border-bottom: dotted 1px var(--primary-accent);
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    align-items: center;
+  }
+
+  @media (min-width: 850px) {
+    .blog-link {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .blog-wrapper {
+      width: 100%;
+    }
   }
 }
 
@@ -430,7 +538,6 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
   .contact-title {
     text-align: center;
     margin-bottom: 1.5rem;
-    margin-top: 5rem;
   }
   .contact-list {
     display: flex;
@@ -438,7 +545,7 @@ const { data: testimonials } = await useFetch('/api/testimonials', {
     justify-content: center;
     list-style: none;
     gap: 2.5rem;
-    margin-bottom: 4rem;
+    padding-bottom: 4rem;
   }
 
   .contact-icon {

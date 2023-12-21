@@ -1,27 +1,32 @@
 <template>
   <Layout navBackgroundColor="pink">
     <template #navLinks>
-      <ul class="header-links">
+      <menu class="header-links">
         <li><NuxtLink to="/">Home</NuxtLink></li>
         <li><NuxtLink to="/blog">Blog</NuxtLink></li>
-      </ul>
+      </menu>
     </template>
 
     <main class="post-wrapper">
       <h1>{{ post.title }}</h1>
       <ContentRenderer :value="post" class="post-body"/>
-      <div class="nav-wrap">
+      <div class="nav">
         <div class="nav-miniWrap">
-          <NuxtLink v-if="prev" class="nav-btn" :to="'/blog' + prev._path">Previous</NuxtLink>
+          <NuxtLink v-if="prev" class="nav-link" :to="'/blog' + prev._path">
+            <img v-if="prev" src="/arrow-left.svg" alt="" class="nav-icon">
+            Previous
+          </NuxtLink>
           <span v-if="prev"> {{ prev.title }} </span>
         </div>
-        <div class="nav-miniWrap">
-          <NuxtLink v-if="next" class="nav-btn" :to="'/blog' + next._path">Next</NuxtLink>
+        <div v-if="next" class="nav-miniWrap">
+          <NuxtLink v-if="next" class="nav-link" :to="'/blog' + next._path">
+            Next
+            <img src="/arrow-right.svg" alt="" class="nav-icon">
+          </NuxtLink>
           <span v-if="next"> {{ next.title }} </span>
         </div>
       </div>
     </main>
-
   </Layout>
 </template>
 
@@ -46,15 +51,15 @@ const [prev, next] = await queryContent()
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  max-width: 1000px;
+  max-width: 90vw;
   margin: 0 auto;
   margin-block: 6rem;
 }
 
-.nav-wrap {
+.nav {
   display: flex;
   flex-direction: row;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .nav-miniWrap {
@@ -64,13 +69,16 @@ const [prev, next] = await queryContent()
   color: gray;
 }
 
-.nav-btn {
-  // @extend %btn !optional;
-  //text-decoration: none;
-  // text-align: center;
-  // align-self: self-start;
+.nav-link {
   color: var(--primary-accent);
   font-size: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 600;
+  .nav-icon {
+    height: 2.4rem;
+  }
 }
 .post-body {
   display: flex;
