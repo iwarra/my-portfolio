@@ -9,17 +9,17 @@ export default defineEventHandler(() => {
     { name: 'patient',
       icon: 'seed.svg'
     }, 
-    { name: 'punctual',
-      icon: 'punctual.svg'
-    }, 
     { name:'creative',
       icon: 'painter.svg'
     }, 
+    { name: 'punctual',
+      icon: 'punctual.svg'
+    }, 
+    { name: 'motivated',
+      icon: 'rocket.svg'
+    },
     { name: 'kind',
       icon: 'kind.svg'
     },
-    { name: 'motivated',
-      icon: 'rocket.svg'
-    }
   ]
 })
