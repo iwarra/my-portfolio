@@ -1,20 +1,34 @@
+<script setup>
+//Created a custom layout component to be able to use named slots
+defineOptions({
+  inheritAttrs: false
+})
+</script>
+
 <template>
   <header id="header" :class="`${$attrs.headerBackground}`">
-    <div class="header-navWrapper">
-      <div class="header-toggle">
-        <div class="header-trigger"
-          role="button"
-          aria-label="Toggle"
-          @click="() => toggle($attrs.navBackgroundColor)"
-        >
-          <span class="header-icon"></span>
+    <div class="header-wrap" >
+      <div class="header-navWrapper">
+        <NuxtLink to="/">
+          <img src="/logo.png" alt="" class="header-logo">
+        </NuxtLink>
+        <div class="header-toggle">
+          <div class="header-trigger"
+            role="button"
+            aria-label="Toggle"
+            @click="() => toggle($attrs.navBackgroundColor)"
+          >
+            <span class="header-icon"></span>
+          </div>
+          <nav id="nav" class="header-nav hidden">
+            <slot name="navLinks">
+            </slot>
+          </nav>
         </div>
-        <nav id="nav" class="header-nav hidden">
-          <slot name="navLinks">
-          </slot>
-        </nav>
       </div>
-      <div :class="`transition-decline hidden ${$attrs.navBackgroundColor}`" id="navTransitionEl"></div>
+      <Separator :styling="`decline hidden ${$attrs.navBackgroundColor}`"
+        id="navTransitionEl">
+      </Separator>
     </div>
     <slot name="hero"></slot>
   </header>
@@ -31,13 +45,6 @@
   </footer> 
 </template>
 
-<script setup>
-//Created a custom layout component to be able to use named slots
-defineOptions({
-  inheritAttrs: false
-})
-</script>
-
 <style lang="scss">
 @import '../global.scss';
 
@@ -47,7 +54,28 @@ defineOptions({
     min-height: 40vh;
     justify-content: center;
     align-items: center;
-    margin-top: 4rem;
+    margin-top: 3rem;
+  }
+
+  .header-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-navWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 4rem 1rem 1rem 1rem;
+    max-width: 1000px;
+  }
+
+  .header-logo {
+    height: 28px;
+    z-index: 2;
+    position: relative;
   }
 
   .header-toggle {
@@ -55,9 +83,6 @@ defineOptions({
     flex-direction: row;
     gap: 2rem;
     justify-content: end;
-    padding-right: 3rem;
-    padding-top: 3rem;
-    margin-bottom: -2rem;
   }
 
   .header-nav {
@@ -68,6 +93,7 @@ defineOptions({
     cursor: pointer;
     display: inline;
     order: 2;
+    z-index: 2;
   }
 
   .header-icon {
@@ -121,7 +147,7 @@ defineOptions({
     align-items: end;
     gap: .6rem;
     position: relative;
-    z-index: 3;
+    z-index: 2;
 
     a {
       text-decoration: none;
@@ -198,6 +224,10 @@ defineOptions({
     font-size: 1.6rem;
   }
 
+  .decline {
+    margin-top: calc(var(--spacing) * -1);
+  }
+
   @media (min-width: 850px) {
     .header-wrapper {
       max-width: 1000px;
@@ -246,23 +276,14 @@ defineOptions({
       margin-top: 6rem;
     }
 
-    .header-toggle{
-      padding-right: 12rem;
-    }
     .header-hero {
       margin-inline: 0;
-    }
-
-    @media (min-width: 1600px) {
-      .header-toggle{
-        padding-right: 17rem;
-      }
     }
   }
 }
 
- footer {
-  background-image: url(/grainy_texture.png), linear-gradient(#eee, #eee);
+footer {
+  //background-image: url(/grainy_texture.png), linear-gradient(#eee, #eee);
 
   .footer-wrapper {
     max-width: 1000px;
