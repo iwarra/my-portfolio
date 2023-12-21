@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     'vue3-carousel-nuxt'
   ],
   carousel: {
-    prefix: 'MyPrefix'
+    prefix: 'External'
   },
   content: {
     documentDriven: false,
