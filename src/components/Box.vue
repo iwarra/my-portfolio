@@ -18,7 +18,7 @@ const props = defineProps(['name', 'icon', 'iconType'])
   padding: .8rem 1.2rem;
   font-size: 1.2rem;
   background-color: var(--primary-background);
-  color: var(--font-light);
+  color: var(--font-secondary);
   border-radius: var(--borderRadius-small);
   display: flex;
   flex-flow: row nowrap;

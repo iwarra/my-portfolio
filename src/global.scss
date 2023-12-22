@@ -7,16 +7,16 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --font-color: #1C1B23;
-  --font-light: rgb(104, 104, 104);
+  --font-primary: #1C1B23;
+  --font-secondary: #686868;
   --primary-light: #fff;
   --secondary-light: #fbe8de;
   --primary-accent: #7843e9;
   --secondary-accent: #7536fc;
   --primary-background: rgba(149, 149, 149, 0.216);
-  --borderRadius-large: 20px;
-  --borderRadius-medium: 12px;
   --borderRadius-small: 5px;
+  --borderRadius-medium: 12px;
+  --borderRadius-large: 20px;
   --spacing: 6rem;
 }
 
@@ -32,7 +32,7 @@ html {
 }
 
 body {
-  color: var(--font-color);
+  color: var(--font-primary);
   background-image: url(/grainy_texture.png);
 }
 
@@ -137,7 +137,7 @@ a {
 
 @media (min-width: 1800px) {
   body {
-    max-width: 1800px;
+    max-width: 1500px;
     margin: 0 auto;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }

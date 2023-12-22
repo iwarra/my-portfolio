@@ -78,7 +78,7 @@ const breakpointsTestimonials = {
       <menu class="header-links">
         <li><a href="#projects">Projects</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
-        <!-- <li><NuxtLink to="/blog">Blog</NuxtLink></li> -->
+        <DevOnly><li><NuxtLink to="/blog">Blog</NuxtLink></li></DevOnly>
       </menu>
     </template>
     
@@ -206,7 +206,7 @@ const breakpointsTestimonials = {
       </section>
       <Separator styling="incline" />
       <section id="blog">
-        <h2>My Blog</h2>
+        <h2>Latest posts</h2>
         <div class="blog-wrapper">
           <ul class="blog-list">
             <li v-for="post in latestPosts" class="blog-item"> 
@@ -317,7 +317,7 @@ const breakpointsTestimonials = {
     }
 
     span {
-      color: var(--font-light);
+      color: var(--font-secondary);
     }
   }
 
@@ -521,6 +521,8 @@ const breakpointsTestimonials = {
     flex-direction: column;
     gap: .8rem;
     align-items: center;
+    text-align: center;
+    color: #551a8b;
   }
 
   @media (min-width: 850px) {
