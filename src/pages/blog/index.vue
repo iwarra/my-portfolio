@@ -4,30 +4,23 @@ const searchValue = ref('');
 const postsPerView = ref(3);
 const posts = ref(await getPosts());
 const totalNumOfPosts = ref(await queryContent('/').count());
+const timer = ref(false);
 
 onMounted(() => {
-  const observer = new IntersectionObserver(() => getPosts({loadMore: true}), {
+   const observer = new IntersectionObserver(() => getPosts({loadMore: true}), {
     root: null,
     rootMargin: "0%",
     threshold: 0, // between 0-1; how much of the target to be visible before loading
-  });
-  observer.observe(document.querySelector("footer"));
-})
-
-// //Infinite scroll
-// onMounted(() => scroll());
-// function scroll () {
-//   window.onscroll = () => {
-//     let bottomOfWindow = Math.max(window.scrollY, document.documentElement.scrollTop) + window.innerHeight === document.documentElement.offsetHeight
-
-//     if (bottomOfWindow) getPosts({loadMore: true})
-//   }
-// }
+  })
+  observer.observe(document.querySelector("footer"))
+});
 
 async function getPosts(obj = {}) {
   const { loadMore, search, filter, reset } = obj;
 
   if (loadMore) {
+    if (categoryValue.value !== '' || searchValue.value !== '') return 
+
     posts.value = await queryContent("/")
     .limit(postsPerView.value += 3)
     .sort({date: -1, $numeric: true})
@@ -61,7 +54,15 @@ async function getPosts(obj = {}) {
   .without("body")
   .find())
   .data
-}
+};
+
+const debounce = (callback, ms) => {
+  clearTimeout(timer.value)
+  timer.value = setTimeout(() => {
+    callback()
+    timer.value = false
+  }, ms)
+};
 
 // categories
 const { data: categories } = await useAsyncData('categories', async () => {
@@ -73,7 +74,7 @@ const { data: categories } = await useAsyncData('categories', async () => {
   })
 
   return list
-}) 
+}) ;
 </script>
 
 <template>
@@ -91,20 +92,30 @@ const { data: categories } = await useAsyncData('categories', async () => {
             <h1 class="blog-title">My Blog</h1>
             <div class="search-wrapper">
               <div role="search" class="search-group">
-                <component class="search-icon" is="IconsSearch" @click.prevent="() => getPosts({search: searchValue})" />
-                <input name="search" type="search" placeholder="Search posts..." v-model="searchValue">
+                <component class="search-icon" is="IconsSearch"/>
+                <input 
+                  name="search" 
+                  type="search" 
+                  placeholder="Search posts..." 
+                  v-model="searchValue"
+                  @input.prevent="debounce(() => getPosts({search: searchValue}), 500)"
+                  @keypress.enter.prevent="" 
+                >
               </div>
               <div class="filter-group">
-                <component class="filter-icon" is="IconsFilter"  @click.prevent="() => getPosts({filter: categoryValue})"/>
-                <select name="category" v-model="categoryValue">
-                  <option disabled value="">Pick a category</option>
+                <component class="filter-icon" is="IconsFilter"/>
+                <select 
+                  name="category" 
+                  v-model="categoryValue"
+                  @change="() => getPosts({filter: categoryValue})"
+                >
+                  <option selected value="">All categories</option>
                   <option v-for="category in categories" 
                     :key="category"
                     :value="category"
                   > {{ category }} </option>
                 </select> 
               </div>
-              <button class="reset-button" @click.prevent="() => getPosts({ reset: true})">Reset All</button>
             </div>
           </form>
           <img src="/search.svg" alt="" class="hero-img">
@@ -127,16 +138,11 @@ const { data: categories } = await useAsyncData('categories', async () => {
             <Separator :class="index % 2 !== 0 ? 'incline pink' : 'decline gray'" />
           </template>
         </ul>
-        <!-- <button v-if="posts.length < totalNumOfPosts" 
-          class="more-button" 
-          @click="() => getPosts({loadMore: true})"
-        >Load more</button> -->
-        <span class="message" v-if="posts.length >= totalNumOfPosts">Oops, we're all out of posts.</span>
+        <!-- <span class="message" v-if="posts.length >= totalNumOfPosts">Oops, we're all out of posts.</span> -->
       </div>
     </main>
   </Layout>
 </template>
-
 
 <style scoped lang="scss">
 @import '../../global.scss';
@@ -194,10 +200,6 @@ const { data: categories } = await useAsyncData('categories', async () => {
     background-color: #fff;
   }
 
-  .reset-button {
-    align-self: start;
-  }
-
   .search-group, .filter-group {
     display: flex;
     background-color: #fff; 
@@ -243,12 +245,6 @@ li.post-card:nth-of-type(2n) {
   z-index: 2;
 }
 
-// .more-button {
-//   @extend %btn;
-//   align-self: center;
-//   background-color: #fff;
-//   color: var(--primary-accent);
-// }
 
 .post-extraInfo {
   display: flex;
