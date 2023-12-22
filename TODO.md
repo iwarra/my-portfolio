@@ -1,13 +1,5 @@
-* Blog page : 
- - Page design with separators: make smaller on large screens (width)
- - Hero in the same style as home : 
-   - search on typing 
-   - filter on selected
-   - reset button not shown till the posts are filtered
- - Prevent infinite scroll when searching (PRIO)
-- Config to load post as article
-
 * Post page:
+PRIO: - code block breaks on small screens
  - Add sharing to socials 
  - Add print ?
 
