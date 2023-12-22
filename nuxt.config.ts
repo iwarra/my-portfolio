@@ -2,30 +2,36 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: "Ivona's portfolio",
+      title: "Ivona Josipovic | Frontend developer",
       link: [{
         rel: "icon",
         href: "/icon.svg",
         type: "image/svg+xml"
       }],
-      charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1',
+      meta: [
+        {
+          name: "description",
+          content: "Ivona Josipovic is a frontend developer based in Stockholm. She enjoys building things using HTML, CSS, JavaScript, Vue and React."
+        },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { charset: 'utf-8' },
+      ]
     },
-    rootId: 'portfolio',
+    rootId: "portfolio",
   },
   pages: true,
   devtools: { enabled: false },
-  srcDir: 'src/',
+  srcDir: "src/",
     components: {
     global: true,
-    dirs: ['~/components']
+    dirs: ["~/components"]
   },
   modules: [
-    '@nuxt/content',
-    'vue3-carousel-nuxt'
+    "@nuxt/content",
+    "vue3-carousel-nuxt"
   ],
   carousel: {
-    prefix: 'External'
+    prefix: "External"
   },
   content: {
     documentDriven: false,
@@ -37,5 +43,5 @@ export default defineNuxtConfig({
       },
     }
   },
-  css: ['~/global.scss'],
+  css: ["~/global.scss"],
 })
