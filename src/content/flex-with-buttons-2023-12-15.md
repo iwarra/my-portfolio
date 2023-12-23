@@ -10,6 +10,8 @@ Using flex with a group of elements that include a button makes the button stret
 
 Regulate this by using:
 
-` align-self: start; `
+```css 
+align-self: start;
+```
 
 Or end, center – whichever you prefer for the button element. This way it will not stretch and can be styled the perfect size."

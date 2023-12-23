@@ -9,9 +9,9 @@ summary: "Two-way data binding in Vue with the use of v-model."
 ---
 To bind data from forms (such as input, select value, etc) use v-model in the template combined with reactivityAPIs on the JavaScript side. 
 
-`
+```js
 <input v-model="inputValue" name="search" placeholder="Search posts">
-`
+```
 
  // In JS:
 

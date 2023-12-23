@@ -36,7 +36,8 @@ export default defineNuxtConfig({
   content: {
     documentDriven: false,
     highlight: {
-      theme: 'github-light',
+      theme: 'min-dark',
+      preload: ['vue', 'json', 'jsx', 'sass', 'scss']
     }
   },
   vite: {

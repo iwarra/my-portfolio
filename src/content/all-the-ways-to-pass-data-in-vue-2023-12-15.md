@@ -15,11 +15,16 @@ For sending a value from parent to child component Vue offers props. They can be
 
 Sending data from a component that is high in the component tree to a deeply nested child can get tricky. To do this with props we need to pass the prop from component 1 to component 2,  from component 2 to component 3, and till we reach our destination. This can take quite a few steps and is known as prop drilling. To avoid it, and the confusion that it might bring,  we have the provide/inject option. Inside the parent, we will have the provide function that accepts two arguments.
 
-`provide( injection key, provided value)`
+```js
+provide( injection key, provided value)
+```
 
 To get the data provided by the ancestor we use the inject function.
 
-`const injectedValue = inject( injection key )`
+```js
+const injectedValue = inject( injection key )
+```
+
 
 Can be used for sending data directly from the App.vue file and can have multiple values provided with different keys for differentiation. It can be used with refs, keeping in mind that they are not automatically unwrapped (so use the properties like .value when needed).
 
@@ -41,7 +46,9 @@ function handleLogOut() {
 
 Inside the parent, we call the event:
 
-`<UserMenu @close=”closeDropdown” />  //calls the function closeDropdown that is defined in the parent component`
+```js
+<UserMenu @close=”closeDropdown” />  //calls the function closeDropdown that is defined in the parent component
+```
 
 In the example I took from my project, I’m not passing any info, but emit does accept two parameters – the event name and the data that we want to pass.
 

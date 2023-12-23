@@ -11,6 +11,9 @@ As the name suggests alt attribute provides alternative information about an ima
 For decorative images:\
 An empty alt attribute on an img tag makes the screen reader skip the element.
 
-`<img src="image.jpg" alt=""> // skipped by the screen reader`
+```html
+<img src="image.jpg" alt=""> 
+<!-- skipped by the screen reader -->
+```
 
 Not having the alt attribute at all makes the screen reader read the file name to the user.

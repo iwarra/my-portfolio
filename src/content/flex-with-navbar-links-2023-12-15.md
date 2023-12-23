@@ -10,6 +10,8 @@ Flex is very helpful when positioning links in the navbar. The thing I use over 
 
 I want to separate those and give each their place to shine. That’s where 
 
-`justify-content: space-between`
+```css
+justify-content: space-between
+```
 
 does the trick. You can use justify/align with different space options that allow you to distance the element. The space-between puts the first element at the start and the last one at the end which is what I want with the logo and the links occupying the header.
