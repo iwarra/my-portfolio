@@ -6,16 +6,16 @@ category:
 language: en
 summary: Tips on how to get started with accessibility.
 ---
-Never underestimate the good old semantic HTML
+## Never underestimate the good old semantic HTML
 
 Using the right building blocks for your project may sound like a no-brainer. Still, we have all used a div tag instead of a better-suited element because we were in a rush and “it doesn’t matter, it works and it looks the same”. However, HTML tags exist for a reason and usually come with extra benefits when used correctly. What might not be perceived as a problem by us when developing the app can cause confusion or problems for users using assistive technologies, such as screen readers. Use the right elements and you are halfway there.
 
-Remove all CSS to be able to see the bare structure that the web reader will “see”
+## Remove all CSS to be able to see the bare structure that the web reader will “see”
 
 When all of the styling is removed (which you can do in the developer tools of your browser of choice) you will be left with the bare structure of your website. That is what certain users use when navigating the web. It can be a great exercise to see if the composition makes sense and if you’re pleased with how the information is presented and accessed.
 Some extensions can remove all CSS for you quite quickly which can come in handy.
 
-Test with different extensions
+## Test with different extensions
 
 Many great extensions help with testing and understanding accessibility problems. You can use them to check the contrast, layout, and all kinds of errors that might sneak in. Many articles recommend different ones if you feel like diving in and finding what best suits you. Here are some I found very useful:
 
