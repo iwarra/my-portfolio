@@ -121,8 +121,7 @@ const [prev, next] = await queryContent()
 
 :global(code) {
  display: block;
- background-image: url(/_nuxt/grainy_texture.png);
- background-color: var(--secondary-light);
+ background-image: url(/grainy_texture.png), linear-gradient(var(--secondary-light), var(--secondary-light));
  padding: .8rem 1rem;
  border: 1px solid rgb(196, 195, 195);
  border-radius: var(--borderRadius-small);
