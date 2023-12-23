@@ -28,13 +28,16 @@ export default defineNuxtConfig({
   },
   modules: [
     "@nuxt/content",
-    "vue3-carousel-nuxt"
+    "vue3-carousel-nuxt",
   ],
   carousel: {
     prefix: "External"
   },
   content: {
     documentDriven: false,
+    highlight: {
+      theme: 'github-light',
+    }
   },
   vite: {
     build: {
