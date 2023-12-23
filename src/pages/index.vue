@@ -59,7 +59,7 @@ const breakpointsTestimonials = {
       <section class="header-hero">
         <div class="hero-text">
           <h1 class="hero-title"> Hi, my name is Ivona! </h1>
-          <h2 class="hero-subtitle"> I am a front-end developer based in Stockholm </h2>
+          <p class="hero-subtitle"> I am a front-end developer based in Stockholm </p>
           <div class="hero-buttons">
             <a href="/ivona_josipovic_cv.pdf" target="_blank"               class="hero-primaryBtn">Get my CV</a>
             <a href="#contact" class="hero-secondaryBtn">Get in touch</a>
@@ -147,7 +147,7 @@ const breakpointsTestimonials = {
             </div>
             <div class="about-text">
               <h3>Get to know me</h3>
-              <p>{{ aboutMe }}</p>
+              <p style="text-align: justify;">{{ aboutMe }}</p>
             </div>
             <div class="about-skills">
               <h3>My soft skills</h3>

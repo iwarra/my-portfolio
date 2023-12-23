@@ -8,6 +8,7 @@
     </template>
 
     <main>
+      <!-- <pre>{{ post.body }}</pre> -->
       <div class="post-hero pink">
         <div class="hero-wrap">
           <h1>{{ post.title }}</h1>
@@ -55,7 +56,6 @@ const [prev, next] = await queryContent()
 </script>
 
 <style lang="scss" scoped>
-@import '../../global.scss';
 .post-hero {
   width: 100%;
   padding-top: 3rem;
@@ -83,7 +83,7 @@ const [prev, next] = await queryContent()
   flex-direction: column;
   gap: .5rem;
   color: gray;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
 }
 
 .nav-link {
@@ -103,16 +103,36 @@ const [prev, next] = await queryContent()
   flex-direction: column;
   max-width: 1000px;
   margin: 0 auto;
-  gap: 2rem;
-  padding: 2rem 2rem 5rem 2rem;
+  gap: 1.3rem;
+  padding: 1rem 2rem 5rem 2rem;
+}
+
+:global(.post-body > h2) {
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: unset;
+}
+
+:global(.post-body > h2 > a) {
+  text-decoration: none;
+  color: unset;
 }
 
 :global(code) {
-  display: block;
-  background-image: url(/_nuxt/grainy_texture.png);
-  background-color: var(--secondary-light);
-  padding: .8rem 1rem;
-  border: 1px solid rgb(196, 195, 195);
-  border-radius: var(--borderRadius-small);
+ display: block;
+ background-image: url(/_nuxt/grainy_texture.png);
+ background-color: var(--secondary-light);
+ padding: .8rem 1rem;
+ border: 1px solid rgb(196, 195, 195);
+ border-radius: var(--borderRadius-small);
+ word-break: break-all;
+ white-space: break-spaces;
+}
+
+@media (max-width: 750px) {
+  .post-body {
+    text-align: justify;
+  }
 }
 </style>

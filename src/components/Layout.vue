@@ -68,7 +68,7 @@ defineOptions({
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 4rem 1rem 1rem 1rem;
+    padding: 2rem 1rem 1rem 1rem;
     max-width: 1000px;
   }
 
@@ -161,6 +161,8 @@ defineOptions({
     display: flex; 
     justify-content: center;
     margin-inline: 3rem;
+    position: relative;
+    z-index: 2;
   }
 
   .hero-text {
@@ -222,6 +224,8 @@ defineOptions({
 
   .hero-subtitle {
     font-size: 1.6rem;
+    margin-bottom: 1.6rem;
+    font-weight: 500;
   }
 
   .decline {
@@ -274,6 +278,10 @@ defineOptions({
   @media (min-width: 1200px) {
     .header-wrapper {
       margin-top: 6rem;
+    }
+
+    .header-navWrapper {
+      padding: 3rem 0rem 0rem 0rem;
     }
 
     .header-hero {
