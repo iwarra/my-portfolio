@@ -40,7 +40,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  min-height: -webkit-fill-available;
+  //min-height: -webkit-fill-available;
 }
 
 main {
@@ -88,13 +88,22 @@ img {
   max-width: 100%;
 }
 
+:focus {
+  outline: transparent;
+}
+
+:focus-visible {
+  outline: 1px var(--primary-accent) dashed;
+  outline-offset: 5px;
+}
+
 a:hover {
   filter: brightness(75%);
-  transition: .3s ease-in;
+  //transition: .3s ease-in;
 } 
 
 a {
-  transition: .3s ease-in;
+  //transition: .3s ease-in;
 }
 
 .arrow-icon {

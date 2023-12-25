@@ -4,22 +4,14 @@
 
 - Home page
   - English and Swedish version
-  - carousels 
-  - Remove date on mobile for blog section - DONE
-  - a tag style and color
+  - carousels
 
 - Blog page
-  - outline focus - DONE
-  - read more link
-  - Safari style for select not ok + read more links
+  - Safari style for select 
 
 - General:
   - Error handling
-  - Add tab index (navBar icon) - DONE
-  - global a tag styles not ok anymore
-  - Add meta description for every post
-  - Add page to Google search console
-  - Add robot.txt
+  - global a tag styles redesign
 
 Style details
 
