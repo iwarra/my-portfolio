@@ -5,7 +5,7 @@ export default defineNuxtConfig({
 		name: "Ivona Josipovic | Frontend developer",
 	},
 	sitemap: {
-		sources: ["ivona.se/api/_sitemap/urls"],
+		sources: ["/api/_sitemap/urls"],
 	},
 	app: {
 		head: {
