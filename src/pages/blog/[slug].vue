@@ -159,6 +159,10 @@ const [prev, next] = await queryContent()
 	white-space: break-spaces;
 }
 
+:global(code) span {
+	filter: brightness(91%);
+}
+
 @media (max-width: 750px) {
 	.post-body {
 		text-align: justify;
