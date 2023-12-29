@@ -1,20 +1,20 @@
+- Home page
+  - English and Swedish version: File with all translations
+  - Back to my versions of carousels
+  - Favicon doesn't work in Safari
+
 - Post page:
   - Add sharing to socials
-  - Add print ?
-
-- Home page
-  - English and Swedish version
-  - carousels
-
-- Blog page
-  - Safari style for select 
+  - Add print 
 
 - General:
   - Error handling
-  - global a tag styles redesign
+  - Global a tag styles redesign 
+  - Add contributions section
+  - Scroll on space issue
+
 
 Style details
-
 - Project cards: New images
 - Footer color reactive (as the section before it on the page is )
 
