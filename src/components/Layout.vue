@@ -3,6 +3,40 @@
 defineOptions({
 	inheritAttrs: false,
 });
+
+const { locale, locales } = useI18n();
+const switchLocalePath = useSwitchLocalePath();
+const ul = ref(null);
+const div = ref(null);
+
+const handleSelect = () => {
+	ul.value.classList.toggle("hidden");
+	div.value.classList.toggle("no-radius");
+};
+
+const languages = ref(
+	locales.value.reduce(
+		(acc, lang) => {
+			const obj = {
+				name: lang.name,
+				code: lang.code,
+				icon: lang.code + ".svg",
+			};
+
+			if (lang.code === locale.value) {
+				acc.selected = obj;
+			} else {
+				acc.available = [...acc.available, obj];
+			}
+
+			return acc;
+		},
+		{
+			selected: {},
+			available: [],
+		},
+	),
+);
 </script>
 
 <template>
@@ -27,6 +61,7 @@ defineOptions({
 						@keyup.enter="() => toggle($attrs.navBackgroundColor)">
 						<span class="header-icon"></span>
 					</div>
+					
 					<nav
 						id="nav"
 						class="header-nav hidden">
@@ -34,6 +69,7 @@ defineOptions({
 					</nav>
 				</div>
 			</div>
+
 			<Separator
 				:styling="`decline hidden ${$attrs.navBackgroundColor}`"
 				id="navTransitionEl">
@@ -84,7 +120,8 @@ defineOptions({
 	}
 
 	.header-logo {
-		height: 28px;
+		display: block;
+		height: 30px;
 		z-index: 2;
 		position: relative;
 	}
@@ -94,6 +131,64 @@ defineOptions({
 		flex-direction: row;
 		gap: 2rem;
 		justify-content: end;
+	}
+
+	.lang-wrapper {
+		position: relative;
+		width: 100%;
+
+		.lang-select {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0.15rem .7rem;
+			background-color: #fff;
+			outline: 2px solid var(--primary-accent);
+			border-radius: 10px;
+			width: 4.2rem;
+		}
+
+		.no-radius {
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			border-bottom-left-radius: 0px;
+			border-bottom-right-radius: 0px;
+		}
+
+		a {
+			text-decoration: none;
+			color: black;
+			display: flex;
+			justify-content: start;
+		}
+
+		.lang-list {
+			list-style: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: 100%;
+
+			li {
+				outline: 2px solid var(--primary-accent);
+				border-top: 0px;
+				background-color: #fff;
+				padding: 0.15rem 0  0.15rem .7rem ;
+			}
+
+			li:last-of-type {
+				border-bottom-left-radius: 10px;
+				border-bottom-right-radius: 10px;
+			}
+		}
+
+		.lang-arrow {
+			height: 0.6rem;
+		}
+
+		.lang-flag {
+			height: 1.5rem;
+		}
 	}
 
 	.header-nav {

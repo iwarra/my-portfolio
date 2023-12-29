@@ -67,10 +67,8 @@ const breakpointsTestimonials = {
 			<div class="header-wrapper">
 				<section class="header-hero">
 					<div class="hero-text">
-						<h1 class="hero-title">Hi, my name is Ivona!</h1>
-						<p class="hero-subtitle">
-							I am a front-end developer based in Stockholm
-						</p>
+						<h1 class="hero-title">{{ $t('home_pageTitle') }}</h1>
+						<p class="hero-subtitle">{{ $t('home_pageSubtitle') }}</p>
 						<div class="hero-buttons">
 							<a
 								href="/ivona_josipovic_cv.pdf"
@@ -97,9 +95,7 @@ const breakpointsTestimonials = {
 			<menu class="header-links">
 				<li><a href="#projects">Projects</a></li>
 				<li><a href="#testimonials">Testimonials</a></li>
-				<DevOnly
-					><li><NuxtLink to="/blog">Blog</NuxtLink></li></DevOnly
-				>
+				<li><NuxtLink to="/blog">Blog</NuxtLink></li>
 			</menu>
 		</template>
 
@@ -107,47 +103,49 @@ const breakpointsTestimonials = {
 			<Separator styling="incline" />
 			<section id="projects">
 				<h2 class="projects-title">My projects</h2>
-				<div class="carousel-container">
+				<div style="display: flex">
 					<img
 						src="/arrow-left.svg"
 						@click="() => projectsCarousel.prev()"
 						class="arrow-icon"
 						alt="arrow pointing left" />
-					<ExternalCarousel
-						ref="projectsCarousel"
-						v-bind="settings"
-						:breakpoints="breakpointsProjects"
-						class="projects-wrapper">
-						<ExternalSlide
-							class="project-card"
-							v-for="project in projects"
-							:key="project.title">
-							<div class="project-wrap">
-								<img
-									class="project-img"
-									:src="project.image"
-									:alt="`screenshot of the ${project.title} user interface`" />
-								<div class="project-text">
-									<h3 class="project-title">{{ project.title }}</h3>
-									<span class="project-tools">
-										Tools used:
-										{{ listFormatter.format(project.tools) }}
-									</span>
-									<p class="project-description">{{ project.description }}</p>
-									<ul class="project-links">
-										<li>
-											<a :href="project.links.gitHub">GitHub</a>
-										</li>
-										<span>|</span>
-										<li v-if="project.links.liveDemo !== ''">
-											<a :href="project.links.liveDemo">Live Demo</a>
-										</li>
-										<span v-else>In progress</span>
-									</ul>
+					<div class="carousel-container">
+						<ExternalCarousel
+							ref="projectsCarousel"
+							v-bind="settings"
+							:breakpoints="breakpointsProjects"
+							class="projects-wrapper">
+							<ExternalSlide
+								class="project-card"
+								v-for="project in projects"
+								:key="project.title">
+								<div class="project-wrap">
+									<img
+										class="project-img"
+										:src="project.image"
+										:alt="`screenshot of the ${project.title} user interface`" />
+									<div class="project-text">
+										<h3 class="project-title">{{ project.title }}</h3>
+										<span class="project-tools">
+											Tools used:
+											{{ listFormatter.format(project.tools) }}
+										</span>
+										<p class="project-description">{{ project.description }}</p>
+										<ul class="project-links">
+											<li>
+												<a :href="project.links.gitHub">GitHub</a>
+											</li>
+											<span>|</span>
+											<li v-if="project.links.liveDemo !== ''">
+												<a :href="project.links.liveDemo">Live Demo</a>
+											</li>
+											<span v-else>In progress</span>
+										</ul>
+									</div>
 								</div>
-							</div>
-						</ExternalSlide>
-					</ExternalCarousel>
+							</ExternalSlide>
+						</ExternalCarousel>
+					</div>
 					<img
 						src="/arrow-right.svg"
 						alt="arrow pointing right"

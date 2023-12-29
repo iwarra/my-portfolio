@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
 	site: {
 		url: "https://ivona.se",
@@ -36,7 +37,26 @@ export default defineNuxtConfig({
 		"vue3-carousel-nuxt",
 		"nuxt-simple-sitemap",
 		"@nuxtjs/robots",
+		"@nuxtjs/i18n",
 	],
+	i18n: {
+		locales: [
+			{
+				code: "en",
+				name: "English",
+				file: "en.js",
+			},
+			{
+				code: "sv",
+				name: "Svenska",
+				file: "sv.js",
+			},
+		],
+		langDir: "lang",
+		defaultLocale: "en",
+		strategy: "prefix_except_default",
+		detectBrowserLanguage: false,
+	},
 	carousel: {
 		prefix: "External",
 	},
@@ -48,7 +68,11 @@ export default defineNuxtConfig({
 		},
 	},
 	vite: {
+		css: {
+			devSourcemap: true,
+		},
 		build: {
+			sourcemap: true,
 			rollupOptions: {
 				external: [
 					"illustration.svg",
