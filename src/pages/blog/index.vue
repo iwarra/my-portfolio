@@ -110,8 +110,8 @@ const { data: categories } = await useAsyncData("categories", async () => {
 		<main>
 			<div class="blog-hero pink">
 				<div class="hero-wrapper">
-					<h1 class="blog-title">My Blog</h1>
 					<div class="hero-miniWrap">
+						<h1 class="blog-title">My Blog</h1>
 						<form>
 							<div class="search-wrapper">
 								<div
@@ -153,11 +153,12 @@ const { data: categories } = await useAsyncData("categories", async () => {
 								</div>
 							</div>
 						</form>
-						<img
-							src="/search.svg"
-							alt=""
-							class="hero-img" />
 					</div>
+
+					<img
+						src="/search.svg"
+						alt=""
+						class="hero-img" />
 				</div>
 			</div>
 			<Separator styling="pink incline" />
@@ -204,24 +205,24 @@ const { data: categories } = await useAsyncData("categories", async () => {
 }
 
 .hero-wrapper {
-	display: flex;
-	flex-direction: column;
 	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
 	max-width: 1000px;
 	padding-top: 4rem;
 	padding-bottom: 2rem;
 	z-index: 2;
 }
 
-.blog-title {
-	margin-inline: 2rem;
-}
-
 .hero-miniWrap {
 	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	width: 100%;
+	flex-direction: column;
+}
+
+.blog-title {
+	margin-block: 0;
 }
 
 .search-wrapper {
@@ -244,13 +245,26 @@ const { data: categories } = await useAsyncData("categories", async () => {
 		opacity: 1;
 	}
 
-	//Removes the Safari magnifying glass on input search
-	input {
+	//Removes the webkit browser default styles
+	input,
+	select {
 		-webkit-appearance: none;
 	}
 
 	select {
 		width: 100%;
+		cursor: pointer;
+	}
+
+	.filter-group::after {
+		content: url("/arrow-down.svg");
+		color: black;
+		width: 0.8rem;
+		height: 0.8rem;
+		position: absolute;
+		transform: translate(5%, 20%);
+		right: 1rem;
+		pointer-events: none;
 	}
 
 	button {
@@ -266,6 +280,7 @@ const { data: categories } = await useAsyncData("categories", async () => {
 		background-color: #fff;
 		padding: 0.6rem 1rem;
 		border-radius: 10px;
+		position: relative;
 	}
 
 	.search-icon,

@@ -160,7 +160,7 @@ const [prev, next] = await queryContent()
 }
 
 :global(code) span {
-	filter: brightness(91%);
+	filter: brightness(95%);
 }
 
 @media (max-width: 750px) {
