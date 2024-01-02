@@ -26,31 +26,46 @@
 				<div class="nav-miniWrap">
 					<NuxtLink
 						v-if="prev"
-						class="nav-link"
+						class="link-wrap"
 						:to="'/blog' + prev._path">
-						<img
-							v-if="prev"
-							src="/arrow-left.svg"
-							alt=""
-							class="nav-icon" />
-						Previous
+						<div class="nav-title"
+						style="align-self: flex-start">
+							<img
+								v-if="prev"
+								src="/arrow-left.svg"
+								alt=""
+								class="nav-icon" />
+							<span>Previous</span>
+						</div>
+						<span
+							class="nav-subtitle"
+							v-if="prev">
+							{{ prev.title.substring(0, 16) }}...
+						</span>
 					</NuxtLink>
-					<span v-if="prev"> {{ prev.title.substring(0, 16) }}... </span>
 				</div>
 				<div
 					v-if="next"
 					class="nav-miniWrap">
 					<NuxtLink
 						v-if="next"
-						class="nav-link"
+						class="link-wrap"
 						:to="'/blog' + next._path">
-						Next
-						<img
-							src="/arrow-right.svg"
-							alt=""
-							class="nav-icon" />
+						<div
+							class="nav-title"
+							style="align-self: flex-end">
+							<span>Next</span>
+							<img
+								src="/arrow-right.svg"
+								alt=""
+								class="nav-icon" />
+						</div>
+						<span
+							class="nav-subtitle"
+							v-if="next">
+							{{ next.title.substring(0, 16) }}...</span
+						>
 					</NuxtLink>
-					<span v-if="next"> {{ next.title.substring(0, 16) }}...</span>
 				</div>
 			</div>
 		</main>
@@ -108,20 +123,29 @@ const [prev, next] = await queryContent()
 }
 
 .nav-miniWrap {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-	color: gray;
 	margin-bottom: 3rem;
 }
 
-.nav-link {
+.link-wrap {
 	color: var(--primary-accent);
-	font-size: 1.4rem;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	text-decoration: none;
-	font-weight: 600;
+
+	.nav-title {
+		display: flex;
+		align-items: center;
+		//justify-content: center;
+		font-size: 1.4rem;
+		font-weight: 600;
+	}
+
+	.nav-subtitle {
+		font-size: 1rem;
+		font-weight: 500;
+		color: gray;
+	}
 	.nav-icon {
 		height: 2.3rem;
 	}
@@ -134,6 +158,7 @@ const [prev, next] = await queryContent()
 	margin: 0 auto;
 	gap: 1.3rem;
 	padding: 1rem 2rem 5rem 2rem;
+	font-size: 1.2rem;
 }
 
 :global(.post-body > h2) {
