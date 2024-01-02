@@ -15,11 +15,22 @@ export default defineNuxtConfig({
 					rel: "icon",
 					href: "/icon.svg",
 					type: "image/svg+xml",
+					sizes: "any",
+				},
+				{
+					rel: "apple-touch-icon",
+					href: "/icon.svg",
+					type: "image/svg+xml",
+					sizes: "any",
 				},
 			],
 			meta: [
 				{ name: "author", content: "Ivona Josipovic" },
-				{ name: "viewport", content: "width=device-width, initial-scale=1" },
+				{
+					name: "viewport",
+					content:
+						"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
+				},
 				{ charset: "utf-8" },
 			],
 		},
@@ -56,9 +67,6 @@ export default defineNuxtConfig({
 		defaultLocale: "en",
 		strategy: "prefix_except_default",
 		detectBrowserLanguage: false,
-	},
-	carousel: {
-		prefix: "External",
 	},
 	content: {
 		documentDriven: false,
