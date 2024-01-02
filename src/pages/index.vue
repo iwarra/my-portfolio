@@ -13,49 +13,49 @@ useHead({
 });
 
 import { aboutMe } from "../data/content.js";
-
-const { data: projects } = await useFetch("/api/projects");
-const { data: skills } = await useFetch("/api/skills/technical");
-const { data: softSkills } = await useFetch("/api/skills/soft");
-const { data: communities } = await useFetch("/api/communities");
-const { data: testimonials } = await useFetch("/api/testimonials", {
-	transform: (testimonials) =>
-		testimonials.map((testimonial) => {
-			return {
-				...testimonial,
-				recomendation: testimonial.recommendation.replace(/\n/g, "<br>"),
-			};
-		}),
-});
 const { data: latestPosts } = await useAsyncData("latest", () =>
 	queryContent("/").limit(5).without("body").find(),
 );
 
-const projectsCarousel = ref(null);
-const testimonialsCarousel = ref(null);
-const settings = {
-	itemsToShow: 1,
-	snapAlign: "center",
-	wrapAround: true,
-};
-const breakpointsProjects = {
-	// 670px and up
-	670: {
-		itemsToShow: 2,
-		snapAlign: "start",
+const {
+	data: {
+		value: { projects, skills, softSkills, communities, testimonials },
 	},
-	// 1020 and up
-	1020: {
-		itemsToShow: 3,
-		snapAlign: "start",
-	},
-};
-const breakpointsTestimonials = {
-	// 850px and up
-	850: {
-		itemsToShow: 2,
-		snapAlign: "start",
-	},
+} = await useAsyncData("home", async () => {
+	const [projects, skills, softSkills, communities, testimonials] =
+		await Promise.all([
+			$fetch("/api/projects"),
+			$fetch("/api/skills/technical"),
+			$fetch("/api/skills/soft"),
+			$fetch("/api/communities"),
+			$fetch("/api/testimonials", {
+				transform: (testimonials) =>
+					testimonials.map((testimonial) => {
+						return {
+							...testimonial,
+							recommendation: testimonial.recommendation.replace(/\n/g, "<br>"),
+						};
+					}),
+			}),
+		]);
+
+	return { projects, skills, softSkills, communities, testimonials };
+});
+
+const handleScroll = (direction, element) => {
+	const { childElementCount: children, scrollWidth, scrollLeft } = element;
+	let distance = scrollWidth / children + 3;
+	let length;
+
+	if (direction === "left") {
+		length = scrollLeft - distance;
+		element.scroll(length, 0);
+	}
+
+	if (direction === "right") {
+		length = scrollLeft + distance;
+		element.scroll(length, 0);
+	}
 };
 </script>
 
@@ -66,9 +66,8 @@ const breakpointsTestimonials = {
 		<template #hero>
 			<div class="header-wrapper">
 				<section class="header-hero">
-					<div class="hero-text">
-						<h1 class="hero-title">{{ $t('home_pageTitle') }}</h1>
-						<p class="hero-subtitle">{{ $t('home_pageSubtitle') }}</p>
+					<div class="hero-text"><h1 class="hero-title">{{ $t("home_pageTitle") }}</h1>
+						<p class="hero-subtitle">{{ $t("home_pageSubtitle") }}</p>
 						<div class="hero-buttons">
 							<a
 								href="/ivona_josipovic_cv.pdf"
@@ -103,55 +102,40 @@ const breakpointsTestimonials = {
 			<Separator styling="incline" />
 			<section id="projects">
 				<h2 class="projects-title">My projects</h2>
-				<div style="display: flex">
-					<img
-						src="/arrow-left.svg"
-						@click="() => projectsCarousel.prev()"
-						class="arrow-icon"
-						alt="arrow pointing left" />
-					<div class="carousel-container">
-						<ExternalCarousel
-							ref="projectsCarousel"
-							v-bind="settings"
-							:breakpoints="breakpointsProjects"
-							class="projects-wrapper">
-							<ExternalSlide
-								class="project-card"
-								v-for="project in projects"
-								:key="project.title">
-								<div class="project-wrap">
-									<img
-										class="project-img"
-										:src="project.image"
-										:alt="`screenshot of the ${project.title} user interface`" />
-									<div class="project-text">
-										<h3 class="project-title">{{ project.title }}</h3>
-										<span class="project-tools">
-											Tools used:
-											{{ listFormatter.format(project.tools) }}
-										</span>
-										<p class="project-description">{{ project.description }}</p>
-										<ul class="project-links">
-											<li>
-												<a :href="project.links.gitHub">GitHub</a>
-											</li>
-											<span>|</span>
-											<li v-if="project.links.liveDemo !== ''">
-												<a :href="project.links.liveDemo">Live Demo</a>
-											</li>
-											<span v-else>In progress</span>
-										</ul>
-									</div>
-								</div>
-							</ExternalSlide>
-						</ExternalCarousel>
-					</div>
-					<img
-						src="/arrow-right.svg"
-						alt="arrow pointing right"
-						class="arrow-icon"
-						@click="() => projectsCarousel.next()" />
-				</div>
+				<Carousel
+					class="projects-wrapper"
+					selector="slider"
+					@arrowClicked="
+						(direction, element) => handleScroll(direction, element)
+					">
+					<li
+						class="project-card"
+						v-for="project in projects"
+						:key="project.title">
+						<img
+							class="project-img"
+							:src="project.image"
+							:alt="`screenshot of the ${project.title} user interface`" />
+						<div class="project-text">
+							<h3 class="project-title">{{ project.title }}</h3>
+							<span class="project-tools">
+								Tools used:
+								{{ listFormatter.format(project.tools) }}
+							</span>
+							<p class="project-description">{{ project.description }}</p>
+							<ul class="project-links">
+								<li>
+									<a :href="project.links.gitHub">GitHub</a>
+								</li>
+								<span>|</span>
+								<li v-if="project.links.liveDemo !== ''">
+									<a :href="project.links.liveDemo">Live Demo</a>
+								</li>
+								<span v-else>In progress</span>
+							</ul>
+						</div>
+					</li>
+				</Carousel>
 			</section>
 			<Separator styling="decline" />
 			<section id="about">
@@ -204,47 +188,36 @@ const breakpointsTestimonials = {
 			<Separator styling="decline" />
 			<section id="testimonials">
 				<h2 class="testimonials-title">Others have said</h2>
-				<div class="carousel-container">
-					<img
-						src="/arrow-left.svg"
-						@click="() => testimonialsCarousel.prev()"
-						class="arrow-icon"
-						alt="arrow pointing left" />
-					<ExternalCarousel
-						class="testimonials-wrapper"
-						ref="testimonialsCarousel"
-						v-bind="settings"
-						:breakpoints="breakpointsTestimonials">
-						<ExternalSlide
-							v-for="testimonial in testimonials"
-							class="testimonial-card"
-							:key="testimonial.from">
-							<div class="testimonial-wrap">
-								<img
-									class="testimonial-quoteLeft"
-									src="/quote-left.png"
-									alt="opening quotation mark" />
-								<em
-									><p class="testimonial-text">
-										{{ testimonial.recommendation }}
-									</p></em
-								>
-								<span class="testimonial-signature">
-									- {{ testimonial.from }}, {{ testimonial.workTitle }}</span
-								>
-								<img
-									class="testimonial-quoteRight"
-									src="/quote-right.png"
-									alt="closing quotation mark" />
-							</div>
-						</ExternalSlide>
-					</ExternalCarousel>
-					<img
-						src="/arrow-right.svg"
-						alt="arrow pointing right"
-						class="arrow-icon"
-						@click="() => testimonialsCarousel.next()" />
-				</div>
+				<Carousel
+					class="testimonials-wrapper"
+					selector="slider"
+					@arrowClicked="
+						(direction, element) => handleScroll(direction, element)
+					">
+					<li
+						v-for="testimonial in testimonials"
+						class="testimonial-card"
+						:key="testimonial.from">
+						<div class="testimonial-wrap">
+							<img
+								class="testimonial-quoteLeft"
+								src="/quote-left.png"
+								alt="opening quotation mark" />
+							<em
+								><p class="testimonial-text">
+									{{ testimonial.recommendation }}
+								</p></em
+							>
+							<span class="testimonial-signature">
+								- {{ testimonial.from }}, {{ testimonial.workTitle }}</span
+							>
+							<img
+								class="testimonial-quoteRight"
+								src="/quote-right.png"
+								alt="closing quotation mark" />
+						</div>
+					</li>
+				</Carousel>
 			</section>
 			<Separator styling="incline" />
 			<section id="blog">
@@ -312,32 +285,30 @@ const breakpointsTestimonials = {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	position: relative;
 
 	.projects-wrapper {
-		// display: grid;
-		// grid-auto-flow: column;
-		//align-items: center;
-		// overflow: hidden;
-		max-width: 82vw;
+		display: flex;
 		margin-bottom: 1rem;
 		z-index: 2;
-		text-align: start;
+		width: 100%;
+		max-width: 1200px;
 	}
 
 	.project-wrap {
 		margin-inline: 0.8rem;
 		background-color: var(--primary-light);
 		border-radius: var(--borderRadius-large);
-		overflow: hidden;
 		display: flex;
 		flex-direction: column;
-		flex: 1;
+		//flex: 1;
 	}
 	.project-card {
 		display: flex;
 		flex-direction: column;
-		max-height: 35rem;
+		flex: none;
+		width: calc(100% - 0.5rem);
+		scroll-snap-align: start;
+		scroll-snap-stop: always;
 	}
 
 	.project-text {
@@ -348,6 +319,7 @@ const breakpointsTestimonials = {
 		line-height: 1.2;
 		flex: 1;
 		background-color: rgba(229, 229, 229, 0.6901960784);
+		border-radius: 0 0 var(--borderRadius-large) var(--borderRadius-large);
 	}
 
 	.project-img {
@@ -395,15 +367,18 @@ const breakpointsTestimonials = {
 		}
 	}
 
-	@media (min-width: 1000px) {
-		.project-text {
-			padding: 2rem;
+	@media (min-width: 580px) {
+		.project-card {
+			width: calc(50% - 0.5rem);
 		}
 	}
+	@media (min-width: 1000px) {
+		.project-card {
+			width: calc(33.33% - 0.5rem);
+		}
 
-	@media (min-width: 1200px) {
-		.projects-wrapper {
-			max-width: 1120px;
+		.project-text {
+			padding: 2rem;
 		}
 	}
 }
@@ -480,9 +455,17 @@ const breakpointsTestimonials = {
 	align-items: center;
 	position: relative;
 
+	.carousel-wrapper {
+		display: flex;
+	}
+
 	.testimonial-card {
 		display: flex;
 		flex-direction: column;
+		flex: none;
+		width: calc(100% - 0.5rem);
+		scroll-snap-align: start;
+		scroll-snap-stop: always;
 	}
 
 	.testimonial-wrap {
@@ -504,6 +487,8 @@ const breakpointsTestimonials = {
 		overflow: auto;
 		margin-bottom: 3rem;
 		font-size: 1.1rem;
+		font-weight: 300;
+		line-height: 1.5rem;
 		text-align: start;
 		scrollbar-color: var(--primary-accent) transparent;
 		scrollbar-width: thin;
@@ -512,10 +497,11 @@ const breakpointsTestimonials = {
 
 	.testimonials-wrapper {
 		display: flex;
-		max-width: 85vw;
 		overflow: hidden;
 		margin-bottom: 2rem;
 		z-index: 2;
+		width: 100%;
+		max-width: 1200px;
 	}
 
 	// scrollbar style for older browsers
@@ -551,9 +537,19 @@ const breakpointsTestimonials = {
 		text-align: start;
 	}
 
-	@media (min-width: 1200px) {
-		.testimonials-wrapper {
-			max-width: 1110px;
+	@media (min-width: 850px) {
+		.testimonial-card {
+			width: calc(50% - 0.5rem);
+		}
+
+		.testimonial-wrap {
+			padding: 4rem 1.5rem;
+		}
+	}
+
+	@media (min-width: 1000px) {
+		.testimonial-wrap {
+			padding: 4rem 2.5rem;
 		}
 	}
 }
