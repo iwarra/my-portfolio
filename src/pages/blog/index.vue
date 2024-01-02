@@ -307,9 +307,14 @@ const { data: categories } = await useAsyncData("categories", async () => {
 	flex-direction: column;
 }
 
+.posts-list > li + div {
+  margin-bottom: 0;
+}
+
 li.post-card:nth-of-type(2n) {
 	background-image: url(/grainy_texture.png),
 		linear-gradient(var(--secondary-light), var(--secondary-light));
+		padding-block: 1.5rem;
 }
 
 .post-wrap {
@@ -333,23 +338,12 @@ li.post-card:nth-of-type(2n) {
 	justify-content: space-between;
 }
 
-// .post-link {
-//   font-size: 1.2rem;
-//   display: flex;
-//   align-items: center;
-//   color: var(--font-primary);
-
-//   img {
-//     height: 1.6rem
-//   }
+// .message {
+// 	text-align: center;
+// 	color: var(--primary-accent);
+// 	font-size: 1.3rem;
+// 	font-weight: 500;
 // }
-
-.message {
-	text-align: center;
-	color: var(--primary-accent);
-	font-size: 1.3rem;
-	font-weight: 500;
-}
 
 @media (min-width: 800px) {
 	.hero-img {
