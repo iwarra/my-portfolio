@@ -58,4 +58,8 @@ const { left, right } = toRefs(arrivedState);
 	-webkit-overflow-scrolling: touch;
 	-ms-overflow-style: -ms-autohiding-scrollbar;
 }
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
 </style>
