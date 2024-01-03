@@ -20,7 +20,7 @@ const props = defineProps({
 					<h1 class="error-title">Oops, seems you've taken a wrong turn!</h1>
 					<img
 						src="/page-not-found.svg"
-						class="error-img"></img>
+						class="error-img">
 				</div>
 			</div>
 		</template>
