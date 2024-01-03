@@ -87,7 +87,7 @@ const handleScroll = (direction, element) => {
 							>
 						</div>
 					</div>
-					<NuxtImg
+					<img
 						class="hero-img"
 						src="/illustration.svg"
 						alt="illustration of girl sitting at a table with her laptop" />
@@ -117,7 +117,7 @@ const handleScroll = (direction, element) => {
 						class="project-card"
 						v-for="project in projects"
 						:key="project.title">
-						<NuxtImg
+						<img
 							class="project-img"
 							:src="project.image"
 							:alt="`screenshot of the ${project.title} user interface`" />

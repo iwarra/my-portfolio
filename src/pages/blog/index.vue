@@ -155,7 +155,7 @@ const { data: categories } = await useAsyncData("categories", async () => {
 						</form>
 					</div>
 
-					<NuxtImg
+					<img
 						src="/search.svg"
 						alt=""
 						class="hero-img" />

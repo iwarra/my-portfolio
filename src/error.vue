@@ -18,9 +18,9 @@ const props = defineProps({
 			<div class="error-container">
 				<div class="error-wrapper">
 					<h1 class="error-title">Oops, seems you've taken a wrong turn!</h1>
-					<NuxtImg
+					<img
 						src="/page-not-found.svg"
-						class="error-img"></NuxtImg>
+						class="error-img"></img>
 				</div>
 			</div>
 		</template>
