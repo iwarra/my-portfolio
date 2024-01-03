@@ -10,11 +10,15 @@
 		</template>
 
 		<main>
-			<!-- <pre>{{ post.body }}</pre> -->
 			<div class="post-hero pink">
 				<div class="hero-wrap">
 					<h1>{{ post.title }}</h1>
-					<span>Published on: {{ post.date.substring(0, 10) }}</span>
+					<span
+						>Published on: {{ dateFormatter(post.date).day }},
+						{{ dateFormatter(post.date).date }}.{{
+							dateFormatter(post.date).month
+						}}.{{ dateFormatter(post.date).year }}</span
+					>
 				</div>
 			</div>
 			<Separator styling="incline pink" />
@@ -28,8 +32,9 @@
 						v-if="prev"
 						class="link-wrap"
 						:to="'/blog' + prev._path">
-						<div class="nav-title"
-						style="align-self: flex-start">
+						<div
+							class="nav-title"
+							style="align-self: flex-start">
 							<img
 								v-if="prev"
 								src="/arrow-left.svg"
@@ -74,12 +79,21 @@
 
 <script setup>
 const route = useRoute();
+// if no blog post/page, throw error with statusCode of 404
 
-const { data: post } = await useAsyncData("post", () =>
+const { data: post, error } = await useAsyncData("post", () =>
 	queryContent("/")
 		.where({ _path: `/${route.params.slug}` })
 		.findOne(),
 );
+
+if (error) {
+	throw createError({
+		statusCode: 404,
+		message: "not found",
+		fatal: true,
+	});
+}
 
 const metaData = {
 	title: post.value.title + " - Blog | ivona.se",
