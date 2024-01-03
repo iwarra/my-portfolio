@@ -155,7 +155,7 @@ const { data: categories } = await useAsyncData("categories", async () => {
 						</form>
 					</div>
 
-					<img
+					<NuxtImg
 						src="/search.svg"
 						alt=""
 						class="hero-img" />
@@ -176,7 +176,11 @@ const { data: categories } = await useAsyncData("categories", async () => {
 								</NuxtLink>
 								<p>{{ post.summary }}</p>
 								<div class="post-extraInfo">
-									<span>{{ post.date.substring(0, 10) }}</span>
+									<span
+										>{{ dateFormatter(post.date).year }}/{{
+											dateFormatter(post.date).month
+										}}/{{ dateFormatter(post.date).date }}</span
+									>
 									<!-- <NuxtLink :to="'/blog' + post._path" class="post-link">Read more 
                   <img src="/arrow-right.svg" alt="">
                   </NuxtLink> -->
@@ -308,13 +312,13 @@ const { data: categories } = await useAsyncData("categories", async () => {
 }
 
 .posts-list > li + div {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 li.post-card:nth-of-type(2n) {
 	background-image: url(/grainy_texture.png),
 		linear-gradient(var(--secondary-light), var(--secondary-light));
-		padding-block: 1.5rem;
+	padding-block: 1.5rem;
 }
 
 .post-wrap {
