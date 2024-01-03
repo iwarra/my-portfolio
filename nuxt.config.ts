@@ -12,20 +12,36 @@ export default defineNuxtConfig({
 		head: {
 			link: [
 				{
-					rel: "icon",
-					href: "/icon.svg",
-					type: "image/svg+xml",
-					sizes: "any",
+					rel: "apple-touch-icon",
+					sizes: "180x180",
+					href: "/apple-touch-icon.png",
 				},
 				{
-					rel: "apple-touch-icon",
-					href: "/icon.svg",
-					type: "image/svg+xml",
-					sizes: "any",
+					rel: "icon",
+					type: "image/png",
+					sizes: "32x32",
+					href: "/favicon-32x32.png",
+				},
+				{
+					rel: "icon",
+					type: "image/png",
+					sizes: "16x16",
+					href: "/favicon-16x16.png",
+				},
+				{
+					rel: "manifest",
+					href: "/site.webmanifest",
+				},
+				{
+					rel: "mask-icon",
+					href: "/safari-pinned-tab.svg",
+					color: "#5bbad5",
 				},
 			],
 			meta: [
 				{ name: "author", content: "Ivona Josipovic" },
+				{ name: "msapplication-TileColor", content: "#da532c" },
+				{ name: "theme-color", content: "#ffffff" },
 				{
 					name: "viewport",
 					content:
@@ -43,12 +59,16 @@ export default defineNuxtConfig({
 		global: true,
 		dirs: ["~/components"],
 	},
+	routeRules: {
+		"/**": { isr: true },
+	},
 	modules: [
 		"@nuxt/content",
 		"vue3-carousel-nuxt",
 		"nuxt-simple-sitemap",
 		"@nuxtjs/robots",
 		"@nuxtjs/i18n",
+		"@nuxt/image",
 	],
 	i18n: {
 		locales: [
