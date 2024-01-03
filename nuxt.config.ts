@@ -59,9 +59,6 @@ export default defineNuxtConfig({
 		global: true,
 		dirs: ["~/components"],
 	},
-	routeRules: {
-		"/**": { isr: true },
-	},
 	modules: [
 		"@nuxt/content",
 		"vue3-carousel-nuxt",

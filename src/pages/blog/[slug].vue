@@ -81,13 +81,13 @@
 const route = useRoute();
 // if no blog post/page, throw error with statusCode of 404
 
-const { data: post, error } = await useAsyncData("post", () =>
+const { data: post } = await useAsyncData("post", () =>
 	queryContent("/")
 		.where({ _path: `/${route.params.slug}` })
 		.findOne(),
 );
 
-if (error) {
+if (!post.value) {
 	throw createError({
 		statusCode: 404,
 		message: "not found",

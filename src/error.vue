@@ -55,6 +55,7 @@ const props = defineProps({
 
 .error-title {
 	font-size: 2.5rem;
+	max-width: 15ch;
 }
 .error-img {
 	width: 300px;
@@ -86,7 +87,7 @@ const props = defineProps({
 
 @container (min-width: 750px) {
 	.error-wrapper {
-		justify-content: space-between;
+		justify-content: space-evenly;
 	}
 	.error-img {
 		display: inline-block;
