@@ -8,6 +8,9 @@
 
  * General:
   - Hero component that takes in props 
+  - toggle error
+  - HTML lang attr toggle when translation is active 
+  - Every page needs a description 
 
  * Style details
 - Global a tag styles redesign
