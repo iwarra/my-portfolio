@@ -1,22 +1,16 @@
-- Home page
-  - Favicon doesn't work in Safari
+ * Home page
   - English and Swedish version: File with all translations
+  - Add contributions section
 
-- Post page:
+ * Post page:
   - Add sharing to socials
   - Add print
 
-Extra 
-- add to nuxtConfig that all pages are to be routed as ISR
-- add module [nuxt-image]. It creates <NuxtImg> component that is interchangeable with <img> and is cached with Netlify
-- use aria-expanded for menu and langSwitcher (https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded)
+ * General:
+  - Hero component that takes in props 
 
-- General:
-  - Error handling (capture all and a 'page not found' page)
-  - Global a tag styles redesign
-  - Add contributions section
-
-Style details
+ * Style details
+- Global a tag styles redesign
 - Project cards: New images
 - Footer color reactive (as the section before it on the page is )
 
