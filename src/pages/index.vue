@@ -14,7 +14,11 @@ useHead({
 
 import { aboutMe } from "../data/content.js";
 const { data: latestPosts } = await useAsyncData("latest", () =>
-	queryContent("/").limit(5).without("body").find(),
+	queryContent("/")
+		.limit(5)
+		.without("body")
+		.sort({ date: -1, $numeric: true })
+		.find(),
 );
 
 const {
@@ -66,7 +70,8 @@ const handleScroll = (direction, element) => {
 		<template #hero>
 			<div class="header-wrapper">
 				<section class="header-hero">
-					<div class="hero-text"><h1 class="hero-title">{{ $t("home_pageTitle") }}</h1>
+					<div class="hero-text">
+						<h1 class="hero-title">{{ $t("home_pageTitle") }}</h1>
 						<p class="hero-subtitle">{{ $t("home_pageSubtitle") }}</p>
 						<div class="hero-buttons">
 							<a
@@ -82,7 +87,7 @@ const handleScroll = (direction, element) => {
 							>
 						</div>
 					</div>
-					<img
+					<NuxtImg
 						class="hero-img"
 						src="/illustration.svg"
 						alt="illustration of girl sitting at a table with her laptop" />
@@ -112,7 +117,7 @@ const handleScroll = (direction, element) => {
 						class="project-card"
 						v-for="project in projects"
 						:key="project.title">
-						<img
+						<NuxtImg
 							class="project-img"
 							:src="project.image"
 							:alt="`screenshot of the ${project.title} user interface`" />
@@ -232,10 +237,10 @@ const handleScroll = (direction, element) => {
 								class="blog-link">
 								{{ post.title }}
 								<time class="post-date">
-									{{ new Date(post.date).getDate() }}/{{
-										new Date(post.date).getMonth()
-									}}/{{ new Date(post.date).getFullYear() }}</time
-								>
+									{{ dateFormatter(post.date).year }}/{{
+										dateFormatter(post.date).month
+									}}/{{ dateFormatter(post.date).date }}
+								</time>
 							</NuxtLink>
 						</li>
 					</ul>
