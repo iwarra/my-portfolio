@@ -15,7 +15,7 @@ const props = defineProps({
 			</menu>
 		</template>
 		<template #hero>
-			<div class="error-container">
+			<div class="error-container pink">
 				<div class="error-wrapper">
 					<h1 class="error-title">Oops, seems you've taken a wrong turn!</h1>
 					<img
@@ -40,13 +40,13 @@ const props = defineProps({
 @import "./global.scss";
 .error-container {
 	width: 100%;
-	max-width: 1000px;
-	padding: 4rem 2rem 3rem 2rem;
-	margin: 0 auto;
 	container-type: inline-size;
 }
 
 .error-wrapper {
+	padding: 4rem 2rem 3rem 2rem;
+	margin: 0 auto;
+	max-width: 1000px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -69,7 +69,7 @@ const props = defineProps({
 	gap: 1.2rem;
 	width: 100%;
 	max-width: 1000px;
-	padding: 3rem 2rem 0rem 2rem;
+	padding: 3rem 2rem 2rem 2rem;
 	margin: 0 auto;
 }
 
