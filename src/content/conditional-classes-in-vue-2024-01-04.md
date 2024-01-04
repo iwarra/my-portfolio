@@ -15,7 +15,7 @@ Tags can have classes declared in Vue the same way as in HTML:
 To show a class conditionally use:
 
 ```vue
-<dic :class="{ container: isTrue}"> 
+<div :class="{ container: isTrue}"> 
 <!-- isTrue being a ref that we can toggle between true and false. -->
 ```
 
