@@ -67,8 +67,15 @@ const handleScroll = (direction, element) => {
 	<Layout
 		navBackgroundColor="gray"
 		headerBackground="pink">
+		<template #navLinks>
+			<menu class="header-links">
+				<li><a href="#projects">Projects</a></li>
+				<li><a href="#testimonials">Testimonials</a></li>
+				<li><NuxtLink to="/blog">Blog</NuxtLink></li>
+			</menu>
+		</template>
 		<template #hero>
-			<div class="header-wrapper">
+			<div class="hero-wrapper pink">
 				<section class="header-hero">
 					<div class="hero-text">
 						<h1 class="hero-title">{{ $t("home_pageTitle") }}</h1>
@@ -93,14 +100,6 @@ const handleScroll = (direction, element) => {
 						alt="illustration of girl sitting at a table with her laptop" />
 				</section>
 			</div>
-		</template>
-
-		<template #navLinks>
-			<menu class="header-links">
-				<li><a href="#projects">Projects</a></li>
-				<li><a href="#testimonials">Testimonials</a></li>
-				<li><NuxtLink to="/blog">Blog</NuxtLink></li>
-			</menu>
 		</template>
 
 		<main>
@@ -285,6 +284,130 @@ const handleScroll = (direction, element) => {
 
 <style scoped lang="scss">
 @import "../global.scss";
+.hero-wrapper {
+	display: flex;
+	min-height: 40vh;
+	justify-content: center;
+	align-items: center;
+	padding-top: 3rem;
+	width: 100%;
+}
+.header-hero {
+	display: flex;
+	justify-content: center;
+	margin-inline: 3rem;
+	position: relative;
+	z-index: 2;
+}
+.hero-title {
+	overflow: hidden;
+	white-space: nowrap;
+	border-right: 2px solid transparent;
+	font-size: 2rem;
+	width: 0;
+	max-width: 350px;
+	animation: typing 2s steps(30, end) forwards, blinking 2.5s 1;
+}
+
+@keyframes typing {
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
+}
+
+@keyframes blinking {
+	0% {
+		border-color: transparent;
+	}
+	50% {
+		border-color: black;
+	}
+	100% {
+		border-color: transparent;
+	}
+}
+
+.hero-subtitle {
+	font-size: 1.6rem;
+	margin-bottom: 1.6rem;
+	font-weight: 500;
+}
+
+.hero-text {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.hero-buttons {
+	display: inline-block;
+
+	.hero-primaryBtn {
+		@extend %btn !optional;
+		align-self: start;
+		background-color: var(--primary-accent);
+		color: var(--secondary-light);
+		margin-right: 1rem;
+	}
+
+	.hero-secondaryBtn {
+		@extend %btn !optional;
+		background-color: var(--secondary-light);
+		color: var(--primary-accent);
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	a:hover {
+		filter: none;
+	}
+}
+
+.hero-img {
+	display: none;
+}
+
+@media (min-width: 850px) {
+	.hero-wrapper {
+		margin: 0 auto;
+		padding-top: 6rem;
+		padding-bottom: 2rem;
+	}
+	
+	.header-hero {
+		max-width: 1000px;
+		flex-direction: row;
+		justify-content: space-evenly;
+		gap: 2rem;
+	}
+
+	.hero-img {
+		display: flex;
+		width: 300px;
+		height: 300px;
+	}
+
+	.hero-title {
+		font-size: 2.8rem;
+		max-width: 500px;
+	}
+
+	.hero-subtitle {
+		font-size: 2rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.header-hero {
+		margin-inline: 0;
+	}
+}
+
 
 #projects {
 	display: flex;

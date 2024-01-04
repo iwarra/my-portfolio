@@ -106,8 +106,7 @@ const { data: categories } = await useAsyncData("categories", async () => {
 				<li><NuxtLink to="/">Home</NuxtLink></li>
 			</menu>
 		</template>
-
-		<main>
+		<template #hero>
 			<div class="blog-hero pink">
 				<div class="hero-wrapper">
 					<div class="hero-miniWrap">
@@ -154,13 +153,15 @@ const { data: categories } = await useAsyncData("categories", async () => {
 							</div>
 						</form>
 					</div>
-
 					<img
 						src="/search.svg"
 						alt=""
 						class="hero-img" />
 				</div>
 			</div>
+		</template>
+
+		<main>
 			<Separator styling="pink incline" />
 			<div class="posts-wrapper">
 				<ul class="posts-list">
