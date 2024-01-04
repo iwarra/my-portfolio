@@ -1,3 +1,39 @@
+<script setup>
+const route = useRoute();
+// if no blog post/page, throw error with statusCode of 404
+
+const { data: post } = await useAsyncData("post", () =>
+	queryContent("/")
+		.where({ _path: `/${route.params.slug}` })
+		.findOne(),
+);
+
+if (!post.value) {
+	throw createError({
+		statusCode: 404,
+		message: "not found",
+		fatal: true,
+	});
+}
+
+const metaData = {
+	title: post.value.title + " - Blog | ivona.se",
+	meta: [
+		{
+			hid: "description",
+			name: "description",
+			content: post.value.summary,
+		},
+	],
+};
+useHead(metaData);
+
+const [prev, next] = await queryContent()
+	.only(["_path", "title", "date"])
+	.sort({ date: -1 })
+	.findSurround(`/${route.params.slug}`);
+</script>
+
 <template>
 	<Layout
 		navBackgroundColor="gray"
@@ -76,42 +112,6 @@
 		</main>
 	</Layout>
 </template>
-
-<script setup>
-const route = useRoute();
-// if no blog post/page, throw error with statusCode of 404
-
-const { data: post } = await useAsyncData("post", () =>
-	queryContent("/")
-		.where({ _path: `/${route.params.slug}` })
-		.findOne(),
-);
-
-if (!post.value) {
-	throw createError({
-		statusCode: 404,
-		message: "not found",
-		fatal: true,
-	});
-}
-
-const metaData = {
-	title: post.value.title + " - Blog | ivona.se",
-	meta: [
-		{
-			hid: "description",
-			name: "description",
-			content: post.value.summary,
-		},
-	],
-};
-useHead(metaData);
-
-const [prev, next] = await queryContent()
-	.only(["_path", "title", "date"])
-	.sort({ date: -1 })
-	.findSurround(`/${route.params.slug}`);
-</script>
 
 <style lang="scss" scoped>
 .post-hero {
