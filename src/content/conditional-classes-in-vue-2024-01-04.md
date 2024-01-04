@@ -16,7 +16,7 @@ To show a class conditionally use:
 
 ```
 <dic :class="{ container: isTrue}"> 
-<!-- isTrue being a ref that we can toggle between true and false. –>
+<!-- isTrue being a ref that we can toggle between true and false. -->
 ```
 
 Class and :class can co-exist on the same element. Binding can also be done to a computed property that returns an object.
