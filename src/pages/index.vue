@@ -431,7 +431,6 @@ const handleScroll = (direction, element) => {
 		border-radius: var(--borderRadius-large);
 		display: flex;
 		flex-direction: column;
-		//flex: 1;
 	}
 	.project-card {
 		display: flex;
@@ -457,7 +456,7 @@ const handleScroll = (direction, element) => {
 		width: 100%;
 		aspect-ratio: 2/1.2;
 		object-fit: cover;
-		object-position: 0 0;
+		object-position: top center;
 		border: 2px solid #e5e5e5;
 		border-radius: var(--borderRadius-large) var(--borderRadius-large) 0 0;
 	}

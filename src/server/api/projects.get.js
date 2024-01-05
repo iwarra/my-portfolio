@@ -31,13 +31,13 @@ export default defineEventHandler(() => {
       }
     },
     {
-      title: 'Podcast App',
-      description: 'A project built with vanilla JS, HTLM and CSS. The task was to fetch and display 10 podcasts from Sveriges Radio API.',
-      image: 'pod1.png',
+      title: 'Poditory',
+      description: 'A project built with vanilla JS, HTLM and CSS. The coding challenge was to fetch and display ten podcasts from Sveriges Radio API.',
+      image: 'poditory.png',
       tools: ['HTML', 'JavaScript', 'CSS'],
       links: {
         gitHub: 'https://github.com/iwarra/podcast-project',
-        liveDemo: 'https://podcasts-api.netlify.app/'
+        liveDemo: 'https://poditory.ivona.se/'
       }
     },
     {
