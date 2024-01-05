@@ -85,12 +85,12 @@ const handleScroll = (direction, element) => {
 								href="/ivona_josipovic_cv.pdf"
 								target="_blank"
 								class="hero-primaryBtn"
-								>Get my CV</a
+								>{{ $t("home_ctaBtn1") }}</a
 							>
 							<a
 								href="#contact"
 								class="hero-secondaryBtn"
-								>Get in touch</a
+								>{{ $t("home_ctaBtn2") }}</a
 							>
 						</div>
 					</div>
@@ -105,7 +105,7 @@ const handleScroll = (direction, element) => {
 		<main>
 			<Separator styling="incline" />
 			<section id="projects">
-				<h2 class="projects-title">My projects</h2>
+				<h2 class="projects-title">{{ $t("home_projects_title") }}</h2>
 				<Carousel
 					class="projects-wrapper"
 					selector="slider"
@@ -133,7 +133,11 @@ const handleScroll = (direction, element) => {
 								</li>
 								<span>|</span>
 								<li v-if="project.links.liveDemo !== ''">
-									<a :href="project.links.liveDemo">Live Demo</a>
+									<a
+										:href="project.links.liveDemo"
+										target="_blank"
+										>Live Demo</a
+									>
 								</li>
 								<span v-else>In progress</span>
 							</ul>
@@ -143,10 +147,10 @@ const handleScroll = (direction, element) => {
 			</section>
 			<Separator styling="decline" />
 			<section id="about">
-				<h2 class="about-title">About me</h2>
+				<h2 class="about-title">{{ $t("home_about_title") }}</h2>
 				<div class="about-wrapper">
 					<div class="about-skills">
-						<h3>My skills</h3>
+						<h3>{{ $t("home_about_skillsTitle") }}</h3>
 						<ul class="skills-list">
 							<Box
 								v-for="skill in skills"
@@ -157,11 +161,11 @@ const handleScroll = (direction, element) => {
 						</ul>
 					</div>
 					<div class="about-text">
-						<h3>Get to know me</h3>
+						<h3>{{ $t("home_about_aboutMeTitle") }}</h3>
 						<p style="text-align: justify">{{ aboutMe }}</p>
 					</div>
 					<div class="about-skills">
-						<h3>My soft skills</h3>
+						<h3>{{ $t("home_about_softSkillsTitle") }}</h3>
 						<ul class="skills-list">
 							<Box
 								v-for="skill in softSkills"
@@ -175,7 +179,7 @@ const handleScroll = (direction, element) => {
 			</section>
 			<Separator styling="incline" />
 			<section id="communities">
-				<h2 class="communities-title">My communities</h2>
+				<h2 class="communities-title">{{ $t("home_communities_title") }}</h2>
 				<div class="communities-wrapper">
 					<ul class="communities-list">
 						<li
@@ -191,7 +195,7 @@ const handleScroll = (direction, element) => {
 			</section>
 			<Separator styling="decline" />
 			<section id="testimonials">
-				<h2 class="testimonials-title">Others have said</h2>
+				<h2 class="testimonials-title">{{ $t("home_testimonials_title") }}</h2>
 				<Carousel
 					class="testimonials-wrapper"
 					selector="slider"
@@ -225,7 +229,7 @@ const handleScroll = (direction, element) => {
 			</section>
 			<Separator styling="incline" />
 			<section id="blog">
-				<h2>Latest posts</h2>
+				<h2>{{ $t("home_blog_title") }}</h2>
 				<div class="blog-wrapper">
 					<ul class="blog-list">
 						<li
@@ -247,7 +251,7 @@ const handleScroll = (direction, element) => {
 			</section>
 			<Separator styling="decline" />
 			<section id="contact">
-				<h2 class="contact-title">Let's connect</h2>
+				<h2 class="contact-title">{{ $t("home_connect_title") }}</h2>
 				<ul class="contact-list">
 					<li>
 						<a
@@ -378,7 +382,7 @@ const handleScroll = (direction, element) => {
 		padding-top: 6rem;
 		padding-bottom: 2rem;
 	}
-	
+
 	.header-hero {
 		max-width: 1000px;
 		flex-direction: row;
@@ -407,7 +411,6 @@ const handleScroll = (direction, element) => {
 		margin-inline: 0;
 	}
 }
-
 
 #projects {
 	display: flex;
