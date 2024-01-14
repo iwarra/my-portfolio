@@ -6,13 +6,13 @@ category:
 language: en
 summary: Changing SVG's color with CSS.
 ---
-If SVG's fill value is set as currentColor it will inherit the color of your font family. 
+If SVG's fill value is set as currentColor it will inherit the color of your font family. This makes it easy to change the SVG's color with simple CSS.
 
-```HTML
+```html
 <svg width="1.13em" height="1em"><path fill="currentColor"></path></svg>
 ```
 
-```CSS
+```css
 svg {
  color: blue;
 }
