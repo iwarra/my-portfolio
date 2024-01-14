@@ -319,7 +319,8 @@ const { data: categories } = await useAsyncData("categories", async () => {
 li.post-card:nth-of-type(2n) {
 	background-image: url(/grainy_texture.png),
 		linear-gradient(var(--secondary-light), var(--secondary-light));
-	padding-block: 1.5rem;
+	padding-block: 3rem;
+	padding: 4rem 0 3rem 0;
 }
 
 .post-wrap {
