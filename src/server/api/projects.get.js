@@ -16,10 +16,10 @@ export default defineEventHandler(() => {
 			description:
 				"A B2B-dashboard designed and built using Vue 3 and good-old CSS. State managed with Pinia.",
 			image: "dash.png",
-			tools: ["Vue", "Vite", "Pinia", "JavaScript"],
+			tools: ["Vue", "Vite", "Pinia"],
 			links: {
 				gitHub: "https://github.com/iwarra/vue-system",
-				liveDemo: "https://vue-system-dashboard.netlify.app/",
+				liveDemo: "https://dashboard.ivona.se/",
 			},
 		},
 		{
@@ -41,7 +41,7 @@ export default defineEventHandler(() => {
 			tools: ["React", "TypeScript", "Styled Components"],
 			links: {
 				gitHub: "https://github.com/iwarra/quiz-app",
-				liveDemo: "https://fun-trivia-night.netlify.app/",
+				liveDemo: "https://quiz.ivona.se/",
 			},
 		},
 		{
@@ -51,7 +51,7 @@ export default defineEventHandler(() => {
 			tools: ["React", "Node", "Express", "MongoDB"],
 			links: {
 				gitHub: "https://github.com/iwarra/excercise-app",
-				liveDemo: "https://exerciser.netlify.app/",
+				liveDemo: "https://exerciser.ivona.se/",
 			},
 		},
 	];
