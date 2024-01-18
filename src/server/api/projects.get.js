@@ -51,7 +51,7 @@ export default defineEventHandler(() => {
 			tools: ["React", "Node", "Express", "MongoDB"],
 			links: {
 				gitHub: "https://github.com/iwarra/excercise-app",
-				liveDemo: "https://exerciser.ivona.se/",
+				liveDemo: "https://exercizer.ivona.se/",
 			},
 		},
 	];
