@@ -19,7 +19,7 @@ To show a class conditionally use:
 <!-- isTrue being a ref that we can toggle between true and false. -->
 ```
 
-Class and :class can co-exist on the same element. Binding can also be done to a computed property that returns an object.
+Class and dynamic class (:class) can co-exist on the same element. Binding can also be done to a computed property that returns an object.
 
 ```vue
 const classObj = computed(() => {
