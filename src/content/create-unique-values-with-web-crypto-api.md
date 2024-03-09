@@ -1,6 +1,6 @@
 ---
 title: Create unique values with Web Crypto API
-date: 2023-03-09T11:57:46.747Z
+date: 2024-03-09T11:57:46.747Z
 category:
   - JavaScript
 language: en
