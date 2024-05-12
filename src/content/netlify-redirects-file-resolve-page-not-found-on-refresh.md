@@ -2,7 +2,7 @@
 title: Netlify _redirects file to resolve the "Page Not Found" on refresh
 date: 2024-05-09T12:57:46.747Z
 category:
-  - Vue
+  - Other
 language: en
 summary: How to fix "Page Not Found" error that occurs on page refresh. Page deployed with Netlify .
 ---

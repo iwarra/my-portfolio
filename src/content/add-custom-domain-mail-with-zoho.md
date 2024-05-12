@@ -2,6 +2,7 @@
 title: Add custom domain mail with Zoho
 date: 2024-04-18T13:37:46.747Z
 category:
+  - Other
 language: en
 summary: Add a custom mail to your domain for free with Zoho mail.
 ---
