@@ -1,21 +1,23 @@
+site_url: https://www.ivona.se/admin
+
 backend:
   name: git-gateway
   branch: main
 
-media_folder: "src/public/blog_media"
+media_folder: 'src/public/blog_media'
 
 collections:
-  - name: "blog" 
-    label: "Blog" 
+  - name: 'blog'
+    label: 'Blog'
     create: true
-    folder: "src/content" 
+    folder: 'src/content'
     format: 'frontmatter' #read by Nuxt Content-module
-    slug: "{{slug}}-{{year}}-{{month}}-{{day}}" 
-    fields: 
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Category", name: "category", widget: "list"}
-      - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Language", name: "language", default: "en", widget: "hidden"}
-      - {label: "Summary", name: "summary", widget: "text"}
+    slug: '{{slug}}-{{year}}-{{month}}-{{day}}'
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Category', name: 'category', widget: 'list' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Language', name: 'language', default: 'en', widget: 'hidden' }
+      - { label: 'Summary', name: 'summary', widget: 'text' }
       # - {label: "Featured Image", name: "thumbnail", widget: "image"}
