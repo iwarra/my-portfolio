@@ -6,12 +6,44 @@ category:
 language: en
 summary: How to share data in a Blazor app
 ---
-There are different ways to pass data in a Blazor app.\
-\
+
+There are different ways to pass data in a Blazor app.
+
 1. Send from parent to child. We do this by using Component Parameters. These are defined as a C# public property/properties and decorated with the `[Parameter]` attribute.
 
-2. Send from parent to all (selected) ancestors. This is done with the use of cascading parameters. The data is shared inside the built-in CascadingValue element in the parent, and all the ancestors rendered within this tag can access it. 
+<h2>Hello: @FirstName</h2>
+@code {
+    [Parameter]
+    public string FirstName { get; set; }
+}
 
-3. Use the AppState pattern where you have a class with the properties you want to store and you register it as a service and then inject it where needed. 
+In parent:
+<ChildComponent FirstName="Jane" />
 
-//Add it as a coped service to your project:
+2. Send from parent to all (selected) ancestors. This is done with the use of cascading parameters. The data is shared inside the built-in CascadingValue element in the parent, and all the ancestors rendered within this tag can access it.
+
+<CascadingValue Name="FirstName" Value="James">
+    <!-- Any descendant component rendered here will be able to access the cascading value. -->
+</CascadingValue>
+
+In descendant:
+
+<h2>Hello: @FirstName</h2>
+
+@code {
+[CascadingParameter(Name="FirstName")]
+private string FirstName { get; set; }
+}
+
+3. Use the AppState pattern where you have a class with the properties you want to store and you register it as a service and then inject it where needed.
+
+public class ExampleState
+{
+public int ExampleState { get; set; }
+}
+
+//Add it as a scoped service to your project:
+builder.Services.AddScoped<ExampleState>();
+
+//Inject where needed
+@inject ExampleState State
