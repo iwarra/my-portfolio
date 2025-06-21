@@ -1,5 +1,4 @@
-Personal website project used as a portfolio, presenting me and my work as a frontend developer. 
-
+Personal website project used as a portfolio, presenting me and my work as a fullstack developer.
 
 # Vue 3 + Vite
 
