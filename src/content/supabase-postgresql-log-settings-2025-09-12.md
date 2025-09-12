@@ -1,5 +1,5 @@
 ---
-title: SUpabase PostgreSQL log settings
+title: Supabase PostgreSQL log settings
 date: 2025-09-12T15:21:00.000+02:00
 language: en
 summary: Abable "RAISE" level logs for debugging in Supabase
