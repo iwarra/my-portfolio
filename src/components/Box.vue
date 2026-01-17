@@ -3,7 +3,10 @@
     <component 
       v-if="iconType == 'component'" :is="icon" />
     <img 
-      v-else-if="iconType == 'img'" :src="icon" alt="" class="skills-icon">
+      v-else-if="iconType == 'img'" 
+      :src="icon" 
+      :alt="name + ' icon'" 
+      class="skills-icon">
     <span> {{ name }} </span>
   </li>
 </template>

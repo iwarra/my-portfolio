@@ -4,14 +4,23 @@ defineOptions({
 	inheritAttrs: false,
 });
 
+const attrs = useAttrs();
+//toggles the color class according to the attribute passed
+const headerWrap = computed(() => ({
+	[attrs.navBackgroundColor]: isNavbarVisible.value,
+	'header-wrap': true,
+}));
+
 const { locale, locales } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
-const ul = ref(null);
-const div = ref(null);
+const isNavbarVisible = ref(false);
+const isLangVisible = ref(false);
 
-const handleSelect = () => {
-	ul.value.classList.toggle("hidden");
-	div.value.classList.toggle("no-radius");
+const toggleLangs = () => {
+	isLangVisible.value = !isLangVisible.value;
+};
+const toggleNavbar = () => {
+	isNavbarVisible.value = !isNavbarVisible.value;
 };
 
 const languages = ref(
@@ -20,7 +29,7 @@ const languages = ref(
 			const obj = {
 				name: lang.name,
 				code: lang.code,
-				icon: lang.code + ".svg",
+				icon: lang.code + '.svg',
 			};
 
 			if (lang.code === locale.value) {
@@ -37,13 +46,17 @@ const languages = ref(
 		},
 	),
 );
+
+//Date for footer
+let now = new Date();
+let currentYear = now.getFullYear();
 </script>
 
 <template>
 	<header
 		id="header"
 		:class="`${$attrs.headerBackground}`">
-		<div class="header-wrap">
+		<div :class="headerWrap">
 			<div class="header-navWrapper">
 				<NuxtLink to="/">
 					<img
@@ -51,38 +64,80 @@ const languages = ref(
 						alt=""
 						class="header-logo" />
 				</NuxtLink>
-				<div class="header-toggle">
+				<div
+					class="header-toggle"
+					:class="{ 'header--active': isNavbarVisible }">
 					<div
 						class="header-trigger"
 						tabindex="0"
+						:aria-expanded="isNavbarVisible"
 						role="button"
 						aria-label="Toggle"
-						@click="() => toggle($attrs.navBackgroundColor)"
-						@keyup.enter="() => toggle($attrs.navBackgroundColor)">
+						@click="toggleNavbar"
+						@keyup.enter="toggleNavbar"
+						@keydown.space.prevent="toggleNavbar">
 						<span class="header-icon"></span>
 					</div>
-					
+					<div
+						class="lang-wrapper"
+						:class="{ hidden: isNavbarVisible }"
+						tabindex="0"
+						:aria-expanded="isLangVisible"
+						@keydown.enter="toggleLangs"
+						@keydown.space.prevent="toggleLangs">
+						<div
+							@click="toggleLangs"
+							class="lang-select"
+							:class="{ 'no-radius': isLangVisible }">
+							<img
+								:src="`/${languages.selected.icon}`"
+								:alt="languages.selected.name"
+								class="lang-flag" />
+							<!-- <span> {{ languages.selected.name }}</span> -->
+							<img
+								src="/arrow-down.svg"
+								class="lang-arrow"
+								alt="" />
+						</div>
+						<ul
+							class="lang-list"
+							:class="{ hidden: !isLangVisible }">
+							<li
+								v-for="lang in languages.available"
+								class="lang-el">
+								<NuxtLink
+									:key="lang.code"
+									:to="switchLocalePath(lang.code)">
+									<img
+										:src="`/${lang.icon}`"
+										:alt="lang.name"
+										class="lang-flag" />
+								</NuxtLink>
+							</li>
+						</ul>
+					</div>
 					<nav
 						id="nav"
-						class="header-nav hidden">
+						class="header-nav"
+						:class="{ hidden: !isNavbarVisible }">
 						<slot name="navLinks"> </slot>
 					</nav>
 				</div>
 			</div>
 
 			<Separator
-				:styling="`decline hidden ${$attrs.navBackgroundColor}`"
+				:styling="`decline ${$attrs.navBackgroundColor}`"
+				:class="{ hidden: !isNavbarVisible }"
 				id="navTransitionEl">
 			</Separator>
 		</div>
-		<slot name="hero"></slot>
 	</header>
-
+	<slot name="hero"></slot>
 	<slot></slot>
 
 	<footer>
 		<div class="footer-wrapper">
-			<small class="footer-copy">Copyright ©2023 Ivona Josipovic</small>
+			<small class="footer-copy">Copyright ©{{currentYear}} Ivona Josipovic</small>
 			<a href="#">
 				<component
 					class="footer-icon"
@@ -93,17 +148,9 @@ const languages = ref(
 </template>
 
 <style lang="scss">
-@import "../global.scss";
+@import '../global.scss';
 
-#header {
-	.header-wrapper {
-		display: flex;
-		min-height: 40vh;
-		justify-content: center;
-		align-items: center;
-		margin-top: 3rem;
-	}
-
+header {
 	.header-wrap {
 		display: flex;
 		flex-direction: column;
@@ -141,7 +188,7 @@ const languages = ref(
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: 0.15rem .7rem;
+			padding: 0.15rem 0.7rem;
 			background-color: #fff;
 			outline: 2px solid var(--primary-accent);
 			border-radius: 10px;
@@ -173,7 +220,7 @@ const languages = ref(
 				outline: 2px solid var(--primary-accent);
 				border-top: 0px;
 				background-color: #fff;
-				padding: 0.15rem 0  0.15rem .7rem ;
+				padding: 0.15rem 0 0.15rem 0.7rem;
 			}
 
 			li:last-of-type {
@@ -212,7 +259,7 @@ const languages = ref(
 
 		&:before,
 		&:after {
-			content: "";
+			content: '';
 			display: block;
 			width: 30px;
 			height: 5px;
@@ -263,98 +310,11 @@ const languages = ref(
 		}
 	}
 
-	.header-hero {
-		display: flex;
-		justify-content: center;
-		margin-inline: 3rem;
-		position: relative;
-		z-index: 2;
-	}
-
-	.hero-text {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	}
-
-	.hero-buttons {
-		display: inline-block;
-
-		.hero-primaryBtn {
-			@extend %btn !optional;
-			align-self: start;
-			background-color: var(--primary-accent);
-			color: var(--secondary-light);
-			margin-right: 1rem;
-		}
-
-		.hero-secondaryBtn {
-			@extend %btn !optional;
-			background-color: var(--secondary-light);
-			color: var(--primary-accent);
-		}
-
-		a {
-			text-decoration: none;
-		}
-
-		a:hover {
-			filter: none;
-		}
-	}
-
-	.hero-img {
-		display: none;
-	}
-
-	.hero-title {
-		overflow: hidden;
-		white-space: nowrap;
-		border-right: 2px solid transparent;
-		font-size: 2rem;
-		width: 0;
-		max-width: 350px;
-		animation: typing 2s steps(30, end) forwards, blinking 2.5s 1;
-	}
-
-	@keyframes typing {
-		from {
-			width: 0;
-		}
-		to {
-			width: 100%;
-		}
-	}
-
-	@keyframes blinking {
-		0% {
-			border-color: transparent;
-		}
-		50% {
-			border-color: black;
-		}
-		100% {
-			border-color: transparent;
-		}
-	}
-
-	.hero-subtitle {
-		font-size: 1.6rem;
-		margin-bottom: 1.6rem;
-		font-weight: 500;
-	}
-
 	.decline {
 		margin-top: calc(var(--spacing) * -1);
 	}
 
 	@media (min-width: 850px) {
-		.header-wrapper {
-			max-width: 1000px;
-			margin: 0 auto;
-			margin-top: 5rem;
-		}
-
 		.header-links {
 			flex-direction: row;
 			justify-content: flex-end;
@@ -368,47 +328,17 @@ const languages = ref(
 				font-size: 1.5rem;
 			}
 		}
-
-		.header-hero {
-			flex-direction: row;
-			justify-content: space-evenly;
-			gap: 2rem;
-		}
-
-		.hero-img {
-			display: flex;
-			width: 300px;
-			height: 300px;
-		}
-
-		.hero-title {
-			font-size: 2.8rem;
-			max-width: 500px;
-		}
-
-		.hero-subtitle {
-			font-size: 2rem;
-		}
 	}
 
 	@media (min-width: 1200px) {
-		.header-wrapper {
-			margin-top: 6rem;
-		}
-
 		.header-navWrapper {
 			padding: 3rem 0rem 0.5rem 0rem;
-		}
-
-		.header-hero {
-			margin-inline: 0;
 		}
 	}
 }
 
 footer {
-	//box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-	//box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	border-top: 1px solid var(--primary-accent);
 
 	.footer-wrapper {
 		max-width: 1000px;

@@ -1,77 +1,72 @@
 <script setup>
 const metaData = {
-	title: "Blog | ivona.se",
+	title: 'Blog | ivona.se',
 	meta: [
 		{
-			hid: "description",
-			name: "description",
-			content: "Blog posts about coding",
+			hid: 'description',
+			name: 'description',
+			content: 'Blog posts about coding',
 		},
 	],
 };
 useHead(metaData);
 
-const categoryValue = ref("");
-const searchValue = ref("");
+const categoryValue = ref('');
+const searchValue = ref('');
 const postsPerView = ref(3);
 const posts = ref(await getPosts());
-const totalNumOfPosts = ref(await queryContent("/").count());
+const totalNumOfPosts = ref(await queryContent('/').count());
 const timer = ref(false);
 
 onMounted(() => {
-	const observer = new IntersectionObserver(
-		() => getPosts({ loadMore: true }),
-		{
-			root: null,
-			rootMargin: "0%",
-			threshold: 0, // between 0-1; how much of the target to be visible before loading
-		},
-	);
-	observer.observe(document.querySelector("footer"));
+	const observer = new IntersectionObserver(() => getPosts({ loadMore: true }), {
+		root: null,
+		rootMargin: '0%',
+		threshold: 0, // between 0-1; how much of the target to be visible before loading
+	});
+	observer.observe(document.querySelector('footer'));
 });
 
 async function getPosts(obj = {}) {
 	const { loadMore, search, filter, reset } = obj;
 
 	if (loadMore) {
-		if (categoryValue.value !== "" || searchValue.value !== "") return;
+		if (categoryValue.value !== '' || searchValue.value !== '') return;
 
-		posts.value = await queryContent("/")
+		posts.value = await queryContent('/')
 			.limit((postsPerView.value += 3))
 			.sort({ date: -1, $numeric: true })
-			.without("body")
+			.without('body')
 			.find();
 		return;
 	}
 
 	if (search) {
-		const { data: source } = await useAsyncData("allPosts", () =>
-			queryContent("/").find(),
-		);
+		const { data: source } = await useAsyncData('allPosts', () => queryContent('/').find());
 		posts.value = useSearch(obj.search, source.value);
 		return;
 	}
 
 	if (filter) {
 		// try idempotency?
-		posts.value = await queryContent("/")
+		posts.value = await queryContent('/')
 			.where({ category: { $contains: obj.filter } })
 			.find();
 
-		if (searchValue.value) searchValue.value = "";
+		if (searchValue.value) searchValue.value = '';
 		return;
 	}
 
 	if (reset) {
-		searchValue.value = "";
-		categoryValue.value = "";
+		searchValue.value = '';
+		categoryValue.value = '';
 	}
 
-	return useAsyncData("posts", () =>
-		queryContent("/")
+	return useAsyncData('posts', () =>
+		queryContent('/')
 			.limit(postsPerView.value)
 			.sort({ date: -1, $numeric: true })
-			.without("body")
+			.without('body')
 			.find(),
 	).data;
 }
@@ -85,13 +80,15 @@ const debounce = (callback, ms) => {
 };
 
 // categories
-const { data: categories } = await useAsyncData("categories", async () => {
+const { data: categories } = await useAsyncData('categories', async () => {
 	const list = new Set();
-	const result = await queryContent("/").only("category").find();
+	const result = await queryContent('/').only('category').find();
 
-	result.forEach((obj) => {
-		obj.category.forEach((el) => list.add(el));
-	});
+	 result.forEach((obj) => {
+    if (obj.category && Array.isArray(obj.category)) {
+      obj.category.forEach((el) => list.add(el));
+    }
+  });
 
 	return list;
 });
@@ -124,9 +121,7 @@ const { data: categories } = await useAsyncData("categories", async () => {
 										type="search"
 										placeholder="Search posts..."
 										v-model="searchValue"
-										@input.prevent="
-											debounce(() => getPosts({ search: searchValue }), 500)
-										"
+										@input.prevent="debounce(() => getPosts({ search: searchValue }), 500)"
 										@keypress.enter.prevent="" />
 								</div>
 								<div class="filter-group">
@@ -178,9 +173,9 @@ const { data: categories } = await useAsyncData("categories", async () => {
 								<p>{{ post.summary }}</p>
 								<div class="post-extraInfo">
 									<span
-										>{{ dateFormatter(post.date).year }}/{{
-											dateFormatter(post.date).month
-										}}/{{ dateFormatter(post.date).date }}</span
+										>{{ dateFormatter(post.date).year }}/{{ dateFormatter(post.date).month }}/{{
+											dateFormatter(post.date).date
+										}}</span
 									>
 									<!-- <NuxtLink :to="'/blog' + post._path" class="post-link">Read more 
                   <img src="/arrow-right.svg" alt="">
@@ -188,8 +183,7 @@ const { data: categories } = await useAsyncData("categories", async () => {
 								</div>
 							</div>
 						</li>
-						<Separator
-							:class="index % 2 !== 0 ? 'incline pink' : 'decline gray'" />
+						<Separator :class="index % 2 !== 0 ? 'incline pink' : 'decline gray'" />
 					</template>
 				</ul>
 				<!-- <span class="message" v-if="posts.length >= totalNumOfPosts">Oops, we're all out of posts.</span> -->
@@ -199,7 +193,7 @@ const { data: categories } = await useAsyncData("categories", async () => {
 </template>
 
 <style scoped lang="scss">
-@import "../../global.scss";
+@import '../../global.scss';
 
 .blog-hero {
 	width: 100%;
@@ -262,7 +256,7 @@ const { data: categories } = await useAsyncData("categories", async () => {
 	}
 
 	.filter-group::after {
-		content: url("/arrow-down.svg");
+		content: url('/arrow-down.svg');
 		color: black;
 		width: 0.8rem;
 		height: 0.8rem;

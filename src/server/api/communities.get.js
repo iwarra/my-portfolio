@@ -5,16 +5,16 @@ export default defineEventHandler(() => {
       logo: 'wit-logo.png'
     }, 
     {
-      org: 'Beela',
-      logo: 'beela-logo.svg'
-    }, 
-    {
       org: 'DataTjej',
       logo: 'dt-logo.png'
     },
     {
       org: 'Pink Programming',
       logo: 'pink_programming.png'
-    }
+    },
+    // {
+    //   org: 'sthlm.js',
+    //   logo: 'sthlmjs.png'
+    // }
   ] 
 })

@@ -25,15 +25,7 @@ const {
 		$fetch('/api/skills/technical'),
 		$fetch('/api/skills/soft'),
 		$fetch('/api/communities'),
-		$fetch('/api/testimonials', {
-			transform: (testimonials) =>
-				testimonials.map((testimonial) => {
-					return {
-						...testimonial,
-						recommendation: testimonial.recommendation.replace(/\n/g, '<br>'),
-					};
-				}),
-		}),
+		$fetch('/api/testimonials'),
 	]);
 
 	return { projects, skills, softSkills, communities, testimonials };
@@ -148,7 +140,7 @@ const handleScroll = (direction, element) => {
 								:key="skill.name"
 								:name="skill.name"
 								:icon="skill.icon"
-								iconType="component" />
+								:iconType="skill.iconType" />
 						</ul>
 					</div>
 					<div class="about-text">
@@ -201,8 +193,7 @@ const handleScroll = (direction, element) => {
 								src="/quote-left.png"
 								alt="opening quotation mark" />
 							<em
-								><p class="testimonial-text">
-									{{ testimonial.recommendation }}
+								><p class="testimonial-text" v-html="testimonial.recommendation">
 								</p></em
 							>
 							<span class="testimonial-signature">
