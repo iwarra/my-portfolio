@@ -232,6 +232,7 @@ const { data: categories } = await useAsyncData('categories', async () => {
 
 	input,
 	select {
+		padding-left: 4px; 
 		font-weight: 600;
 		font-size: 1.1rem;
 		border: none;
@@ -248,6 +249,8 @@ const { data: categories } = await useAsyncData('categories', async () => {
 	input,
 	select {
 		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
 	}
 
 	select {
