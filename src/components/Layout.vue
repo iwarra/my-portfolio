@@ -78,7 +78,7 @@ let currentYear = now.getFullYear();
 						@keydown.space.prevent="toggleNavbar">
 						<span class="header-icon"></span>
 					</div>
-					<div
+					<!-- <div
 						class="lang-wrapper"
 						:class="{ hidden: isNavbarVisible }"
 						tabindex="0"
@@ -93,7 +93,7 @@ let currentYear = now.getFullYear();
 								:src="`/${languages.selected.icon}`"
 								:alt="languages.selected.name"
 								class="lang-flag" />
-							<!-- <span> {{ languages.selected.name }}</span> -->
+						<span> {{ languages.selected.name }}</span> 
 							<img
 								src="/arrow-down.svg"
 								class="lang-arrow"
@@ -115,7 +115,7 @@ let currentYear = now.getFullYear();
 								</NuxtLink>
 							</li>
 						</ul>
-					</div>
+					</div> -->
 					<nav
 						id="nav"
 						class="header-nav"
@@ -338,8 +338,6 @@ header {
 }
 
 footer {
-	border-top: 1px solid var(--primary-accent);
-
 	.footer-wrapper {
 		max-width: 1000px;
 		margin: 0 auto;
