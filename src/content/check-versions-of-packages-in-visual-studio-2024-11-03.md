@@ -8,4 +8,6 @@ summary: See versions of the package you are using in Visual Studio
 ---
 Click on Tools / NuGet Package Manager / Package Manager Console to open the Package Manager Console (PMC) in Visual Studio. Type Get-Package at the prompt. 
 
+```js
 Get-Package
+``` 

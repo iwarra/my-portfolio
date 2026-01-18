@@ -12,7 +12,7 @@ There are different ways to pass data in a Blazor app.
 
 1. Send from parent to child. We do this by using Component Parameters. These are defined as a C# public property/properties and decorated with the [Parameter] attribute.
 
-```C#
+```js
 <h2>Hello: @FirstName</h2>
 @code {
     [Parameter]
@@ -22,13 +22,13 @@ There are different ways to pass data in a Blazor app.
 
 In the parent:
 
-```C#
+```js
 <ChildComponent FirstName="Jane" />
 ```
 
 2. Send from parent to all (selected) ancestors. This is done with the use of cascading parameters. The data is shared inside the built-in CascadingValue element in the parent, and all the ancestors rendered within this tag can access it.
 
-```C#
+```js
 <CascadingValue Name="FirstName" Value="James">
     <!-- Any descendant component rendered here will be able to access the cascading value. -->
 </CascadingValue>
@@ -36,7 +36,7 @@ In the parent:
 
 In descendant:
 
-```C#
+```js
 <h2>Hello: @FirstName</h2>
 
 @code {
@@ -47,21 +47,21 @@ private string FirstName { get; set; }
 
 3. Use the AppState pattern where you have a class with the properties you want to store and you register it as a service and then inject it where needed.
 
-```C#
+```js
 public class ExampleState
 {
 public int ExampleState { get; set; }
 }
 ```
 
-//Add it as a scoped service to your project:
+Add it as a scoped service to your project:
 
-```C#
+```js
 builder.Services.AddScoped<ExampleState>();
 ```
 
-//Inject where needed:
+Inject where needed:
 
-```C#
+```js
 @inject ExampleState State
 ```

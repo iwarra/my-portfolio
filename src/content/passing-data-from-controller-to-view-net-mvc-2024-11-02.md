@@ -11,13 +11,13 @@ summary: How to pass data from the controller to view in ASP.NET MVC project
 ViewData and ViewBag are used to transfer data from controller to view. \
 ViewData is a dictionary of objects. It is a controller property that exposes an instance of the ViewDataDictionary class.
 
-```C#
+```js
 ViewData["Message"] = "Hello from ViewData!";
 ```
 
 ViewBag is very similar to ViewData. ViewBag is a wrapper that provides dynamic properties for the underlying ViewData collection.
 
-```C#
+```js
 ViewBag.Message = "Hello from ViewBag!";
 ```
 
