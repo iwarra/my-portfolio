@@ -1,14 +1,14 @@
 export default defineEventHandler(() => {
 	return [
 		{
-			title: "Habit Tracker",
+			title: "System demo",
 			description:
-				"Habit tracking website built with React. Under construction.",
-			image: "ht.png",
-			tools: ["React", "JavaScript", "SCSS"],
+				"A fleet management dashboard demo built for a customer project.",
+			image: "system.png",
+			tools: ["Vue", "Vite", "TypeScript", "Mapbox"],
 			links: {
-				gitHub: "https://github.com/iwarra/habit-tracker",
-				liveDemo: "",
+				gitHub: "",
+				liveDemo: "https://crew.ivona.se/",
 			},
 		},
 		{
@@ -36,7 +36,7 @@ export default defineEventHandler(() => {
 		{
 			title: "Quiz App",
 			description:
-				"A quiz app built with Typescript and React. Styled with styled components.",
+				"A quiz app built with Typescript and React. Using OpenTDB API. Styled with styled components.",
 			image: "quiz.png",
 			tools: ["React", "TypeScript", "Styled Components"],
 			links: {
@@ -54,5 +54,16 @@ export default defineEventHandler(() => {
 				liveDemo: "https://exercizer.ivona.se/",
 			},
 		},
+		{
+			title: "Habit Tracker",
+			description:
+				"Habit tracking website built with React. Under construction.",
+			image: "ht.png",
+			tools: ["React", "JavaScript", "SCSS"],
+			links: {
+				gitHub: "https://github.com/iwarra/habit-tracker",
+				liveDemo: "",
+			},
+		}
 	];
 });

@@ -111,9 +111,10 @@ const handleScroll = (direction, element) => {
 							</span>
 							<p class="project-description">{{ project.description }}</p>
 							<ul class="project-links">
-								<li>
+								<li v-if="project.links.gitHub !== ''">
 									<a :href="project.links.gitHub">GitHub</a>
 								</li>
+								<span v-else>Private repo</span>
 								<span>|</span>
 								<li v-if="project.links.liveDemo !== ''">
 									<a
