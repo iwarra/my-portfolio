@@ -51,6 +51,20 @@ export default defineNuxtConfig({
 				},
 				{ charset: 'utf-8' },
 			],
+			script: [
+        {
+          innerHTML: `
+            window.goatcounter = {
+              no_onload: true
+            }
+          `,
+        },
+        {
+          src: '//gc.zgo.at/count.js',
+          defer: true,
+          'data-goatcounter': 'https://ivona.goatcounter.com/count',
+        },
+      ],
 		},
 		rootId: 'portfolio',
 	},
