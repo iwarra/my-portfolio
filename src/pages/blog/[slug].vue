@@ -17,12 +17,39 @@ if (!post.value) {
 }
 
 const metaData = {
-	title: post.value.title + " - Blog | ivona.se",
+	title: post.value.title + ' - Blog | ivona.se',
 	meta: [
 		{
-			hid: "description",
-			name: "description",
+			hid: 'description',
+			name: 'description',
 			content: post.value.summary,
+		},
+	],
+	script: [
+		{
+			type: 'application/ld+json',
+			innerHTML: JSON.stringify({
+				'@context': 'https://schema.org',
+				'@type': 'BlogPosting',
+				headline: post.value.title,
+				description: post.value.summary,
+				datePublished: post.value.date,
+				url: `https://ivona.se/blog${post.value._path}`,
+				author: {
+					'@type': 'Person',
+					name: 'Ivona Josipovic',
+					url: 'https://ivona.se',
+				},
+				publisher: {
+					'@type': 'Person',
+					name: 'Ivona Josipovic',
+					url: 'https://ivona.se',
+				},
+				mainEntityOfPage: {
+					'@type': 'WebPage',
+					'@id': `https://ivona.se/blog${post.value._path}`,
+				},
+			}),
 		},
 	],
 };

@@ -1,6 +1,41 @@
 <script setup>
 useHead({
-	script: [{ src: 'https://identity.netlify.com/v1/netlify-identity-widget.js' }],
+	script: [
+		{ src: 'https://identity.netlify.com/v1/netlify-identity-widget.js' },
+		{
+			type: 'application/ld+json',
+			innerHTML: JSON.stringify({
+				'@context': 'https://schema.org',
+				'@type': 'Person',
+				name: 'Ivona Josipovic',
+				url: 'https://ivona.se',
+				jobTitle: 'Fullstack Developer',
+				description:
+					"I'm a fullstack web developer with background in communications and management. I enjoy building things and love to combine functionality with design.",
+				email: 'josipovic.ivona@gmail.com',
+				sameAs: [
+					'https://www.linkedin.com/in/ivona-josipovic/',
+					'https://github.com/iwarra',
+				],
+			}),
+		},
+		{
+			type: 'application/ld+json',
+			innerHTML: JSON.stringify({
+				'@context': 'https://schema.org',
+				'@type': 'WebSite',
+				name: 'Ivona Josipovic | Fullstack Developer',
+				url: 'https://ivona.se',
+				description:
+					'Ivona Josipovic is a fullstack developer based in Stockholm. She enjoys building things using HTML, CSS, JavaScript, Vue and React.',
+				author: {
+					'@type': 'Person',
+					name: 'Ivona Josipovic',
+					url: 'https://ivona.se',
+				},
+			}),
+		},
+	],
 	title: 'Ivona Josipovic | Fullstack developer',
 	meta: {
 		hid: 'description',

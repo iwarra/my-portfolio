@@ -8,6 +8,23 @@ const metaData = {
 			content: 'Blog posts about coding',
 		},
 	],
+	script: [
+		{
+			type: 'application/ld+json',
+			innerHTML: JSON.stringify({
+				'@context': 'https://schema.org',
+				'@type': 'Blog',
+				name: "Ivona Josipovic's Blog",
+				url: 'https://ivona.se/blog',
+				description: 'Blog posts about coding',
+				author: {
+					'@type': 'Person',
+					name: 'Ivona Josipovic',
+					url: 'https://ivona.se',
+				},
+			}),
+		},
+	],
 };
 useHead(metaData);
 
