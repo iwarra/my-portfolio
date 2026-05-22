@@ -4,11 +4,12 @@ date: 2026-05-07T15:52:00.000+02:00
 category:
   - Other
 language: en
-summary: Why you should switch git pull for git pull -ff-only
+summary: Why you should switch git pull for git pull --ff-only
 ---
+
 If you want to avoid getting merge commits when pulling changes from remote, replace git pull with this instead:\
 \
-`git pull -ff-only`
+`git pull --ff-only`
 
 The reason why git pull creates the merge commit for you lies in the following:
 
