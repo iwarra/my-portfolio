@@ -2,8 +2,9 @@ export default defineEventHandler(() => {
 	return [
 		{
 			title: 'System demo',
-			description: 'A fleet management dashboard demo built for a customer project.',
-			image: 'system.png',
+			description:
+				'A fleet management dashboard demo built for a customer project.',
+			image: 'system.avif',
 			tools: ['Vue', 'Vite', 'TypeScript', 'Mapbox'],
 			links: {
 				gitHub: '',
@@ -14,7 +15,7 @@ export default defineEventHandler(() => {
 			title: 'Vue Dashboard',
 			description:
 				'A B2B-dashboard designed and built using Vue 3 and good-old CSS. State managed with Pinia.',
-			image: 'dash.png',
+			image: 'dash.avif',
 			tools: ['Vue', 'Vite', 'Pinia'],
 			links: {
 				gitHub: 'https://github.com/iwarra/vue-system',
@@ -25,7 +26,7 @@ export default defineEventHandler(() => {
 			title: 'Poditory',
 			description:
 				'A project built with vanilla JS, HTLM and CSS. The coding challenge was to fetch and display ten podcasts from Sveriges Radio API.',
-			image: 'poditory.png',
+			image: 'poditory.avif',
 			tools: ['HTML', 'JavaScript', 'CSS'],
 			links: {
 				gitHub: 'https://github.com/iwarra/podcast-project',
@@ -36,7 +37,7 @@ export default defineEventHandler(() => {
 			title: 'Quiz App',
 			description:
 				'A quiz app built with Typescript and React. Using OpenTDB API. Styled with styled components.',
-			image: 'quiz.png',
+			image: 'quiz.avif',
 			tools: ['React', 'TypeScript', 'Styled Components'],
 			links: {
 				gitHub: 'https://github.com/iwarra/quiz-app',
@@ -46,7 +47,7 @@ export default defineEventHandler(() => {
 		{
 			title: 'Exerciser',
 			description: 'Fullstack MERN app with all CRUD operations.',
-			image: 'exerciser.png',
+			image: 'exerciser.avif',
 			tools: ['React', 'Node', 'Express', 'MongoDB'],
 			links: {
 				gitHub: 'https://github.com/iwarra/excercise-app',
@@ -55,8 +56,9 @@ export default defineEventHandler(() => {
 		},
 		{
 			title: 'Habit Tracker',
-			description: 'Habit tracking website built with React. Under construction.',
-			image: 'ht.png',
+			description:
+				'Habit tracking website built with React. Under construction.',
+			image: 'ht.avif',
 			tools: ['React', 'JavaScript', 'SCSS'],
 			links: {
 				gitHub: 'https://github.com/iwarra/habit-tracker',
