@@ -47,7 +47,11 @@ useHead({
 
 import { aboutMe } from '../data/content.js';
 const { data: latestPosts } = await useAsyncData('latest', () =>
-	queryContent('/').limit(5).without('body').sort({ date: -1, $numeric: true }).find(),
+	queryContent('/')
+		.limit(5)
+		.without('body')
+		.sort({ date: -1, $numeric: true })
+		.find(),
 );
 
 const {
@@ -55,13 +59,14 @@ const {
 		value: { projects, skills, softSkills, communities, testimonials },
 	},
 } = await useAsyncData('home', async () => {
-	const [projects, skills, softSkills, communities, testimonials] = await Promise.all([
-		$fetch('/api/projects'),
-		$fetch('/api/skills/technical'),
-		$fetch('/api/skills/soft'),
-		$fetch('/api/communities'),
-		$fetch('/api/testimonials'),
-	]);
+	const [projects, skills, softSkills, communities, testimonials] =
+		await Promise.all([
+			$fetch('/api/projects'),
+			$fetch('/api/skills/technical'),
+			$fetch('/api/skills/soft'),
+			$fetch('/api/communities'),
+			$fetch('/api/testimonials'),
+		]);
 
 	return { projects, skills, softSkills, communities, testimonials };
 });
@@ -92,6 +97,7 @@ const handleScroll = (direction, element) => {
 				<li><a href="#projects">Projects</a></li>
 				<li><a href="#testimonials">Testimonials</a></li>
 				<li><NuxtLink to="/blog">Blog</NuxtLink></li>
+				<li><NuxtLink to="/events">Events</NuxtLink></li>
 			</menu>
 		</template>
 		<template #hero>
@@ -129,7 +135,9 @@ const handleScroll = (direction, element) => {
 				<Carousel
 					class="projects-wrapper"
 					selector="slider"
-					@arrowClicked="(direction, element) => handleScroll(direction, element)">
+					@arrowClicked="
+						(direction, element) => handleScroll(direction, element)
+					">
 					<li
 						class="project-card"
 						v-for="project in projects"
@@ -218,7 +226,9 @@ const handleScroll = (direction, element) => {
 				<Carousel
 					class="testimonials-wrapper"
 					selector="slider"
-					@arrowClicked="(direction, element) => handleScroll(direction, element)">
+					@arrowClicked="
+						(direction, element) => handleScroll(direction, element)
+					">
 					<li
 						v-for="testimonial in testimonials"
 						class="testimonial-card"
@@ -229,9 +239,10 @@ const handleScroll = (direction, element) => {
 								src="/quote-left.png"
 								alt="opening quotation mark" />
 							<em
-								><p class="testimonial-text" v-html="testimonial.recommendation">
-								</p></em
-							>
+								><p
+									class="testimonial-text"
+									v-html="testimonial.recommendation"></p
+							></em>
 							<span class="testimonial-signature">
 								- {{ testimonial.from }}, {{ testimonial.workTitle }}</span
 							>
@@ -256,9 +267,9 @@ const handleScroll = (direction, element) => {
 								class="blog-link">
 								{{ post.title }}
 								<time class="post-date">
-									{{ dateFormatter(post.date).year }}/{{ dateFormatter(post.date).month }}/{{
-										dateFormatter(post.date).date
-									}}
+									{{ dateFormatter(post.date).year }}/{{
+										dateFormatter(post.date).month
+									}}/{{ dateFormatter(post.date).date }}
 								</time>
 							</NuxtLink>
 						</li>
@@ -326,7 +337,9 @@ const handleScroll = (direction, element) => {
 	font-size: 2rem;
 	width: 0;
 	max-width: 350px;
-	animation: typing 2s steps(30, end) forwards, blinking 2.5s 1;
+	animation:
+		typing 2s steps(30, end) forwards,
+		blinking 2.5s 1;
 }
 
 @keyframes typing {
@@ -621,7 +634,8 @@ const handleScroll = (direction, element) => {
 		flex: 1;
 		position: relative;
 		padding: 4rem 2.5rem;
-		background-image: url(/grainy_texture.png),
+		background-image:
+			url(/grainy_texture.png),
 			linear-gradient(var(--primary-light), var(--primary-light));
 		display: flex;
 		flex-direction: column;

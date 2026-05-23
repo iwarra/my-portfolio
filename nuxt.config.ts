@@ -47,24 +47,25 @@ export default defineNuxtConfig({
 				{ name: 'theme-color', content: '#ffffff' },
 				{
 					name: 'viewport',
-					content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
+					content:
+						'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
 				},
 				{ charset: 'utf-8' },
 			],
 			script: [
-        {
-          innerHTML: `
+				{
+					innerHTML: `
             window.goatcounter = {
               no_onload: true
             }
           `,
-        },
-        {
-          src: '//gc.zgo.at/count.js',
-          defer: true,
-          'data-goatcounter': 'https://ivona.goatcounter.com/count',
-        },
-      ],
+				},
+				{
+					src: '//gc.zgo.at/count.js',
+					defer: true,
+					'data-goatcounter': 'https://ivona.goatcounter.com/count',
+				},
+			],
 		},
 		rootId: 'portfolio',
 	},
@@ -107,6 +108,9 @@ export default defineNuxtConfig({
 			theme: 'min-dark',
 			preload: ['vue', 'json', 'jsx', 'sass', 'scss'],
 		},
+		experimental: {
+			clientDB: true,
+		},
 	},
 	vite: {
 		css: {
@@ -126,4 +130,11 @@ export default defineNuxtConfig({
 		},
 	},
 	css: ['~/global.scss'],
+	nitro: {
+		prerender: {
+			crawlLinks: true,
+			routes: ['/', '/blog', '/events'],
+			failOnError: true,
+		},
+	},
 });

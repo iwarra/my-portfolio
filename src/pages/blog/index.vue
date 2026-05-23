@@ -31,84 +31,62 @@ useHead(metaData);
 const categoryValue = ref('');
 const searchValue = ref('');
 const postsPerView = ref(3);
-const posts = ref(await getPosts());
-const totalNumOfPosts = ref(await queryContent('/').count());
-const timer = ref(false);
 
-onMounted(() => {
-	const observer = new IntersectionObserver(() => getPosts({ loadMore: true }), {
-		root: null,
-		rootMargin: '0%',
-		threshold: 0, // between 0-1; how much of the target to be visible before loading
-	});
-	observer.observe(document.querySelector('footer'));
-});
+const { data: allPosts } = await useAsyncData('allPosts', () =>
+	queryContent('/')
+		.sort({ date: -1, $numeric: true })
+		.without('body')
+		.find(),
+);
 
-async function getPosts(obj = {}) {
-	const { loadMore, search, filter, reset } = obj;
-
-	if (loadMore) {
-		if (categoryValue.value !== '' || searchValue.value !== '') return;
-
-		posts.value = await queryContent('/')
-			.limit((postsPerView.value += 3))
-			.sort({ date: -1, $numeric: true })
-			.without('body')
-			.find();
-		return;
-	}
-
-	if (search) {
-		const { data: source } = await useAsyncData('allPosts', () => queryContent('/').find());
-		posts.value = useSearch(obj.search, source.value);
-		return;
-	}
-
-	if (filter) {
-		// try idempotency?
-		posts.value = await queryContent('/')
-			.where({ category: { $contains: obj.filter } })
-			.find();
-
-		if (searchValue.value) searchValue.value = '';
-		return;
-	}
-
-	if (reset) {
-		searchValue.value = '';
-		categoryValue.value = '';
-	}
-
-	return useAsyncData('posts', () =>
-		queryContent('/')
-			.limit(postsPerView.value)
-			.sort({ date: -1, $numeric: true })
-			.without('body')
-			.find(),
-	).data;
-}
-
-const debounce = (callback, ms) => {
-	clearTimeout(timer.value);
-	timer.value = setTimeout(() => {
-		callback();
-		timer.value = false;
-	}, ms);
-};
-
-// categories
-const { data: categories } = await useAsyncData('categories', async () => {
+const categories = computed(() => {
 	const list = new Set();
-	const result = await queryContent('/').only('category').find();
-
-	 result.forEach((obj) => {
-    if (obj.category && Array.isArray(obj.category)) {
-      obj.category.forEach((el) => list.add(el));
-    }
-  });
-
+	(allPosts.value ?? []).forEach((post) => {
+		if (post.category && Array.isArray(post.category)) {
+			post.category.forEach((el) => list.add(el));
+		}
+	});
 	return list;
 });
+
+const filteredPosts = computed(() => {
+	const all = allPosts.value ?? [];
+	if (searchValue.value) return useSearch(searchValue.value, all);
+	if (categoryValue.value) return all.filter((p) => p.category?.includes(categoryValue.value));
+	return all;
+});
+
+const posts = computed(() => {
+	if (searchValue.value || categoryValue.value) return filteredPosts.value;
+	return filteredPosts.value.slice(0, postsPerView.value);
+});
+
+const totalNumOfPosts = computed(() => (allPosts.value ?? []).length);
+
+onMounted(() => {
+	const footer = document.querySelector('footer');
+	if (!footer) return;
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			if (!entries[0].isIntersecting) return;
+			if (categoryValue.value || searchValue.value) return;
+			if (postsPerView.value >= totalNumOfPosts.value) {
+				observer.disconnect();
+				return;
+			}
+			postsPerView.value += 3;
+		},
+		{ rootMargin: '200px' },
+	);
+
+	observer.observe(footer);
+});
+
+
+function onCategoryChange() {
+	if (searchValue.value) searchValue.value = '';
+}
 </script>
 
 <template>
@@ -118,6 +96,7 @@ const { data: categories } = await useAsyncData('categories', async () => {
 		<template #navLinks>
 			<menu class="header-links">
 				<li><NuxtLink to="/">Home</NuxtLink></li>
+				<li><NuxtLink to="/events">Events</NuxtLink></li>
 			</menu>
 		</template>
 		<template #hero>
@@ -138,8 +117,7 @@ const { data: categories } = await useAsyncData('categories', async () => {
 										type="search"
 										placeholder="Search posts..."
 										v-model="searchValue"
-										@input.prevent="debounce(() => getPosts({ search: searchValue }), 500)"
-										@keypress.enter.prevent="" />
+				@keypress.enter.prevent="" />
 								</div>
 								<div class="filter-group">
 									<component
@@ -148,7 +126,7 @@ const { data: categories } = await useAsyncData('categories', async () => {
 									<select
 										name="category"
 										v-model="categoryValue"
-										@change="() => getPosts({ filter: categoryValue })">
+										@change="onCategoryChange">
 										<option
 											selected
 											value="">
@@ -190,9 +168,9 @@ const { data: categories } = await useAsyncData('categories', async () => {
 								<p>{{ post.summary }}</p>
 								<div class="post-extraInfo">
 									<span
-										>{{ dateFormatter(post.date).year }}/{{ dateFormatter(post.date).month }}/{{
-											dateFormatter(post.date).date
-										}}</span
+										>{{ dateFormatter(post.date).year }}/{{
+											dateFormatter(post.date).month
+										}}/{{ dateFormatter(post.date).date }}</span
 									>
 									<!-- <NuxtLink :to="'/blog' + post._path" class="post-link">Read more 
                   <img src="/arrow-right.svg" alt="">
@@ -200,7 +178,8 @@ const { data: categories } = await useAsyncData('categories', async () => {
 								</div>
 							</div>
 						</li>
-						<Separator :class="index % 2 !== 0 ? 'incline pink' : 'decline gray'" />
+						<Separator
+							:class="index % 2 !== 0 ? 'incline pink' : 'decline gray'" />
 					</template>
 				</ul>
 				<!-- <span class="message" v-if="posts.length >= totalNumOfPosts">Oops, we're all out of posts.</span> -->
@@ -249,7 +228,7 @@ const { data: categories } = await useAsyncData('categories', async () => {
 
 	input,
 	select {
-		padding-left: 4px; 
+		padding-left: 4px;
 		font-weight: 600;
 		font-size: 1.1rem;
 		border: none;
@@ -331,7 +310,8 @@ const { data: categories } = await useAsyncData('categories', async () => {
 }
 
 li.post-card:nth-of-type(2n) {
-	background-image: url(/grainy_texture.png),
+	background-image:
+		url(/grainy_texture.png),
 		linear-gradient(var(--secondary-light), var(--secondary-light));
 	padding-block: 3rem;
 	padding: 4rem 0 3rem 0;

@@ -1,9 +1,11 @@
 <script setup>
+definePageMeta({ key: (route) => route.fullPath });
+
 const route = useRoute();
 // if no blog post/page, throw error with statusCode of 404
 
-const { data: post } = await useAsyncData("post", () =>
-	queryContent("/")
+const { data: post } = await useAsyncData(`post-${route.params.slug}`, () =>
+	queryContent('/')
 		.where({ _path: `/${route.params.slug}` })
 		.findOne(),
 );
@@ -11,7 +13,7 @@ const { data: post } = await useAsyncData("post", () =>
 if (!post.value) {
 	throw createError({
 		statusCode: 404,
-		message: "not found",
+		message: 'not found',
 		fatal: true,
 	});
 }
@@ -56,7 +58,7 @@ const metaData = {
 useHead(metaData);
 
 const [prev, next] = await queryContent()
-	.only(["_path", "title", "date"])
+	.only(['_path', 'title', 'date'])
 	.sort({ date: -1 })
 	.findSurround(`/${route.params.slug}`);
 </script>
@@ -216,7 +218,8 @@ const [prev, next] = await queryContent()
 
 :global(code) {
 	display: block;
-	background-image: url(/grainy_texture.png),
+	background-image:
+		url(/grainy_texture.png),
 		linear-gradient(var(--secondary-light), var(--secondary-light));
 	padding: 0.8rem 1rem;
 	border: 1px solid rgb(196, 195, 195);

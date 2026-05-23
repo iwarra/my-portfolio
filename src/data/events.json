@@ -1,0 +1,999 @@
+[
+	{
+		"id": "314178329",
+		"title": "Designing, Embedding & Orchestrating Physical AI",
+		"dateTime": "2026-05-21T17:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "HiQ",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 173
+		},
+		"summary": "This event explored the emerging field of Physical AI — where AI systems interact with and control physical environments. Three presentations covered distinct angles: orchestrating AI agents with MQTT for IoT-scale deployments, applying generative AI to mechanical design workflows with a self-correcting feedback loop, and overcoming barriers to deploying AI models on constrained edge hardware.",
+		"summary_sv": "Detta event utforskade det framväxande området Physical AI — där AI-system interagerar med och styr fysiska miljöer. Tre presentationer belyste olika perspektiv: orkestrering av AI-agenter med MQTT för IoT-skaliga driftsättningar, tillämpning av generativ AI i mekaniska designflöden med en självkorrigerande återkopplingsloop, samt hur man övervinner hinder för att driftsätta AI-modeller på begränsad edge-hårdvara.",
+		"speakers": [
+			{
+				"name": "Ivan Dyachkov",
+				"title": "Field CTO (EMEA)",
+				"company": "EMQ Technologies"
+			},
+			{
+				"name": "Yuri Gusev",
+				"title": "CTO",
+				"company": "Encube Technologies"
+			},
+			{
+				"name": "Andreas Ask",
+				"title": "Deep Learning Researcher & Product Owner",
+				"company": "Embedl"
+			}
+		]
+	},
+	{
+		"id": "314710666",
+		"title": "AI Agents and MCP Security",
+		"dateTime": "2026-05-19T17:30:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Epicenter",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 45
+		},
+		"summary": "An OWASP-focused evening on the security of AI agents and the Model Context Protocol (MCP). The first talk covered how to deploy AI agents securely across an organisation, with a highly technical walkthrough applicable to production environments. The second talk examined tool poisoning and cross-server attack patterns observed over the past year, with a live demo and practical defensive controls.",
+		"summary_sv": "En OWASP-inriktad kväll om säkerheten hos AI-agenter och Model Context Protocol (MCP). Det första föredraget behandlade hur man driftsätter AI-agenter säkert i en organisation, med en tekniskt detaljerad genomgång tillämplig i produktionsmiljöer. Det andra föredraget undersökte tool poisoning och cross-server attackmönster observerade det senaste året, med en live-demo och praktiska försvarsåtgärder.",
+		"speakers": [
+			{
+				"name": "Linus Lagerhjelm",
+				"title": "Strategic Security Specialist",
+				"company": "Stockholm-based fintech company"
+			},
+			{
+				"name": "Amine Raji, PhD",
+				"title": "AI Security Researcher",
+				"company": "Independent"
+			}
+		]
+	},
+	{
+		"id": "313527094",
+		"title": "Tech Improvements and Better AI Prompts",
+		"dateTime": "2026-03-25T17:30:00+01:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "HiQ",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 66
+		},
+		"summary": "Two practical talks aimed at modern development teams. The first covered how to prioritise technical improvements and communicate their value clearly to non-technical stakeholders. The second provided an overview of prompt engineering best practices — covering clarity, structure, and reliability in AI outputs — with 10 actionable techniques.",
+		"summary_sv": "Två praktiska föredrag riktade till moderna utvecklingsteam. Det första behandlade hur man prioriterar tekniska förbättringar och kommunicerar deras värde tydligt till icke-tekniska intressenter. Det andra gav en översikt av best practices för prompt engineering — med fokus på tydlighet, struktur och tillförlitlighet i AI-output — med 10 konkreta tekniker.",
+		"speakers": [
+			{
+				"name": "Valeria Viana Gusmao",
+				"title": "Head of Web",
+				"company": "Strawberry"
+			},
+			{
+				"name": "Naim Latifi",
+				"title": "Frontend Lead",
+				"company": "HIQ"
+			}
+		]
+	},
+	{
+		"id": "313244695",
+		"title": "Build, Scale & Govern AI Agents",
+		"dateTime": "2026-03-11T16:00:00+01:00",
+		"eventType": "ONLINE",
+		"venue": {
+			"name": "Online",
+			"city": ""
+		},
+		"rsvps": {
+			"totalCount": 13
+		},
+		"summary": "An online session on designing scalable and reliable multi-step AI agents. The talk covered how agentic RAG techniques, MCP-based tool use, and established agent design patterns work together to create agents that reason effectively, coordinate tasks, and integrate with external systems. Practical patterns for scaling agents across teams and adapting them for complex workflows were shared.",
+		"summary_sv": "En onlinesession om att designa skalbara och tillförlitliga flerstegs-AI-agenter. Föredraget täckte hur agentic RAG-tekniker, MCP-baserad verktygsanvändning och etablerade agentdesignmönster samverkar för att skapa agenter som resonerar effektivt, koordinerar uppgifter och integreras med externa system. Praktiska mönster för att skala agenter över team och anpassa dem för komplexa arbetsflöden delades.",
+		"speakers": []
+	},
+	{
+		"id": "312466384",
+		"title": "Get Secure and Stay Secure in the World of Agentic AI",
+		"dateTime": "2026-03-03T19:00:00+01:00",
+		"eventType": "ONLINE",
+		"venue": {
+			"name": "Online",
+			"city": ""
+		},
+		"rsvps": {
+			"totalCount": 8
+		},
+		"summary": "An online session examining DevSecOps in the age of agentic AI. The talk covered how GitHub Advanced Security and Microsoft Defender for Cloud connect code to runtime context, enabling developers to prioritise exploitable vulnerabilities in production, reduce alert fatigue, and accelerate remediation using AI-powered fixes and agentic workflows.",
+		"summary_sv": "En onlinesession om DevSecOps i AI-agenternas era. Föredraget täckte hur GitHub Advanced Security och Microsoft Defender for Cloud kopplar samman kod med körningskontext, vilket gör det möjligt för utvecklare att prioritera exploaterbara sårbarheter i produktion, minska alert-trötthet och påskynda åtgärder med AI-drivna fixar och agentarbetsflöden.",
+		"speakers": []
+	},
+	{
+		"id": "312927297",
+		"title": "Engineering Leadership — 4th Edition",
+		"dateTime": "2026-01-29T17:00:00+01:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "H&M",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 99
+		},
+		"summary": "Talks on leadership challenges in technical organisations, hosted at H&M. Speakers covered scaling AI in large e-commerce environments, the challenges of delegation for technically strong managers, and building a structured data-driven conversion rate optimisation process.",
+		"summary_sv": "Föredrag om ledarskapsutmaningar i tekniska organisationer, arrangerade hos H&M. Talarna behandlade skalning av AI i stora e-handelsorganisationer, utmaningar med delegering för tekniskt starka ledare, samt att bygga en strukturerad och datadriven CRO-process.",
+		"speakers": [
+			{
+				"name": "Yuliya Demchenko",
+				"title": "Head of Web and Mobile Engineering",
+				"company": "H&M"
+			},
+			{
+				"name": "Valeria Viana Gusmao",
+				"title": "Engineering Manager",
+				"company": "Strawberry"
+			},
+			{
+				"name": "Marianne Stjernvall",
+				"title": "",
+				"company": ""
+			}
+		]
+	},
+	{
+		"id": "312748680",
+		"title": "WebGPU, Three.js and 3D on the Web",
+		"dateTime": "2026-01-22T17:30:00+01:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Umain",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 95
+		},
+		"summary": "Talks on GPU rendering and 3D development for the web. Speakers explored how WebGPU unlocks rendering performance in the browser and how Three.js simplifies advanced GPU workflows and shader development, then presented Hology — a 3D and VR creative engine built with TypeScript that enables JavaScript and React for UI.",
+		"summary_sv": "Föredrag om GPU-rendering och 3D-verktyg för webben. Talarna utforskade hur WebGPU frigör renderingsprestanda i webbläsaren och hur Three.js förenklar avancerade GPU-arbetsflöden och shader-utveckling, samt presenterade Hology — en 3D- och VR-kreativ motor byggd med TypeScript som möjliggör JavaScript och React för UI.",
+		"speakers": [
+			{
+				"name": "Anton Strandqvist",
+				"title": "",
+				"company": ""
+			},
+			{
+				"name": "Adam Ringhede",
+				"title": "",
+				"company": "Hology"
+			},
+			{
+				"name": "Annie Tsai",
+				"title": "",
+				"company": "Hology"
+			}
+		]
+	},
+	{
+		"id": "310852129",
+		"title": "Securing LLMs: OWASP Top 10 & Brain Tumor Segmentation with Deep Learning",
+		"dateTime": "2025-10-21T17:30:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "HiQ",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 89
+		},
+		"summary": "Two talks covering distinct areas of applied AI. The first used the OWASP Top 10 as a framework to illustrate how LLM vulnerabilities manifest in real systems and how testing techniques such as exploratory testing, risk analysis, and monitoring can mitigate them. The second provided an overview of deep learning approaches to brain tumor segmentation in MRI scans, comparing and combining different models to evaluate segmentation performance.",
+		"summary_sv": "Två föredrag om tillämpat AI inom olika domäner. Det första använde OWASP Top 10 som ramverk för att illustrera hur LLM-sårbarheter uppstår i verkliga system och hur testtekniker som explorativ testning, riskanalys och övervakning kan motverka dem. Det andra gav en översikt av djupinlärningsmetoder för segmentering av hjärntumörer i MRI-bilder, med jämförelse och kombination av olika modeller.",
+		"speakers": [
+			{
+				"name": "Maryia Tuleika",
+				"title": "Quality Engineering Leader",
+				"company": "Regent AB"
+			},
+			{
+				"name": "Ida Kols",
+				"title": "Consultant",
+				"company": "HIQ"
+			}
+		]
+	},
+	{
+		"id": "307404170",
+		"title": "Engineering Leadership — 1st Edition",
+		"dateTime": "2025-05-13T17:30:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Mojang Studios",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 58
+		},
+		"summary": "Lightning talks on engineering leadership challenges, hosted at Mojang Studios. Speakers introduced the concept of 'Technical Debt of Values' as a dimension for technical leaders to consider, and explored how to balance day-to-day operational demands with strategic leadership responsibilities.",
+		"summary_sv": "Kortföredrag om ledarskapsutmaningar, arrangerade på Mojang Studios. Talarna introducerade konceptet 'Technical Debt of Values' som en ny dimension för teknikledare, och utforskade hur man balanserar operativa krav med strategiskt ledarskapsansvar.",
+		"speakers": [
+			{
+				"name": "Elvira Khamsin",
+				"title": "Engineering Manager",
+				"company": "Mojang Studios"
+			},
+			{
+				"name": "Elham Khorami",
+				"title": "Head of Production System",
+				"company": "Ericsson"
+			}
+		]
+	},
+	{
+		"id": "302812705",
+		"title": "SQLite Migration and Data Structures in Frontend",
+		"dateTime": "2024-08-29T17:30:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Bonnier News",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 82
+		},
+		"summary": "Two technical talks on database architecture and frontend engineering. The first was a case study on migrating from Cloud SQL to SQLite in a Node.js API, achieving a 10× reduction in P99 latency and 90% cost savings at 50 million users. The second explored how classic data structures and algorithms appear in prominent open-source frontend projects such as React-Redux, VSCode, and Angular.",
+		"summary_sv": "Två tekniska föredrag om databasarkitektur och frontendutveckling. Det första var en fallstudie om migration från Cloud SQL till SQLite i ett Node.js API — med 10× lägre P99-latens och 90% kostnadsbesparingar för 50 miljoner användare. Det andra utforskade hur klassiska datastrukturer och algoritmer tillämpas i välkända open source-frontendprojekt som React-Redux, VSCode och Angular.",
+		"speakers": [
+			{
+				"name": "Jon Eldeklint",
+				"title": "",
+				"company": ""
+			},
+			{
+				"name": "Jiaxun Wei",
+				"title": "",
+				"company": ""
+			}
+		]
+	},
+	{
+		"id": "300968183",
+		"title": "How to Start Your Tech Career in Sweden?",
+		"dateTime": "2024-05-25T11:00:00+02:00",
+		"eventType": "ONLINE",
+		"venue": {
+			"name": "Online",
+			"city": ""
+		},
+		"rsvps": {
+			"totalCount": 56
+		},
+		"summary": "An online webinar guiding international professionals into the Swedish tech industry. Topics included finding tech jobs in Sweden, effective networking strategies, standing out as a candidate, trends in the Swedish tech market, and pathways into IT without prior experience.",
+		"summary_sv": "Ett onlinewebbinarium med fokus på att vägleda internationella yrkespersoner in i den svenska teknikindustrin. Ämnen inkluderade hur man hittar teknikjobb i Sverige, effektiva nätverksstrategier, hur man sticker ut som kandidat, trender på den svenska tech-marknaden, samt vägar in i IT utan tidigare erfarenhet.",
+		"speakers": []
+	},
+	{
+		"id": "300426514",
+		"title": "Webbtillgänglighet: Så fungerar en skärmläsare",
+		"dateTime": "2024-05-23T18:30:00+02:00",
+		"eventType": "ONLINE",
+		"venue": {
+			"name": "Online",
+			"city": ""
+		},
+		"rsvps": {
+			"totalCount": 113
+		},
+		"summary": "An online session on web accessibility focused on how screen readers function. Expert user Susanne Arnesson demonstrated the fundamentals of screen reader usage and highlighted what developers need to consider when building websites to ensure they are understandable to screen reader software.",
+		"summary_sv": "En onlinesession om webbtillgänglighet med fokus på hur skärmläsare fungerar. Expertanvändaren Susanne Arnesson demonstrerade grunderna i skärmläsaranvändning och belyste vad utvecklare behöver tänka på när de bygger webbplatser för att säkerställa att de är förståeliga för skärmläsarprogramvara.",
+		"speakers": [
+			{
+				"name": "Susanne Arnesson",
+				"title": "Screen Reader Expert User",
+				"company": ""
+			}
+		]
+	},
+	{
+		"id": "300433851",
+		"title": "Global Accessibility Awareness Day with Whitespace",
+		"dateTime": "2024-05-16T18:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Helio Slussen",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 80
+		},
+		"summary": "Four talks on digital accessibility for Global Accessibility Awareness Day. Speakers examined the state of web accessibility in Sweden five years after the DOS Act, the requirement to respect user preferences per EN 301 549 criterion 11.7, challenges and opportunities for visually impaired users in modern digital society, and the accessibility issues inherent in toggle controls on the web.",
+		"summary_sv": "Fyra föredrag om digital tillgänglighet för Global Accessibility Awareness Day. Talarna undersökte tillgänglighetens tillstånd i Sverige fem år efter DOS-lagen, kravet att respektera användarinställningar enligt EN 301 549 kriterium 11.7, utmaningar och möjligheter för personer med synnedsättning i det moderna digitala samhället, samt tillgänglighetsproblemen med toggle-kontroller på webben.",
+		"speakers": [
+			{
+				"name": "Marcus Österberg",
+				"title": "Web Analyst and Business Developer",
+				"company": "Whitespace"
+			},
+			{
+				"name": "Jeanin Day",
+				"title": "UX Lead",
+				"company": "Whitespace"
+			},
+			{
+				"name": "Ilias Bennani",
+				"title": "Accessibility Specialist",
+				"company": "Post- och telestyrelsen"
+			},
+			{
+				"name": "Claudio Quitral",
+				"title": "Support Administrator",
+				"company": "Synskadades Riksförbund"
+			}
+		]
+	},
+	{
+		"id": "300454223",
+		"title": "Designer Talk: Making UX Happen in Different Contexts",
+		"dateTime": "2024-05-15T18:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Goto 10",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 34
+		},
+		"summary": "A practitioner-focused UX evening with two talks exploring how designers navigate real-world constraints. The first covered strategies for driving UX results in professional environments as a junior designer. The second addressed how to create UX writing guidelines from scratch, drawing on a background in journalism and linguistics.",
+		"summary_sv": "En praktikerinriktad UX-kväll med två föredrag om hur designers navigerar verkliga begränsningar. Det första behandlade strategier för att driva UX-resultat i professionella miljöer som junior designer. Det andra behandlade hur man skapar UX-skrivande riktlinjer från grunden, med bakgrund i journalistik och lingvistik.",
+		"speakers": [
+			{
+				"name": "Terry Y. Han",
+				"title": "UX Designer",
+				"company": ""
+			},
+			{
+				"name": "Olga Limonova",
+				"title": "Product Designer",
+				"company": ""
+			}
+		]
+	},
+	{
+		"id": "300488023",
+		"title": "Modern Frontend Engineering at Mentimeter",
+		"dateTime": "2024-05-14T17:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Mentimeter",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 104
+		},
+		"summary": "Three talks on frontend engineering, hosted at Mentimeter. Speakers covered the evolution of Mentimeter's frontend infrastructure, the nature and role of abstractions in software development, and a deep dive into React Server Components — how they work, their benefits, and practical implications for production applications.",
+		"summary_sv": "Tre föredrag om frontendutveckling, arrangerade på Mentimeter. Talarna behandlade utvecklingen av Mentimeters frontendinfrastruktur, abstraktionernas natur och roll i mjukvaruutveckling, samt en djupdykning i React Server Components — hur de fungerar, deras fördelar och praktiska implikationer för produktionsapplikationer.",
+		"speakers": [
+			{
+				"name": "Oliver Stenbom",
+				"title": "",
+				"company": "Mentimeter"
+			},
+			{
+				"name": "Emma Backstrom",
+				"title": "",
+				"company": "Mentimeter"
+			},
+			{
+				"name": "Jaunius Eitmantis",
+				"title": "",
+				"company": "Mentimeter"
+			}
+		]
+	},
+	{
+		"id": "300185670",
+		"title": "Object Detection in the Browser and Frontend Performance",
+		"dateTime": "2024-04-18T18:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Umain",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 110
+		},
+		"summary": "Two talks on machine learning and frontend performance. The first was a case study on training a custom YOLO object detection model and running it in mobile browsers for a McDonald's Sweden deployment. The second addressed obtaining organisational buy-in for frontend performance work, presenting a governance framework to help developers make the business case for performance improvements.",
+		"summary_sv": "Två föredrag om maskininlärning och frontend-prestanda. Det första var en fallstudie om att träna en anpassad YOLO-objektdetekteringsmodell och köra den i mobilwebbläsare för McDonald's Sverige. Det andra behandlade utmaningen att få organisatoriskt stöd för frontendutvecklingsarbete, och presenterade ett styrningsramverk för att göra affärsfallet för prestandaförbättringar.",
+		"speakers": [
+			{
+				"name": "Viktor Åsbrink",
+				"title": "",
+				"company": ""
+			},
+			{
+				"name": "Vinicius Dallacqua",
+				"title": "",
+				"company": ""
+			}
+		]
+	},
+	{
+		"id": "298891648",
+		"title": "TDD with React, Jest and React Testing Library",
+		"dateTime": "2024-03-19T17:30:00+01:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "HiQ",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 83
+		},
+		"summary": "A practical session on Test-Driven Development with React, covering how TDD and React work together to create robust test suites, guide more modular code, and reduce bugs. The talk provided actionable insights and basic tips for applying TDD with Jest and React Testing Library in real-world projects.",
+		"summary_sv": "En praktisk session om testdriven utveckling (TDD) med React, som täckte hur TDD och React samverkar för att skapa robusta testsviter, guida mer modulär kod och minska buggar. Föredraget gav konkreta insikter och grundläggande tips för att tillämpa TDD med Jest och React Testing Library i verkliga projekt.",
+		"speakers": [
+			{
+				"name": "Naim Latifi",
+				"title": "Frontend Lead",
+				"company": "HIQ"
+			}
+		]
+	},
+	{
+		"id": "299057998",
+		"title": "Accessibility   at Futurice",
+		"dateTime": "2024-03-07T18:00:00+01:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Futurice",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 63
+		},
+		"summary": "Three talks on digital accessibility hosted by Futurice. The first explored focus management techniques that provide better feedback to keyboard and screen reader users when content changes. The second introduced EDF's 'Inclusive AI' project, advocating for the rights of persons with disabilities in AI development. The third facilitated a discussion on accessibility overlays — what they are, how they work, and why they remain controversial.",
+		"summary_sv": "Tre föredrag om digital tillgänglighet arrangerade av Futurice. Det första utforskade fokushanteringstekniker som ger bättre återkoppling till tangentbords- och skärmläsaranvändare när innehåll ändras. Det andra introducerade EDFs 'Inclusive AI'-projekt, som förespråkar rättigheter för personer med funktionsnedsättning i AI-utveckling. Det tredje ledde en diskussion om tillgänglighetsöverlays — vad de är, hur de fungerar och varför de förblir kontroversiella.",
+		"speakers": [
+			{
+				"name": "Emma Dawson",
+				"title": "Software Developer",
+				"company": "Futurice"
+			},
+			{
+				"name": "Kave Noori",
+				"title": "AI Policy Officer",
+				"company": "EDF (European Disability Forum)"
+			}
+		]
+	},
+	{
+		"id": "298753123",
+		"title": "JavaScript Metaprogramming and Performance Optimisation",
+		"dateTime": "2024-02-06T18:30:00+01:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Stockholm Waterfront Congress Centre",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 117
+		},
+		"summary": "Two internationally sourced talks on JavaScript metaprogramming and performance optimisation. Speakers covered JavaScript's metaprogramming capabilities — including Proxy, Reflect, and related APIs — and how modern frameworks leverage them, then explored gaming industry optimisation design patterns and how web developers can apply them to improve CPU and memory performance.",
+		"summary_sv": "Två internationella föredrag om JavaScript-metaprogrammering och prestandaoptimering. Talarna täckte JavaScripts metaprogrammeringsförmågor — inklusive Proxy, Reflect och relaterade API:er — och hur moderna ramverk utnyttjar dem, samt utforskade optimeringsdesignmönster från spelindustrin och hur webbutvecklare kan tillämpa dem för att förbättra CPU- och minnesprestanda.",
+		"speakers": [
+			{
+				"name": "Dr. Venkat Subramaniam",
+				"title": "Award-Winning Author & Instructional Professor",
+				"company": "Agile Developer / University of Houston"
+			},
+			{
+				"name": "Yonatan Kra",
+				"title": "Software Architect & egghead.io Instructor",
+				"company": "Vonage"
+			}
+		]
+	},
+	{
+		"id": "297231695",
+		"title": "Getting Started Building Generative AI Applications",
+		"dateTime": "2023-11-22T17:00:00+01:00",
+		"eventType": "ONLINE",
+		"venue": {
+			"name": "Online",
+			"city": ""
+		},
+		"rsvps": {
+			"totalCount": 31
+		},
+		"summary": "An online introductory session for developers wanting to build generative AI applications. The talk covered the foundations of generative AI, basic and advanced prompt engineering, how to compare and explore different large language model types, and practical next steps for getting started with generative AI projects.",
+		"summary_sv": "En online introduktionssession för utvecklare som vill bygga generativa AI-applikationer. Föredraget täckte grunderna i generativ AI, grundläggande och avancerad prompt engineering, hur man jämför och utforskar olika typer av stora språkmodeller, samt praktiska nästa steg för att komma igång.",
+		"speakers": []
+	},
+	{
+		"id": "297090893",
+		"title": "AI Agents with JavaScript and React Server Components",
+		"dateTime": "2023-11-14T18:00:00+01:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Axakon",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 90
+		},
+		"summary": "Two talks on AI agents and React architecture. Speakers introduced autonomous AI agents built with JavaScript — covering how LLMs can be augmented for multi-step processes through agent design patterns — then explained React Server Components, production-ready in Next.js 14, covering their concepts, use cases, and adoption considerations.",
+		"summary_sv": "Två föredrag om AI-agenter och React-arkitektur. Talarna introducerade autonoma AI-agenter byggda med JavaScript — hur stora språkmodeller kan förstärkas för flerstegsprocesser — och förklarade sedan React Server Components, produktionsklara i Next.js 14, med fokus på deras koncept, användningsfall och om team bör adoptera dem.",
+		"speakers": [
+			{
+				"name": "Jacob Bergdahl",
+				"title": "",
+				"company": ""
+			},
+			{
+				"name": "Albin Groen",
+				"title": "",
+				"company": ""
+			}
+		]
+	},
+	{
+		"id": "296506722",
+		"title": "Developer Experience and AI Pair Programming",
+		"dateTime": "2023-10-19T17:30:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "PE Accounting",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 100
+		},
+		"summary": "Two talks on developer wellbeing and AI-assisted programming. The first explored developer experience from a holistic perspective — how developers can pursue happiness and meaningful impact within the tech industry. The second provided practical insights into AI pair programming, covering the benefits, challenges, and best practices demonstrated through a live session.",
+		"summary_sv": "Två föredrag om utvecklarupplevelse och AI-assisterad programmering. Det första utforskade utvecklarupplevelse ur ett holistiskt perspektiv — hur utvecklare kan sträva efter välmående och meningsfull påverkan i teknikindustrin. Det andra gav praktiska insikter om AI-parprogrammering med fördelar, utmaningar och best practices i en live-demonstration.",
+		"speakers": [
+			{
+				"name": "Isak Utegård",
+				"title": "",
+				"company": ""
+			},
+			{
+				"name": "Daniel Anbarestani",
+				"title": "",
+				"company": ""
+			}
+		]
+	},
+	{
+		"id": "294596520",
+		"title": "Cybersäkerhet utifrån brottslingarnas perspektiv",
+		"dateTime": "2023-09-28T17:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "The Park",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 46
+		},
+		"summary": "A cybersecurity seminar examining cybercrime from the attacker's perspective. Two security professionals guided attendees through how cybercriminals operate, how cybercrime is organised, and what the real risks look like — with the explicit goal of improving defenders' understanding of how to protect themselves and their organisations.",
+		"summary_sv": "Ett cybersäkerhetsseminarium som undersökte cyberbrottslighet ur angriparens perspektiv. Två säkerhetsproffs guidade deltagarna genom hur cyberkriminella opererar, hur cyberbrottslighet är organiserad och hur riskerna ser ut i praktiken — med målet att förbättra försvarares förståelse för hur man skyddar sig och sina organisationer.",
+		"speakers": [
+			{
+				"name": "Peter Aspenberg",
+				"title": "IT Security Entrepreneur",
+				"company": "Independent"
+			},
+			{
+				"name": "Johnny Krogsboll",
+				"title": "Security Services Lead",
+				"company": "IT Security Company"
+			}
+		]
+	},
+	{
+		"id": "295742353",
+		"title": "Accessibility   at Nexer",
+		"dateTime": "2023-09-26T18:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Nexer Group",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 75
+		},
+		"summary": "An accessibility-focused evening hosted by Nexer Group. Talks covered digital accessibility practices, inclusive design patterns, and strategies for testing and improving accessibility compliance in web and mobile products.",
+		"summary_sv": "En tillgänglighetsriktad kväll arrangerad av Nexer Group. Föredragen täckte digital tillgänglighet, inkluderande designmönster och strategier för att testa och förbättra tillgänglighetsefterlevnad i webb- och mobilprodukter.",
+		"speakers": []
+	},
+	{
+		"id": "293759670",
+		"title": "Tech Talk at Hemnet",
+		"dateTime": "2023-06-13T08:30:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Hemnet",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 110
+		},
+		"summary": "A morning of talks and discussions on engineering and product development hosted at Hemnet — one of Sweden's most-visited property platforms.",
+		"summary_sv": "Föredrag och diskussioner om ingenjörsarbete och produktutveckling arrangerade hos Hemnet — en av Sveriges mest besökta fastighetsplattformar.",
+		"speakers": []
+	},
+	{
+		"id": "293401705",
+		"title": "Integrating ChatGPT into Applications",
+		"dateTime": "2023-05-31T18:00:00+02:00",
+		"eventType": "ONLINE",
+		"venue": {
+			"name": "Online",
+			"city": ""
+		},
+		"rsvps": {
+			"totalCount": 68
+		},
+		"summary": "An online session covering how to integrate ChatGPT's API into applications. Topics included the OpenAI chat completions API, prompt design, and approaches for adding conversational AI capabilities to existing products and services.",
+		"summary_sv": "En online-session om att integrera ChatGPT:s API i applikationer. Ämnen inkluderade OpenAI:s chat completions API, promptdesign och hur man lägger till konversations-AI-funktioner i befintliga produkter och tjänster.",
+		"speakers": []
+	},
+	{
+		"id": "293272138",
+		"title": "What Makes a Good Video Game?",
+		"dateTime": "2023-05-08T18:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "HiQ",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 18
+		},
+		"summary": "An evening at HiQ exploring the intersection of game design and software engineering. The talk examined the elements that make a video game compelling — from mechanics and narrative to interactivity and the technical decisions that shape the player experience.",
+		"summary_sv": "En kväll på HiQ som utforskade skärningspunkten mellan speldesign och mjukvaruutveckling. Föredraget undersökte elementen som gör ett videospel engagerande — från spelmekanik och narrativ till interaktivitet och tekniska val som formar spelarupplevelsen.",
+		"speakers": []
+	},
+	{
+		"id": "292842310",
+		"title": "JavaScript and Frontend Engineering",
+		"dateTime": "2023-04-25T18:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Bonnier News",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 90
+		},
+		"summary": "Talks on practical JavaScript and frontend engineering, with developers sharing techniques and tools from production environments.",
+		"summary_sv": "Föredrag om praktisk JavaScript- och frontendutveckling med utvecklare som delade tekniker och verktyg från produktionsmiljöer.",
+		"speakers": []
+	},
+	{
+		"id": "291725917",
+		"title": "Requirement Management with GitHub Issues",
+		"dateTime": "2023-03-09T12:00:00+01:00",
+		"eventType": "ONLINE",
+		"venue": {
+			"name": "Online",
+			"city": ""
+		},
+		"rsvps": {
+			"totalCount": 11
+		},
+		"summary": "An online session on using GitHub Issues as a lightweight requirement management system. The talk covered issue templates, milestones, labels, and GitHub Projects integration to track and prioritise development work across teams.",
+		"summary_sv": "En online-session om att använda GitHub Issues som ett lättviktigt kravhanteringssystem. Föredraget täckte issue-mallar, milstolpar, etiketter och integration med GitHub Projects för att spåra och prioritera utvecklingsarbete.",
+		"speakers": []
+	},
+	{
+		"id": "291682729",
+		"title": "GitHub for Modern Developers",
+		"dateTime": "2023-03-02T12:00:00+01:00",
+		"eventType": "ONLINE",
+		"venue": {
+			"name": "Online",
+			"city": ""
+		},
+		"rsvps": {
+			"totalCount": 39
+		},
+		"summary": "An online introduction to modern GitHub workflows and tooling. Topics included collaborative development practices, pull request workflows, GitHub Actions for CI/CD automation, and security features relevant to modern development teams.",
+		"summary_sv": "En online-introduktion till moderna GitHub-arbetsflöden och verktyg. Ämnen inkluderade samarbetsutveckling, pull request-arbetsflöden, GitHub Actions för CI/CD-automatisering och säkerhetsfunktioner relevanta för moderna utvecklingsteam.",
+		"speakers": []
+	},
+	{
+		"id": "291443510",
+		"title": "Tech Quiz Night",
+		"dateTime": "2023-02-23T18:00:00+01:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Skeppsbar",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 4
+		},
+		"summary": "A community evening combining technology trivia and networking. Participants from Stockholm's developer community competed in a tech-themed quiz covering programming languages, frameworks, and computer science concepts.",
+		"summary_sv": "En gemenskapskväll som kombinerade teknik-trivia och nätverkande. Deltagare från Stockholms utvecklarcommunity tävlade i ett teknikquiz med ämnen från programmeringsspråk, ramverk och datorvetenskapliga koncept.",
+		"speakers": []
+	},
+	{
+		"id": "291154603",
+		"title": "JavaScript Trends and Frontend Patterns",
+		"dateTime": "2023-02-07T18:30:00+01:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Stockholm Waterfront Congress Centre",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 87
+		},
+		"summary": "Two talks on JavaScript development trends and frontend engineering patterns, with presentations drawing on topics from the broader Jfokus 2023 conference programme.",
+		"summary_sv": "Två föredrag om JavaScript-trender och frontend-mönster med presentationer inspirerade av det bredare Jfokus 2023-konferensprogrammet.",
+		"speakers": []
+	},
+	{
+		"id": "289719709",
+		"title": "Advanced JavaScript Patterns and Frontend Development",
+		"dateTime": "2022-11-30T18:00:00+01:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Microsoft Reactor @ Epicenter",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 81
+		},
+		"summary": "Talks on advanced JavaScript patterns and frontend development, with Stockholm-based developers sharing techniques from production environments.",
+		"summary_sv": "Föredrag om avancerade JavaScript-mönster och frontendutveckling med Stockholmsbaserade utvecklare som delade tekniker från produktionsmiljöer.",
+		"speakers": []
+	},
+	{
+		"id": "289688520",
+		"title": "Spotify on TV and Game Consoles",
+		"dateTime": "2022-11-23T18:00:00+01:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Spotify",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 50
+		},
+		"summary": "A deep dive from Spotify engineers on building client applications for TV and gaming platforms. The talk covered the unique technical challenges of developing for constrained device environments, including performance optimisation, navigation design, and cross-platform code sharing strategies.",
+		"summary_sv": "En djupdykning från Spotifys ingenjörer om att bygga klientapplikationer för TV- och spelplattformar. Föredraget täckte de tekniska utmaningarna med att utveckla för begränsade enhetsmiljöer, inklusive prestandaoptimering, navigationsdesign och strategier för koddelning.",
+		"speakers": []
+	},
+	{
+		"id": "289642121",
+		"title": "Social Evening at Hemnet",
+		"dateTime": "2022-11-21T16:20:00+01:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Hemnet",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 19
+		},
+		"summary": "A social gathering and networking evening hosted by Hemnet, bringing together developers and tech professionals for informal networking and team-based activities.",
+		"summary_sv": "En social sammankomst arrangerad av Hemnet, som samlade utvecklare och tekniker för informellt nätverkande och lagbaserade aktiviteter.",
+		"speakers": []
+	},
+	{
+		"id": "289401021",
+		"title": "Tech Talks on Impact",
+		"dateTime": "2022-11-14T18:00:00+01:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "SPACE Stockholm",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 97
+		},
+		"summary": "An evening focused on the societal and business impact of technology. Speakers shared projects and initiatives where technical innovation created measurable outcomes in sustainability, social equity, and scalable product development.",
+		"summary_sv": "En kväll med fokus på teknikens samhälleliga och affärsmässiga påverkan. Talare delade projekt och initiativ där teknisk innovation skapade mätbara resultat inom hållbarhet, social rättvisa och skalbar produktutveckling.",
+		"speakers": []
+	},
+	{
+		"id": "288759415",
+		"title": "JavaScript Tooling and Modern Web Development",
+		"dateTime": "2022-10-13T18:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "ArK",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 24
+		},
+		"summary": "Talks on JavaScript tooling and frontend development patterns, with community presentations on current challenges in modern web development.",
+		"summary_sv": "Föredrag om JavaScript-verktyg och frontend-mönster med presentationer om aktuella utmaningar inom modern webbutveckling.",
+		"speakers": []
+	},
+	{
+		"id": "285568492",
+		"title": "Terminal Workshop",
+		"dateTime": "2022-10-05T17:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "46elks",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 4
+		},
+		"summary": "A hands-on workshop on terminal and command-line proficiency for developers. Participants explored shell tools, scripting basics, and workflows that streamline the day-to-day development experience.",
+		"summary_sv": "En praktisk workshop om terminal- och kommandoradsfärdigheter för utvecklare. Deltagarna utforskade shell-verktyg, grundläggande skriptning och arbetsflöden som effektiviserar den dagliga utvecklingsupplevelsen.",
+		"speakers": []
+	},
+	{
+		"id": "288213492",
+		"title": "Modern JavaScript Development",
+		"dateTime": "2022-09-15T18:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "SeenThis",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 61
+		},
+		"summary": "Talks on modern JavaScript development from Stockholm-based engineers sharing perspectives from their production work.",
+		"summary_sv": "Föredrag om modern JavaScript-utveckling med Stockholmsingenjörer som delade perspektiv från deras produktionsarbete.",
+		"speakers": []
+	},
+	{
+		"id": "287900317",
+		"title": "Community Game Night",
+		"dateTime": "2022-09-08T18:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "FreeCode",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 24
+		},
+		"summary": "A social gathering for Stockholm's tech community with team-based games and informal networking, organised as part of a regular series of community events for local developers.",
+		"summary_sv": "En social sammankomst för Stockholms tech-community med lagbaserade spel och informellt nätverkande, arrangerat som del av en serie communityevenemang för lokala utvecklare.",
+		"speakers": []
+	},
+	{
+		"id": "287864954",
+		"title": "Brainstorming and Brews at Spotify",
+		"dateTime": "2022-09-07T18:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Spotify",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 124
+		},
+		"summary": "An open-format ideation evening at Spotify bringing together developers and tech professionals for collaborative brainstorming, idea exchange, and informal networking at Spotify's Stockholm offices.",
+		"summary_sv": "En öppen idégenereringskväll på Spotify som samlade utvecklare och tekniker för samarbetsbaserat brainstormande, idéutbyte och informellt nätverkande på Spotifys Stockholmskontor.",
+		"speakers": []
+	},
+	{
+		"id": "285992822",
+		"title": "Java Trends and ECMAScript 2021 New Features",
+		"dateTime": "2022-09-01T17:30:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "HiQ",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 29
+		},
+		"summary": "Two talks at HiQ covering major programming language updates. The first explored upcoming trends in the Java ecosystem, and the second provided a practical overview of ECMAScript 2021 (ES12) new features, including new string methods, logical assignment operators, and Promise improvements.",
+		"summary_sv": "Två föredrag på HiQ om uppdateringar i stora programmeringsspråk. Det första utforskade kommande trender i Java-ekosystemet, och det andra gav en praktisk översikt av ECMAScript 2021 (ES12) nyheter, inklusive nya string-metoder, logiska tilldelningsoperatorer och Promise-förbättringar.",
+		"speakers": []
+	},
+	{
+		"id": "286134411",
+		"title": "Tech   with Atomico",
+		"dateTime": "2022-06-22T18:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "SPACE Stockholm",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 54
+		},
+		"summary": "A tech evening in collaboration with Atomico, the pan-European venture capital firm. The event covered the European startup ecosystem, investment trends, and what it takes to build category-defining technology companies at scale.",
+		"summary_sv": "En tech-kväll i samarbete med Atomico, det europeiska riskkapitalbolaget. Evenemanget täckte det europeiska startup-ekosystemet, investeringstrender och vad som krävs för att bygga kategoridefinierande teknikföretag i stor skala.",
+		"speakers": []
+	},
+	{
+		"id": "286338840",
+		"title": "Cloud Developer Group Stockholm at Google",
+		"dateTime": "2022-06-13T15:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Google",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 71
+		},
+		"summary": "The Google Developer Group Cloud Stockholm visited Google's Stockholm office for an afternoon of talks and networking. Sessions covered Google Cloud services, modern cloud architecture patterns, and developer tooling.",
+		"summary_sv": "Google Developer Group Cloud Stockholm besökte Googles Stockholmskontor för en eftermiddag med föredrag och nätverkande. Sessioner täckte Google Cloud-tjänster, moderna molnarkitekturmönster och utvecklarverktyg.",
+		"speakers": []
+	},
+	{
+		"id": "285924797",
+		"title": "Tech Breakfast at Scandinavian Airlines",
+		"dateTime": "2022-06-03T09:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Scandinavian Airlines",
+			"city": "Solna"
+		},
+		"rsvps": {
+			"totalCount": 3
+		},
+		"summary": "A morning event exploring technology and innovation in the aviation industry. Topics covered digital transformation initiatives, the future of aviation technology, and career opportunities at the intersection of tech and travel.",
+		"summary_sv": "Ett morgonevenemang om teknik och innovation i flygbranschen. Ämnen täckte initiativ för digital transformation, framtiden för flygteknik och karriärmöjligheter i skärningspunkten mellan tech och resande.",
+		"speakers": []
+	},
+	{
+		"id": "285948015",
+		"title": "Om designsystem och typsäkra webbapplikationer",
+		"dateTime": "2022-05-24T18:30:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Curb Food",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 84
+		},
+		"summary": "Talks on design systems and type-safe web application development. Speakers explored practical approaches to building and maintaining design systems, and discussed techniques for achieving type safety in modern frontend projects.",
+		"summary_sv": "Föredrag om designsystem och typsäkra webbapplikationer. Talarna utforskade praktiska metoder för att bygga och underhålla designsystem, och diskuterade tekniker för att uppnå typsäkerhet i moderna frontendprojekt.",
+		"speakers": []
+	},
+	{
+		"id": "182614972",
+		"title": "Italian Language Exchange",
+		"dateTime": "2014-05-18T15:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Cafe Art",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 3
+		},
+		"summary": "A regular Italian language exchange in Stockholm. Participants practised spoken Italian in an informal social setting with both native speakers and learners.",
+		"summary_sv": "Ett regelbundet italienskt språkutbyte i Stockholm. Deltagare övade talad italienska i en informell social miljö med modersmålstalare och inlärare.",
+		"speakers": []
+	},
+	{
+		"id": "179780512",
+		"title": "Italian Language Exchange",
+		"dateTime": "2014-05-04T15:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Cafe Art",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 3
+		},
+		"summary": "A regular Italian language exchange in Stockholm. Participants practised spoken Italian in an informal social setting with both native speakers and learners.",
+		"summary_sv": "Ett regelbundet italienskt språkutbyte i Stockholm. Deltagare övade talad italienska i en informell social miljö med modersmålstalare och inlärare.",
+		"speakers": []
+	}
+]
