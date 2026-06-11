@@ -61,7 +61,7 @@ export default defineNuxtConfig({
           `,
 				},
 				{
-					src: '//gc.zgo.at/count.js',
+					src: '/count.js',
 					defer: true,
 					'data-goatcounter': 'https://ivona.goatcounter.com/count',
 				},
