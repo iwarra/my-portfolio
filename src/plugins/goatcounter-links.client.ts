@@ -13,7 +13,7 @@ export default defineNuxtPlugin(() => {
 
     // Download tracking
     if (ext && DOWNLOAD_EXTENSIONS.includes(ext)) {
-      window.goatcounter?.count({
+      window.goatcounter?.count?.({
         event: true,
         path: `download/${url.pathname}`,
       })
@@ -22,7 +22,7 @@ export default defineNuxtPlugin(() => {
 
     // Outbound tracking
     if (url.origin !== window.location.origin) {
-      window.goatcounter?.count({
+      window.goatcounter?.count?.({
         event: true,
         path: `outbound/${url.hostname}`,
       })

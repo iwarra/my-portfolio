@@ -3,7 +3,7 @@ export default defineNuxtPlugin(() => {
   const router = useRouter()
 
   router.afterEach(to => {
-      window.goatcounter?.count({
+      window.goatcounter?.count?.({
         path: to.fullPath,
         title: document.title,
       })
