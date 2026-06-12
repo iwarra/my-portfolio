@@ -61,7 +61,7 @@ let currentYear = now.getFullYear();
 				<NuxtLink to="/">
 					<img
 						src="/logo.png"
-						alt=""
+						alt="Home"
 						class="header-logo" />
 				</NuxtLink>
 				<div
@@ -138,7 +138,7 @@ let currentYear = now.getFullYear();
 	<footer>
 		<div class="footer-wrapper">
 			<small class="footer-copy">Copyright ©{{currentYear}} Ivona Josipovic</small>
-			<a href="#">
+			<a href="#" aria-label="Back to top">
 				<component
 					class="footer-icon"
 					is="IconsCircle" />

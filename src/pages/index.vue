@@ -1,7 +1,6 @@
 <script setup>
 useHead({
 	script: [
-		{ src: 'https://identity.netlify.com/v1/netlify-identity-widget.js' },
 		{
 			type: 'application/ld+json',
 			innerHTML: JSON.stringify({
@@ -157,8 +156,8 @@ const handleScroll = (direction, element) => {
 								<li v-if="project.links.gitHub !== ''">
 									<a :href="project.links.gitHub">GitHub</a>
 								</li>
-								<span v-else>Private repo</span>
-								<span>|</span>
+								<li v-else>Private repo</li>
+								<li aria-hidden="true">|</li>
 								<li v-if="project.links.liveDemo !== ''">
 									<a
 										:href="project.links.liveDemo"
@@ -166,7 +165,7 @@ const handleScroll = (direction, element) => {
 										>Live Demo</a
 									>
 								</li>
-								<span v-else>In progress</span>
+								<li v-else>In progress</li>
 							</ul>
 						</div>
 					</li>
@@ -283,7 +282,8 @@ const handleScroll = (direction, element) => {
 					<li>
 						<a
 							href="https://www.linkedin.com/in/ivona-josipovic/"
-							target="_blank">
+							target="_blank"
+							aria-label="LinkedIn profile">
 							<component
 								is="IconsLinkedin"
 								class="contact-icon" />
@@ -292,7 +292,8 @@ const handleScroll = (direction, element) => {
 					<li>
 						<a
 							href="mailto:josipovic.ivona@gmail.com"
-							target="_blank">
+							target="_blank"
+							aria-label="Send email">
 							<component
 								is="IconsMail"
 								class="contact-icon" />
@@ -301,7 +302,8 @@ const handleScroll = (direction, element) => {
 					<li>
 						<a
 							href="https://github.com/iwarra"
-							target="_blank">
+							target="_blank"
+							aria-label="GitHub profile">
 							<component
 								is="IconsGithub"
 								class="contact-icon" />
