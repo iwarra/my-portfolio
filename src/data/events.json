@@ -1,5 +1,154 @@
 [
 	{
+		"id": "315100069",
+		"title": "Engineering in the Age of AI",
+		"dateTime": "2026-06-16T19:00:00+02:00",
+		"eventType": "ONLINE",
+		"venue": {
+			"name": "Online",
+			"city": ""
+		},
+		"rsvps": {
+			"totalCount": 70
+		},
+		"summary": "A panel and live-coding session on how AI is reshaping software engineering. Speakers discussed what great engineering looks like in an AI-first environment, how development, architecture, and product roles are converging, and what meaningful AI adoption requires. The evening concluded with a live-coding demonstration.",
+		"summary_sv": "En paneldiskussion och livekodning om hur AI förändrar mjukvaruutvecklingen. Talarna diskuterade vad som kännetecknar bra ingenjörsarbete i en AI-präglad miljö, hur roller inom utveckling, arkitektur och produktutveckling konvergerar, samt vad meningsfull AI-adoption innebär. Kvällen avslutades med en livekodningsdemonstration.",
+		"speakers": [
+			{
+				"name": "Kalpana Chari",
+				"title": "Head of Global Markets Technology",
+				"company": "Schroders"
+			},
+			{
+				"name": "Selina Pavan",
+				"title": "Ex-Director Global Markets Technology",
+				"company": ""
+			},
+			{
+				"name": "Lucia Pino-Garcia",
+				"title": "Chief Technology Officer",
+				"company": "Ninety One"
+			},
+			{
+				"name": "Lisa Heneghan",
+				"title": "Global Chief Digital Officer",
+				"company": "KPMG"
+			},
+			{
+				"name": "Frederica Caira",
+				"title": "Principal Software Engineer",
+				"company": "Schroders"
+			}
+		]
+	},
+	{
+		"id": "314270265",
+		"title": "Stockholm MLOps Summerbash!!!",
+		"dateTime": "2026-06-11T17:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "IBM",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 218
+		},
+		"summary": "A Stockholm MLOps summer event hosted at IBM, combining local startup presentations with rooftop networking, pizza, drinks, and music. The programme showcased companies working to push the local technology scene forward before the summer break.",
+		"summary_sv": "Ett Stockholmsevenemang om MLOps på IBM som kombinerade presentationer från lokala startups med nätverkande på takterrassen, pizza, dryck och musik. Programmet lyfte företag som driver den lokala teknikutvecklingen framåt inför sommaruppehållet.",
+		"speakers": []
+	},
+	{
+		"id": "314439389",
+		"title": "Token Efficiency & Air-Gapped MLOps",
+		"dateTime": "2026-06-03T17:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "AI Sweden",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 124
+		},
+		"summary": "An MLOps evening at AI Sweden focused on token efficiency and deploying AI in air-gapped environments. Talks covered vector search for more efficient AI agents, GenAI and MLOps under strict data-sovereignty constraints, MLOps for electronic warfare, and AI serving across cloud, on-premises, hybrid, and disconnected environments.",
+		"summary_sv": "En MLOps-kväll på AI Sweden med fokus på tokeneffektivitet och driftsättning av AI i luftgapade miljöer. Föredragen behandlade vektorsökning för effektivare AI-agenter, GenAI och MLOps under strikta krav på datasuveränitet, MLOps för elektronisk krigföring samt AI-serving i moln-, on-premises-, hybrid- och frånkopplade miljöer.",
+		"speakers": [
+			{
+				"name": "Ewa Szyszka",
+				"title": "DevRel Engineer",
+				"company": "Qdrant"
+			},
+			{
+				"name": "Markus Kjellner",
+				"title": "Regional Vice President, Nordics & Baltics",
+				"company": "Cloudera"
+			},
+			{
+				"name": "Peter Sundström",
+				"title": "AI & Digitalisation Transformation Lead",
+				"company": "SAAB"
+			},
+			{
+				"name": "Mikael Vesavuori",
+				"title": "Product Manager AI Products",
+				"company": "evroc"
+			}
+		]
+	},
+	{
+		"id": "314657754",
+		"title": "Managing a Career Break: Pause, Don’t Panic!",
+		"dateTime": "2026-05-27T13:00:00+02:00",
+		"eventType": "ONLINE",
+		"venue": {
+			"name": "Online",
+			"city": ""
+		},
+		"rsvps": {
+			"totalCount": 192
+		},
+		"summary": "An online session on navigating career breaks with confidence. Harpreet Dulai discussed how to explain time away from work, reframe career narratives authentically, and return to the job market on one's own terms, drawing on experience in technology transformation and mentoring.",
+		"summary_sv": "En onlinesession om att navigera karriärpauser med självförtroende. Harpreet Dulai diskuterade hur man förklarar frånvaro från arbetslivet, omformulerar sin karriärberättelse på ett autentiskt sätt och återvänder till arbetsmarknaden på sina egna villkor, med utgångspunkt i erfarenhet av tekniktransformation och mentorskap.",
+		"speakers": [
+			{
+				"name": "Harpreet Dulai",
+				"title": "Associate Director and Global Mentoring Lead",
+				"company": "EPAM"
+			}
+		]
+	},
+	{
+		"id": "314689772",
+		"title": "LeadDev Stockholm Meetup — 6th Edition",
+		"dateTime": "2026-05-26T17:30:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Amazon Web Services",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 97
+		},
+		"summary": "A LeadDev Stockholm evening on engineering leadership, hosted at Amazon Web Services. Talks covered giving AI context and autonomy in software development, building career resilience through LinkedIn, and the shift from product management toward product thinking.",
+		"summary_sv": "En LeadDev-kväll i Stockholm om ingenjörsledarskap, arrangerad hos Amazon Web Services. Föredragen behandlade hur AI kan få kontext och autonomi i mjukvaruutveckling, hur man bygger karriärresiliens genom LinkedIn samt skiftet från produktledning till produkttänkande.",
+		"speakers": [
+			{
+				"name": "Bruno Leite Alves",
+				"title": "",
+				"company": ""
+			},
+			{
+				"name": "Elvira Khamsin",
+				"title": "",
+				"company": ""
+			},
+			{
+				"name": "Cintia Henriksson",
+				"title": "",
+				"company": ""
+			}
+		]
+	},
+	{
 		"id": "314178329",
 		"title": "Designing, Embedding & Orchestrating Physical AI",
 		"dateTime": "2026-05-21T17:00:00+02:00",
