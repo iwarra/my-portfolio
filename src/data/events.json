@@ -1,5 +1,32 @@
 [
 	{
+		"id": "315504904",
+		"title": "Let the Agent Write It—But Can It Scale?",
+		"dateTime": "2026-08-13T18:00:00+02:00",
+		"eventType": "ONLINE",
+		"venue": {
+			"name": "Online",
+			"city": ""
+		},
+		"rsvps": {
+			"totalCount": 13
+		},
+		"summary": "A session on reviewing AI-generated Azure Cosmos DB code for scalability, RU efficiency, indexing strategy, and long-term maintainability. The event explored why code that works is not always production-ready.",
+		"summary_sv": "En session om granskning av AI-genererad Azure Cosmos DB-kod med fokus på skalbarhet, RU-effektivitet, indexeringsstrategi och långsiktig underhållbarhet. Evenemanget utforskade varför kod som fungerar inte alltid är redo för produktion.",
+		"speakers": [
+			{
+				"name": "Jay Gordon",
+				"title": "Senior Program Manager",
+				"company": "Azure Cosmos DB"
+			},
+			{
+				"name": "Sajeetharan Sinnathurai",
+				"title": "Principal Program Manager",
+				"company": "Azure Cosmos DB"
+			}
+		]
+	},
+	{
 		"id": "315100069",
 		"title": "Engineering in the Age of AI",
 		"dateTime": "2026-06-16T19:00:00+02:00",

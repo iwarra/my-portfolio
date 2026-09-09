@@ -3,7 +3,7 @@ export default {
 	home_pageSubtitle: 'I am a fullstack developer based in Stockholm',
 	home_ctaBtn1: 'Get my CV',
 	home_ctaBtn2: 'Get in touch',
-	home_projects_title: 'My projects',
+	home_projects_title: 'Selected work',
 	home_projects_projectTitle: '', //dynamically loaded
 	home_projects_projectTools: '',
 	home_projects_projectDescription: '',
@@ -31,7 +31,8 @@ export default {
 
 	error_pageTitle: "Oops, seems you've taken a wrong turn!",
 	error_errorSection_title: '', //error message
-	error_errorSection_text: "Something went wrong. We can't find the page you're looking for.",
+	error_errorSection_text:
+		"Something went wrong. We can't find the page you're looking for.",
 	error_errorSection_ctaBtn1: 'Back to home',
 	error_errorSection_ctaBtn2: 'back to blog',
 
