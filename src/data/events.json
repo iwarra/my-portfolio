@@ -1,5 +1,43 @@
 [
 	{
+		"id": "142982",
+		"title": "Sensommarkväll med Mint (Sthlm)",
+		"dateTime": "2026-09-08T17:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Chez Kny",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 0
+		},
+		"summary": "A relaxed late-summer evening hosted by Mint at Chez Kny. The event brought people together over drinks and snacks for informal conversations, reconnecting with familiar faces, and meeting new people—without presentations or a formal agenda.",
+		"summary_sv": "En avslappnad sensommarkväll arrangerad av Mint på Chez Kny. Evenemanget samlade människor över dryck och tilltugg för informella samtal, återseenden med bekanta och möten med nya människor – utan presentationer eller formell agenda.",
+		"speakers": []
+	},
+	{
+		"id": "dataai-l39q",
+		"title": "Data & AI in a Regulated Industry",
+		"dateTime": "2026-08-26T17:30:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Svedea",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 164
+		},
+		"summary": "A Data & AI Stockholm, Stockholm Snowflake User Group, and Svedea meetup on building modern data and AI capabilities in the regulated insurance industry. Rasmus Säfvenberg shared practical lessons on platform architecture, governance, data ownership, and using Snowflake to move quickly without compromising trust, security, or compliance.",
+		"summary_sv": "En träff med Data & AI Stockholm, Stockholm Snowflake User Group och Svedea om att bygga moderna data- och AI-förmågor i den reglerade försäkringsbranschen. Rasmus Säfvenberg delade praktiska erfarenheter av plattformsarkitektur, styrning, dataägarskap och hur Snowflake kan möjliggöra snabb utveckling utan att kompromissa med tillit, säkerhet eller regelefterlevnad.",
+		"speakers": [
+			{
+				"name": "Rasmus Säfvenberg",
+				"title": "Data & AI",
+				"company": "Svedea"
+			}
+		]
+	},
+	{
 		"id": "315504904",
 		"title": "Let the Agent Write It—But Can It Scale?",
 		"dateTime": "2026-08-13T18:00:00+02:00",
@@ -83,6 +121,28 @@
 		"summary": "A Stockholm MLOps summer event hosted at IBM, combining local startup presentations with rooftop networking, pizza, drinks, and music. The programme showcased companies working to push the local technology scene forward before the summer break.",
 		"summary_sv": "Ett Stockholmsevenemang om MLOps på IBM som kombinerade presentationer från lokala startups med nätverkande på takterrassen, pizza, dryck och musik. Programmet lyfte företag som driver den lokala teknikutvecklingen framåt inför sommaruppehållet.",
 		"speakers": []
+	},
+	{
+		"id": "93h17o9g",
+		"title": "WWDC Watch Party på Compileit",
+		"dateTime": "2026-06-08T18:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Compileit",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 27
+		},
+		"summary": "A WWDC keynote watch party at Compileit for people interested in product development, design, and emerging technology. The evening included food and drinks, followed by CEO Jonathan sharing lessons from his years on Apple's development team before the live keynote stream.",
+		"summary_sv": "En WWDC-keynote watch party på Compileit för personer intresserade av produktutveckling, design och ny teknik. Kvällen innehöll mat och dryck, följt av att vd:n Jonathan delade erfarenheter från sina år i Apples utvecklingsteam innan keynote-sändningen började.",
+		"speakers": [
+			{
+				"name": "Jonathan",
+				"title": "CEO",
+				"company": "Compileit"
+			}
+		]
 	},
 	{
 		"id": "314439389",
@@ -172,6 +232,28 @@
 				"name": "Cintia Henriksson",
 				"title": "",
 				"company": ""
+			}
+		]
+	},
+	{
+		"id": "aenova4u",
+		"title": "AI Labs Live x AWS",
+		"dateTime": "2026-05-25T17:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Amazon Web Services",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 86
+		},
+		"summary": "An interactive AI Labs Live evening with Automat-IT and AWS Startups, designed for people actively building with AI. The programme featured live demos, founder showcases, practical experimentation, and community networking, including insights from Mimicate founder Joel Kall on world models and AI experimentation.",
+		"summary_sv": "En interaktiv AI Labs Live-kväll med Automat-IT och AWS Startups för personer som aktivt bygger med AI. Programmet innehöll live-demos, presentationer från grundare, praktisk experimentering och nätverkande, inklusive insikter från Mimicates grundare Joel Kall om världsmodeller och AI-experimentering.",
+		"speakers": [
+			{
+				"name": "Joel Kall",
+				"title": "Founder",
+				"company": "Mimicate"
 			}
 		]
 	},
