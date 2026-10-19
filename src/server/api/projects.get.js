@@ -25,7 +25,7 @@ export default defineEventHandler(() => {
 		{
 			title: 'Poditory',
 			description:
-				'A project built with vanilla JS, HTLM and CSS. The coding challenge was to fetch and display ten podcasts from Sveriges Radio API.',
+				'A project built with vanilla JS, HTML and CSS. The coding challenge was to fetch and display ten podcasts from Sveriges Radio API.',
 			image: 'poditory.avif',
 			tools: ['HTML', 'JavaScript', 'CSS'],
 			links: {
