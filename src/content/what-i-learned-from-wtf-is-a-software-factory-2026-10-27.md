@@ -1,5 +1,5 @@
 ---
-title: What I learned from "WTF is a Software Factory?"
+title: '"WTF is a Software Factory?"'
 date: 2026-10-27T09:54:00.000+01:00
 category:
   - Beyond the Stack
