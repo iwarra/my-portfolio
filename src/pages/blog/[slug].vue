@@ -79,10 +79,10 @@ const [prev, next] = await queryContent()
 				<div class="hero-wrap">
 					<h1>{{ post.title }}</h1>
 					<span
-						>Published on: {{ dateFormatter(post.date).day }},
-						{{ dateFormatter(post.date).date }}.{{
-							dateFormatter(post.date).month
-						}}.{{ dateFormatter(post.date).year }}</span
+						>{{ $t('blog_publishedOn') }}
+						<time :datetime="post.date">{{
+							formatDate(post.date, $i18n.locale, 'long')
+						}}</time></span
 					>
 				</div>
 			</div>
@@ -214,6 +214,17 @@ const [prev, next] = await queryContent()
 :global(.post-body > h2 > a) {
 	text-decoration: none;
 	color: unset;
+}
+
+:global(.post-body > blockquote) {
+	margin: 0;
+	padding: 0.5rem 1.2rem;
+	border-left: 4px solid var(--primary-accent);
+	font-style: italic;
+}
+
+:global(.post-body > blockquote > p) {
+	margin: 0;
 }
 
 :global(code) {
