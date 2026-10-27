@@ -1,6 +1,17 @@
 export default defineEventHandler(() => {
 	return [
 		{
+			title: 'Velora',
+			description:
+				'A multi-step lead-generation quiz created for a medical weight-loss company. Built with Codex.',
+			image: 'velora.avif',
+			tools: ['Next.js', 'React', 'TypeScript', 'Zod'],
+			links: {
+				gitHub: '',
+				liveDemo: 'https://velora.ivona.se/',
+			},
+		},
+		{
 			title: 'System demo',
 			description:
 				'A fleet management dashboard demo built for a customer project.',
