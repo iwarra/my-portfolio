@@ -124,9 +124,9 @@ const filteredEvents = computed(() => {
 										<component
 											is="IconsCalendarMonth"
 											class="calendar-icon" />
-										{{ dateFormatter(event.dateTime).year }}/{{
-											dateFormatter(event.dateTime).month
-										}}/{{ dateFormatter(event.dateTime).date }}
+										<time :datetime="event.dateTime">{{
+											formatDate(event.dateTime, $i18n.locale)
+										}}</time>
 									</span>
 									<span
 										class="venue-label"

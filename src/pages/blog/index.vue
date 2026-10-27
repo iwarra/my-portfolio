@@ -167,11 +167,14 @@ function onCategoryChange() {
 								</NuxtLink>
 								<p>{{ post.summary }}</p>
 								<div class="post-extraInfo">
-									<span
-										>{{ dateFormatter(post.date).year }}/{{
-											dateFormatter(post.date).month
-										}}/{{ dateFormatter(post.date).date }}</span
-									>
+									<span class="post-date">
+										<component
+											is="IconsCalendarMonth"
+											class="calendar-icon" />
+										<time :datetime="post.date">{{
+											formatDate(post.date, $i18n.locale)
+										}}</time>
+									</span>
 									<!-- <NuxtLink :to="'/blog' + post._path" class="post-link">Read more 
                   <img src="/arrow-right.svg" alt="">
                   </NuxtLink> -->
@@ -336,6 +339,17 @@ li.post-card:nth-of-type(2n) {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;
+}
+
+.post-date {
+	display: flex;
+	align-items: center;
+	gap: 0.3rem;
+}
+
+.calendar-icon {
+	font-size: 1.4rem;
+	color: var(--primary-accent);
 }
 
 // .message {

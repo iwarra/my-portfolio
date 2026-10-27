@@ -265,10 +265,10 @@ const handleScroll = (direction, element) => {
 								:to="'blog' + post._path"
 								class="blog-link">
 								{{ post.title }}
-								<time class="post-date">
-									{{ dateFormatter(post.date).year }}/{{
-										dateFormatter(post.date).month
-									}}/{{ dateFormatter(post.date).date }}
+								<time
+									class="post-date"
+									:datetime="post.date">
+									{{ formatDate(post.date, $i18n.locale) }}
 								</time>
 							</NuxtLink>
 						</li>
@@ -761,6 +761,8 @@ const handleScroll = (direction, element) => {
 
 	.post-date {
 		display: none;
+		font-size: 1rem;
+		white-space: nowrap;
 	}
 
 	@media (min-width: 850px) {

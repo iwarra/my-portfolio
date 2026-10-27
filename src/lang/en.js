@@ -28,6 +28,7 @@ export default {
 	blog_pageTitle: 'My blog',
 	blog_searchPlaceholder: 'Search posts',
 	blog_categoriesTitle: 'All categories',
+	blog_publishedOn: 'Published on',
 
 	error_pageTitle: "Oops, seems you've taken a wrong turn!",
 	error_errorSection_title: '', //error message

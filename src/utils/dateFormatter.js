@@ -1,43 +1,11 @@
-const weekDays = [
-	"Sunday",
-	"Monday",
-	"Tuesday",
-	"Wednesday",
-	"Thursday",
-	"Friday",
-	"Saturday",
-];
-const months = [
-	"January",
-	"February",
-	"March",
-	"April",
-	"May",
-	"June",
-	"July",
-	"August",
-	"September",
-	"October",
-	"November",
-	"December",
-];
+// Fixed time zone so server and client render the same day
+const TIME_ZONE = 'Europe/Stockholm';
 
-export const dateFormatter = (date) => {
-	const formattedDate = {};
-
-	formattedDate.date =
-		new Date(date).getDate() < 9
-			? "0" + new Date(date).getDate()
-			: new Date(date).getDate();
-
-	formattedDate.month =
-		new Date(date).getMonth() < 9
-			? "0" + (new Date(date).getMonth() + 1)
-			: new Date(date).getMonth() + 1;
-
-	formattedDate.monthText = months[new Date(date).getMonth()];
-	formattedDate.year = new Date(date).getFullYear();
-	formattedDate.day = weekDays[new Date(date).getDay()];
-
-	return formattedDate;
-};
+// month: 'short' → "27 Oct 2026", 'long' → "27 October 2026" (localised)
+export const formatDate = (date, locale = 'en', month = 'short') =>
+	new Intl.DateTimeFormat(locale === 'en' ? 'en-GB' : locale, {
+		day: 'numeric',
+		month,
+		year: 'numeric',
+		timeZone: TIME_ZONE,
+	}).format(new Date(date));

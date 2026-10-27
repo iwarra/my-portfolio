@@ -24,4 +24,5 @@ export default {
 	home_blog_title: 'Senaste inläggen', //dynamic
 	//home_blog_postTitle: "", //dynamic  -  not translating posts?
 	home_connect_title: 'Låt oss kopplas samman',
+	blog_publishedOn: 'Publicerad',
 };
