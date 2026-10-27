@@ -1,5 +1,112 @@
 [
 	{
+		"id": "316097488",
+		"title": "AI Builders and Databases Stockholm",
+		"dateTime": "2026-10-08T18:30:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Mentimeter",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 53
+		},
+		"summary": "A ClickHouse Stockholm User Group evening on real-time analytics at scale, hosted at Mentimeter. Talks covered what's new in ClickHouse for AI engineers, Nordic Growth Market's migration from Apache Drill to ClickHouse for querying Parquet files, and a first look at custom data apps built on ClickHouse with Metabase.",
+		"summary_sv": "En kväll med ClickHouse Stockholm User Group om realtidsanalys i stor skala, på Mentimeter. Föredragen handlade om nyheter i ClickHouse för AI-ingenjörer, Nordic Growth Markets migrering från Apache Drill till ClickHouse för frågor mot Parquet-filer, samt en första titt på skräddarsydda dataappar byggda på ClickHouse med Metabase.",
+		"speakers": [
+			{
+				"name": "Magnus Pierre",
+				"title": "Solutions Architect",
+				"company": "ClickHouse"
+			},
+			{
+				"name": "Mikael Brännström",
+				"title": "CTO",
+				"company": "Nordic Growth Market"
+			}
+		]
+	},
+	{
+		"id": "316655866",
+		"title": "LeadDev Stockholm Meetup - 7th Edition",
+		"dateTime": "2026-10-01T17:30:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Umain",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 88
+		},
+		"summary": "An evening for engineering leaders, tech leads, and developers hosted by Dash0 at Umain. Talks explored the future of software engineering, navigating uncertainty in the AI era, and a playful deep-dive into the observability landscape, followed by mingling, food, and drinks.",
+		"summary_sv": "En kväll för tekniska chefer, tech leads och utvecklare, arrangerad av Dash0 hos Umain. Föredragen handlade om mjukvaruutvecklingens framtid, att navigera osäkerhet i AI-eran och en lekfull djupdykning i observability-landskapet, följt av mingel, mat och dryck.",
+		"speakers": [
+			{
+				"name": "Julia Granström",
+				"title": "",
+				"company": ""
+			},
+			{
+				"name": "Marcus Hammarberg",
+				"title": "",
+				"company": ""
+			},
+			{
+				"name": "Michele Mancioppi",
+				"title": "",
+				"company": ""
+			},
+			{
+				"name": "Sazzad Khan",
+				"title": "",
+				"company": ""
+			}
+		]
+	},
+	{
+		"id": "315082806",
+		"title": "Contract-first APIs and Authentication/Authorization in ASP.NET Core",
+		"dateTime": "2026-09-28T17:30:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Tobii Dynavox",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 61
+		},
+		"summary": "A Swenug Stockholm evening with two ASP.NET Core talks. Renato Golia presented a contract-first approach to REST APIs with Minimal APIs, where the OpenAPI document is the source of truth, and Anders Abel covered the key concepts of authentication and authorization, including schemes, ASP.NET Identity, data protection, and authorization policies.",
+		"summary_sv": "En kväll med Swenug Stockholm med två föredrag om ASP.NET Core. Renato Golia presenterade ett contract-first-arbetssätt för REST-API:er med Minimal APIs, där OpenAPI-dokumentet är källan till sanning, och Anders Abel gick igenom grunderna i autentisering och auktorisering, inklusive scheman, ASP.NET Identity, dataskydd och auktoriseringspolicyer.",
+		"speakers": [
+			{
+				"name": "Renato Golia",
+				"title": "Software Architect",
+				"company": ""
+			},
+			{
+				"name": "Anders Abel",
+				"title": "Senior .NET Developer",
+				"company": ""
+			}
+		]
+	},
+	{
+		"id": "lqycpvy6",
+		"title": "Dev Days | Stockholm, Sweden",
+		"dateTime": "2026-09-23T17:00:00+02:00",
+		"eventType": "PHYSICAL",
+		"venue": {
+			"name": "Embassy House Coworking",
+			"city": "Stockholm"
+		},
+		"rsvps": {
+			"totalCount": 49
+		},
+		"summary": "A GitHub Dev Days event hosted by Functional Software, focused on building with the Copilot app. It opened with a demo of the app as an agent harness for long-running coding tasks, pull requests, and automations, followed by a hands-on workshop and hackathon using Copilot to build projects.",
+		"summary_sv": "Ett GitHub Dev Days-evenemang arrangerat av Functional Software med fokus på att bygga med Copilot-appen. Kvällen inleddes med en demo av appen som agentmiljö för långvariga kodningsuppgifter, pull requests och automatiseringar, följt av en praktisk workshop och hackathon där deltagarna byggde projekt med Copilot.",
+		"speakers": []
+	},
+	{
 		"id": "142982",
 		"title": "Sensommarkväll med Mint (Sthlm)",
 		"dateTime": "2026-09-08T17:00:00+02:00",
@@ -178,28 +285,6 @@
 				"name": "Mikael Vesavuori",
 				"title": "Product Manager AI Products",
 				"company": "evroc"
-			}
-		]
-	},
-	{
-		"id": "314657754",
-		"title": "Managing a Career Break: Pause, Don’t Panic!",
-		"dateTime": "2026-05-27T13:00:00+02:00",
-		"eventType": "ONLINE",
-		"venue": {
-			"name": "Online",
-			"city": ""
-		},
-		"rsvps": {
-			"totalCount": 192
-		},
-		"summary": "An online session on navigating career breaks with confidence. Harpreet Dulai discussed how to explain time away from work, reframe career narratives authentically, and return to the job market on one's own terms, drawing on experience in technology transformation and mentoring.",
-		"summary_sv": "En onlinesession om att navigera karriärpauser med självförtroende. Harpreet Dulai diskuterade hur man förklarar frånvaro från arbetslivet, omformulerar sin karriärberättelse på ett autentiskt sätt och återvänder till arbetsmarknaden på sina egna villkor, med utgångspunkt i erfarenhet av tekniktransformation och mentorskap.",
-		"speakers": [
-			{
-				"name": "Harpreet Dulai",
-				"title": "Associate Director and Global Mentoring Lead",
-				"company": "EPAM"
 			}
 		]
 	},
